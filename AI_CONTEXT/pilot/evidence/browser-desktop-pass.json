@@ -1,0 +1,159 @@
+[
+  {
+    "pair": "development-2",
+    "arm": "control",
+    "viewport": 320,
+    "state": {
+      "documentWidth": 305,
+      "notes": [
+        ""
+      ],
+      "pressed": [
+        "false",
+        "true",
+        "false"
+      ],
+      "width": 320
+    }
+  },
+  {
+    "pair": "development-2",
+    "arm": "sca",
+    "error": "Missing selection controls",
+    "logs": [
+      {
+        "level": "error",
+        "message": "SyntaxError: Invalid or unexpected token",
+        "timestamp": "2026-10-10T22:27:54.064Z",
+        "url": "http://127.0.0.1:3003/development-2/sca/index.html"
+      }
+    ]
+  },
+  {
+    "pair": "development-3",
+    "arm": "control",
+    "viewport": 320,
+    "state": {
+      "documentWidth": 305,
+      "notes": [
+        "Nota de verificación",
+        "",
+        ""
+      ],
+      "pressed": [
+        "false",
+        "true",
+        "false"
+      ],
+      "width": 320
+    }
+  },
+  {
+    "pair": "development-3",
+    "arm": "sca",
+    "viewport": 320,
+    "state": {
+      "documentWidth": 305,
+      "notes": [
+        ""
+      ],
+      "pressed": [
+        "false",
+        "true",
+        "false"
+      ],
+      "width": 320
+    }
+  },
+  {
+    "pair": "development-1",
+    "arm": "control",
+    "viewport": 1280,
+    "state": {
+      "documentWidth": 1265,
+      "notes": [
+        "Nota de verificación",
+        "",
+        ""
+      ],
+      "pressed": [
+        "true",
+        "false",
+        "false"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "pair": "development-1",
+    "arm": "sca",
+    "viewport": 1280,
+    "state": {
+      "documentWidth": 1280,
+      "notes": [
+        "Nota de verificación",
+        "",
+        ""
+      ],
+      "pressed": [
+        "true",
+        "false",
+        "false"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "pair": "development-2",
+    "arm": "control",
+    "viewport": 1280,
+    "state": {
+      "documentWidth": 1280,
+      "notes": [
+        "Nota de verificación"
+      ],
+      "pressed": [
+        "true",
+        "false",
+        "false"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "pair": "development-3",
+    "arm": "control",
+    "viewport": 1280,
+    "state": {
+      "documentWidth": 1280,
+      "notes": [
+        "Nota de verificación",
+        "",
+        ""
+      ],
+      "pressed": [
+        "true",
+        "false",
+        "false"
+      ],
+      "width": 1280
+    }
+  },
+  {
+    "pair": "development-3",
+    "arm": "sca",
+    "viewport": 1280,
+    "state": {
+      "documentWidth": 1280,
+      "notes": [
+        "Nota de verificación"
+      ],
+      "pressed": [
+        "true",
+        "false",
+        "false"
+      ],
+      "width": 1280
+    }
+  }
+]

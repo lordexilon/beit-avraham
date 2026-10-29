@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 10: Landing Page Institucional y Despliegue Vercel",
+  "node_id": "N53",
+  "task_key": "N53-landing-page-institucional-y-despliegue-vercel",
+  "task_desc": "Creación de Landing Page institucional configurable (Bienvenida, Qué hacemos, Pilares, Testimonios y Acceso directo) y optimización para repositorio Git y despliegue en Vercel",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "pair_id": "installation-1",
+  "arm": "control",
+  "exit_code": 1,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: bootstrap completo sin secretos\nnot ok 1 - bootstrap completo sin secretos\n  ---\n  duration_ms: 38.9916\n  location: 'C:\\\\Users\\\\Legion 5\\\\Documents\\\\ChatGPT\\\\Beit Avraham\\\\AI_CONTEXT\\\\pilot\\\\workspaces\\\\installation-1\\\\control\\\\acceptance.cjs:1:169'\n  failureType: 'testCodeFailure'\n  error: 'Pendiente'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    exports.prepare (C:\\Users\\Legion 5\\Documents\\ChatGPT\\Beit Avraham\\AI_CONTEXT\\pilot\\workspaces\\installation-1\\control\\bootstrap.cjs:1:28)\n    TestContext.<anonymous> (C:\\Users\\Legion 5\\Documents\\ChatGPT\\Beit Avraham\\AI_CONTEXT\\pilot\\workspaces\\installation-1\\control\\acceptance.cjs:1:696)\n    Test.runInAsyncScope (node:async_hooks:211:14)\n    Test.run (node:internal/test_runner/test:934:25)\n    Test.start (node:internal/test_runner/test:833:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 0\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 316.6114\n",
+  "stderr": "",
+  "at": "2026-10-10T20:33:57.908Z",
+  "acceptance_hash": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95",
+  "source_hashes": {
+    "acceptance.cjs": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95",
+    "bootstrap.cjs": "2b94e8e0080969a8f590720f8192a5d0eaa92a57be16245acb692eb473df232d"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N23-universal-capture-connect",
+  "execution_key": "0d2d911d-ffea-4c89-b756-d9b6cef2a099",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-11T23:02:31.494Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-11T23:09:15.514Z"
+    }
+  ],
+  "evidence": {
+    "method": "task-boundary-conversation-captures",
+    "source_key": "codex:01a121b1-0062-7e20-bfc5-e0eae777c1bc",
+    "boundary_start": "2026-10-10T22:57:56.447+00:00",
+    "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+    "boundary_end": "2026-10-11T23:09:06+00:00",
+    "capture_event_ids": [
+      "7662b078-561f-4ad1-a58f-e4222060d239",
+      "5d521a3b-8f9d-4fa6-a27c-4dd69daa8a75"
+    ],
+    "interval_tokens": 41606571
+  }
+}

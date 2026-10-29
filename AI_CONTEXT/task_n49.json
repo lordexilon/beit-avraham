@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 8: Infraestructura y Skills",
+  "node_id": "N49",
+  "task_key": "N49-fix-project-health-check-skill",
+  "task_desc": "Corregir formato de frontmatter en project_health_check/SKILL.md",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

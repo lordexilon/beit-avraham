@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N39",
+  "task_key": "N39-javruta-v2-conversestream-guardrails",
+  "task_desc": "Javruta v2 sobre ConverseStream: streaming, citas estructuradas y guardrails de grounding",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

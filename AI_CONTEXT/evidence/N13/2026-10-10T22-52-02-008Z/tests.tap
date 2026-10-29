@@ -1,0 +1,81 @@
+TAP version 13
+# Subtest: scope, quality and missing evidence rejected
+ok 1 - scope, quality and missing evidence rejected
+  ---
+  duration_ms: 3.866
+  ...
+# Subtest: unknown costs and nonexclusive tokens remain pending, losses preserved
+ok 2 - unknown costs and nonexclusive tokens remain pending, losses preserved
+  ---
+  duration_ms: 0.6851
+  ...
+# Subtest: synthetic, shared session, model mismatch and poorer quality excluded
+ok 3 - synthetic, shared session, model mismatch and poorer quality excluded
+  ---
+  duration_ms: 0.6208
+  ...
+# Subtest: cost dimensions and allocation basis cannot be combined
+ok 4 - cost dimensions and allocation basis cannot be combined
+  ---
+  duration_ms: 0.3854
+  ...
+# Subtest: denominator contains failed and unexecuted cases
+ok 5 - denominator contains failed and unexecuted cases
+  ---
+  duration_ms: 1.4715
+  ...
+# Subtest: fixture bundles repeat deterministically with distinct variants
+ok 6 - fixture bundles repeat deterministically with distinct variants
+  ---
+  duration_ms: 1.8134
+  ...
+# Subtest: impossible timing and unsafe token totals rejected
+ok 7 - impossible timing and unsafe token totals rejected
+  ---
+  duration_ms: 0.4865
+  ...
+# Subtest: latest continuation replaces prior outcome in report without counting twice
+ok 8 - latest continuation replaces prior outcome in report without counting twice
+  ---
+  duration_ms: 0.4111
+  ...
+# Subtest: pending human rubric can be recorded but never accepted for savings
+ok 9 - pending human rubric can be recorded but never accepted for savings
+  ---
+  duration_ms: 0.6877
+  ...
+# Subtest: missing reference or acceptance never yields savings
+ok 10 - missing reference or acceptance never yields savings
+  ---
+  duration_ms: 3.0779
+  ...
+# Subtest: different scope blocks comparison and losses remain negative
+ok 11 - different scope blocks comparison and losses remain negative
+  ---
+  duration_ms: 0.8682
+  ...
+# Subtest: workflow requires identity and prevents task file traversal
+ok 12 - workflow requires identity and prevents task file traversal
+  ---
+  duration_ms: 2.24
+  ...
+# Subtest: immutable history retained, current duration and exports exclude superseded timing
+ok 13 - immutable history retained, current duration and exports exclude superseded timing
+  ---
+  duration_ms: 5.5505
+  ...
+# Subtest: correction cannot cross scope or create forks/cycles
+ok 14 - correction cannot cross scope or create forks/cycles
+  ---
+  duration_ms: 0.8415
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 233.2681
+

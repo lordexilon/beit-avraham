@@ -1,0 +1,40 @@
+{
+  "id": "0fcbb3ae-5c0e-48c4-a256-3a973d84fd86",
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "execution_key": "e31a8872-391c-c010-fa76-4e91dbb189fc",
+  "task_key": "pilot-bugfix-1-control",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "at": "2026-10-10T20:37:48.824Z",
+      "action": "start"
+    },
+    {
+      "at": "2026-10-10T20:38:19.514Z",
+      "action": "finish"
+    }
+  ],
+  "intervals": [
+    [
+      1791664668824,
+      1791664699514
+    ]
+  ],
+  "active_seconds": 30.69,
+  "elapsed_seconds": 30.69,
+  "evidence": {
+    "method": "independent-codex-subagent-session-clock",
+    "source": "evidence/bugfix-1-control-session.json",
+    "limitation": "Wall clock, not human time or continuous inference; shared host. Full-session tokens remain evidence only, no capture event or savings attribution.",
+    "session_id": "01a12789-3cc5-75f1-9ebe-87be7e8f0f97",
+    "measured_session_tokens": {
+      "output": 530,
+      "evidence": "evidence/bugfix-1-control-session.json",
+      "exclusive": true,
+      "input_cached": 177536,
+      "input_uncached": 3568
+    }
+  }
+}

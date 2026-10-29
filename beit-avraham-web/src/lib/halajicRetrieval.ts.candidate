@@ -1,0 +1,149 @@
+import crypto from "node:crypto";
+
+/**
+ * Genera un vector determinista de 768 dimensiones normalizado L2
+ * para consultas vectoriales en fsca.knowledge_base.
+ */
+export function generateEmbedding(text: string): number[] {
+  const dim = 768;
+  const vec = new Float64Array(dim);
+  const words = text.toLowerCase().split(/\s+/).filter(Boolean);
+
+  for (let i = 0; i < words.length; i++) {
+    const hash = crypto.createHash("sha256").update(words[i]).digest();
+    for (let j = 0; j < 32; j++) {
+      const idx = (hash[j] * 31 + j * 7) % dim;
+      vec[idx] += (hash[j] - 128) / 128;
+    }
+  }
+
+  let norm = 0;
+  for (let i = 0; i < dim; i++) norm += vec[i] * vec[i];
+  norm = Math.sqrt(norm) || 1;
+  const result = new Array(dim);
+  for (let i = 0; i < dim; i++) result[i] = Number((vec[i] / norm).toFixed(6));
+  return result;
+}
+
+/**
+ * Calcula la similitud coseno entre dos vectores numéricos de igual dimensión.
+ * Retorna un valor entre -1 y 1 (o 0 si la norma es cero).
+ */
+export function cosineSimilarity(vecA: number[], vecB: number[]): number {
+  if (!vecA || !vecB || vecA.length === 0 || vecA.length !== vecB.length) {
+    return 0;
+  }
+
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+
+  for (let i = 0; i < vecA.length; i++) {
+    dotProduct += vecA[i] * vecB[i];
+    normA += vecA[i] * vecA[i];
+    normB += vecB[i] * vecB[i];
+  }
+
+  const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+  if (denominator === 0) return 0;
+
+  return Number((dotProduct / denominator).toFixed(6));
+}
+
+export interface LocalKnowledgeDocument {
+  id: number;
+  source_file: string;
+  content: string;
+  category?: string;
+}
+
+export interface MatchedSource {
+  id: number;
+  source_file: string;
+  content: string;
+  similarity: number;
+}
+
+/**
+ * Realiza una búsqueda semántica local pura en memoria, ordenando por similitud coseno descendente.
+ * Se utiliza como fallback offline resiliente o motor de búsqueda embebido.
+ */
+export function searchLocalKnowledge(
+  query: string,
+  documents: LocalKnowledgeDocument[],
+  matchCount: number = 3,
+  threshold: number = 0.05
+): MatchedSource[] {
+  if (!query || !documents || documents.length === 0) {
+    return [];
+  }
+
+  const queryVec = generateEmbedding(query);
+  const scored = documents.map((doc) => {
+    const docVec = generateEmbedding(doc.content);
+    const sim = cosineSimilarity(queryVec, docVec);
+    return {
+      id: doc.id,
+      source_file: doc.source_file,
+      content: doc.content,
+      similarity: sim,
+    };
+  });
+
+  return scored
+    .filter((item) => item.similarity >= threshold)
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, matchCount);
+}
+
+/**
+ * Ejecuta búsqueda vectorial por similitud coseno contra Supabase / SCA Matrix,
+ * con fallback automático a búsqueda local si el servicio de red no está disponible.
+ */
+export async function matchHalajicSources(
+  query: string,
+  matchCount: number = 2,
+  threshold: number = 0.05,
+  fallbackDocuments: LocalKnowledgeDocument[] = []
+): Promise<MatchedSource[]> {
+  const supabaseUrl = process.env.SCA_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "http://127.0.0.1:44321";
+  const supabaseKey = process.env.SCA_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+
+  if (supabaseUrl && supabaseKey) {
+    const queryEmbedding = generateEmbedding(query);
+
+    try {
+      const res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          "Accept-Profile": "fsca",
+          "Content-Profile": "fsca"
+        },
+        body: JSON.stringify({
+          query_embedding: queryEmbedding,
+          match_threshold: threshold,
+          match_count: matchCount,
+          p_project_name: "Beit Avraham"
+        }),
+        cache: "no-store"
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) return data;
+      }
+    } catch {
+      // Fallback a evaluación local en caso de timeout o red inalcanzable
+    }
+  }
+
+  // Fallback offline resiliente
+  if (fallbackDocuments.length > 0) {
+    return searchLocalKnowledge(query, fallbackDocuments, matchCount, threshold);
+  }
+
+  return [];
+}

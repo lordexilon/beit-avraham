@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 9: Experiencia de Usuario y Chat Moderno",
+  "node_id": "N51",
+  "task_key": "N51-rediseno-chat-javruta-conversacional-reactivo",
+  "task_desc": "Rediseño integral del chat de Javrutá: hilo conversacional multi-turno con scroll automático, renderizado Markdown formateado, input fijo inferior y telemetría visual de Grok",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

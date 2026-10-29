@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 7: ABM de contenido",
+  "node_id": "N47",
+  "task_key": "N47-abm-podcast-audio-capitulos",
+  "task_desc": "ABM de podcast: episodios, audio y capitulos sobre el mismo modelo editable",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

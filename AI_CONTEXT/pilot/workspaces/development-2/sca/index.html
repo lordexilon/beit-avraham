@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudio por líneas</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f3f2ee; color: #23312c; font-family: system-ui, sans-serif; }
+    main { width: min(100% - 32px, 760px); margin: 40px auto; padding: clamp(16px, 4vw, 32px); background: white; border: 1px solid #d7ddd8; border-radius: 12px; }
+    h1 { font-size: clamp(24px, 5vw, 32px); margin-top: 0; }
+    p { line-height: 1.6; }
+    .study-lines { display: grid; gap: 12px; margin: 24px 0; }
+    button { width: 100%; padding: 16px; text-align: left; border: 1px solid #abbab1; border-radius: 8px; color: inherit; background: #fafbf9; font: inherit; line-height: 1.5; overflow-wrap: anywhere; cursor: pointer; }
+    button[aria-pressed="true"] { border: 2px solid #286147; padding: 15px; background: #eaf3ed; }
+    button[aria-pressed="true"]::before { content: '✓ '; }
+    button:focus-visible, textarea:focus-visible { outline: 3px solid #946d20; outline-offset: 3px; }
+    label { display: block; font-weight: 600; }
+    textarea { display: block; width: 100%; resize: vertical; margin-top: 10px; padding: 12px; border: 1px solid #abbab1; border-radius: 6px; font: inherit; }
+    .hint { font-size: 14px; color: #53635a; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Estudio por líneas</h1>
+    <p>Selecciona una línea y escribe una nota. Usa Tab para moverte y Enter o Espacio para seleccionar.</p>
+    <div id="study"></div>
+    <p class="hint">Las notas se conservan al cambiar de línea durante esta sesión. Se borran al recargar la página.</p>
+  </main>
+  <script src="study.cjs"></script>
+  <script>
+    Study.mount(document.getElementById('study'), [
+      { id: 'a', text: 'Escucha con atención y dedica tiempo a comprender.' },
+      { id: 'b', text: 'Formula una pregunta y guarda tu reflexión en una nota.' },
+      { id: 'c', text: '\u003cscript>Este texto se muestra literalmente.\u003c/script>' }
+    ]);
+  </script>
+</body>
+</html>
+

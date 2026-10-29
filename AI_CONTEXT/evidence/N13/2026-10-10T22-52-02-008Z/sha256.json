@@ -1,0 +1,90 @@
+[
+  {
+    "file": "additional-0-instructions.md",
+    "sha256": "3ff4b37cf0cad22509b9ec89f430ed3d4e8d1fc5e1bdf9c5f06177dd7abfb511"
+  },
+  {
+    "file": "additional-1-SKILL.md",
+    "sha256": "d5bc1842835d66cc2719d5fece0b7783185c0bd06ac572477a1d2d206700aa35"
+  },
+  {
+    "file": "additional-2-extractor.py",
+    "sha256": "b6fbdf25c831be1f303060ee45c645cab6c9490bb4cfedac7adbfb7e39228b5d"
+  },
+  {
+    "file": "additional-3-n13_review.md",
+    "sha256": "454d97f0a98805150179b9674f9c2d8c78b2231a31946e9e173e8a451e0f020a"
+  },
+  {
+    "file": "audit.json",
+    "sha256": "49baafca941a9ecf650cd7fe2cd219ca24643354e23408f7b12893db81f1a06f"
+  },
+  {
+    "file": "cycle-dashboard.json",
+    "sha256": "10b8b131573e208bc03bba70941f09f363c0dd65408685f70ba6ed80bf2a3469"
+  },
+  {
+    "file": "dag-after-close.json",
+    "sha256": "20cb7960755ce31c02715a9ee40f8fffe04b093286d0cb19fff267f034021a7b"
+  },
+  {
+    "file": "dag.json",
+    "sha256": "91519bb37aa7249f6bf91ad1db9f62cd13567171203a98f470700926b29ee60d"
+  },
+  {
+    "file": "project.json",
+    "sha256": "1d291f5dcdea82879e3ab3378352345f3e48e79468c3d85dec534e89c9904b02"
+  },
+  {
+    "file": "source-0-swarm_router.md",
+    "sha256": "52d98c62e92b8721ae99eb6b969ea82e9c87fed7b8d8d1291235e7cd0b551a1f"
+  },
+  {
+    "file": "source-1-engine.py",
+    "sha256": "b1eb11c774fb58d0e91340c3c30f80e7f72d2c09ff2c235556d05a79415b77ba"
+  },
+  {
+    "file": "source-10-test_task_evaluation.cjs",
+    "sha256": "a801c9f52ab1144bcbd72f390bcff834b70cd06ca3b99002b6b992b867b7dbe9"
+  },
+  {
+    "file": "source-11-test_task_workflow.cjs",
+    "sha256": "21b29840400349c6897aa2d3f6221704a10897ef76fccdb1985100a44488b318"
+  },
+  {
+    "file": "source-2-memory_schema.md",
+    "sha256": "87715b7e2312f229f2ec6e51be1cf0a958a6ee3f53f4988ad6cc789ebf1dee40"
+  },
+  {
+    "file": "source-3-manifest.json",
+    "sha256": "0acbc12e4ee210b1e5cc3ffb8380fef0122aaf2cc7eb9afb3545445fd1e7f61e"
+  },
+  {
+    "file": "source-4-report.json",
+    "sha256": "6d09df6ed67491412dd2b44afc1eea209f10747f5ac23340c65fc6408cd05ce3"
+  },
+  {
+    "file": "source-5-results_review.md",
+    "sha256": "2d4259385272808cdc89f49dd30b19a1413fbf9b2cf192f4caeaac8f7a2f0c2d"
+  },
+  {
+    "file": "source-6-cycle-dashboard.js",
+    "sha256": "db30b8950ccc947ac63e306efa34951b441bb5362571fbbba720f821c877e761"
+  },
+  {
+    "file": "source-7-pilot_prepare_sca.cjs",
+    "sha256": "459b54b5f2450c5eada5fd3864cea79b4383796c468af536c544d99cc202b037"
+  },
+  {
+    "file": "source-8-test_pilot.cjs",
+    "sha256": "7da0e5ab455421b51cc76ef7dec44a4fa7887b72f2cf2ca3edf37ba958bbfd41"
+  },
+  {
+    "file": "source-9-test_time_corrections.cjs",
+    "sha256": "f635b8b8c031845c783475677549fc77214fae1f39a70640d524e6a716a2a98d"
+  },
+  {
+    "file": "tests.tap",
+    "sha256": "91cd095ed7a32d7ddcc9e1f6ef305e303a341da0b2e46a872d4a31f5b69db651"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "id": "d6c5ea64-917f-4df6-86d3-4a3d96a3019d",
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "execution_key": "93ddcbb7-8547-a14e-1edf-778250b63827",
+  "task_key": "pilot-refactor-2-sca",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "at": "2026-10-10T20:40:02.587Z",
+      "action": "start"
+    },
+    {
+      "at": "2026-10-10T20:40:55.790Z",
+      "action": "finish"
+    }
+  ],
+  "intervals": [
+    [
+      1791664802587,
+      1791664855790
+    ]
+  ],
+  "active_seconds": 53.203,
+  "elapsed_seconds": 53.203,
+  "evidence": {
+    "method": "independent-codex-subagent-session-clock",
+    "source": "evidence/refactor-2-sca-session.json",
+    "limitation": "Wall clock, not human time or continuous inference; shared host. Full-session tokens remain evidence only, no capture event or savings attribution.",
+    "session_id": "01a1278b-4799-76f3-810d-2049d7bb390e",
+    "measured_session_tokens": {
+      "output": 1799,
+      "evidence": "evidence/refactor-2-sca-session.json",
+      "exclusive": true,
+      "input_cached": 295040,
+      "input_uncached": 6923
+    }
+  }
+}

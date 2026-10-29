@@ -1,0 +1,18 @@
+{
+  "pair_id": "context-1",
+  "arm": "control",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: politica y alcance\nok 1 - politica y alcance\n  ---\n  duration_ms: 3.1279\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 154.65\n",
+  "stderr": "",
+  "at": "2026-10-10T22:22:03.265Z",
+  "acceptance_hash": "71229316bc9175d3f814af5c629a0c7be6f170881c7afdc1f075914556ca742a",
+  "source_hashes": {
+    "acceptance.cjs": "71229316bc9175d3f814af5c629a0c7be6f170881c7afdc1f075914556ca742a",
+    "catalog.cjs": "ec83f6999e786066c54d98e51d89afc8594e87e3cfffdf4d0c05448c320865ce",
+    "docs\\policy.md": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "study.cjs": "d362dbe5cb390f0db7dbd76237ea1549e0af42d30cc13f9bcf345e580faa107f",
+    "TASK.md": "5daf11266cb12473fee74d12f58a6b530e370ea98e6a18bc92e96c532c1c8553"
+  }
+}

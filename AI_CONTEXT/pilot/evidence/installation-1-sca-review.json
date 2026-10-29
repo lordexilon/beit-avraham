@@ -1,0 +1,8 @@
+{
+  "status": "human_review_pending",
+  "automated_test_exit": 0,
+  "manual_checks": [
+    "Para certificar instalacion real ejecutar adicionalmente instalador original, Matrix aislada, captura y verificacion API/UI; este fixture solo evalua bootstrap"
+  ],
+  "quality_scores": null
+}

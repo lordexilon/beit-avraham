@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N40",
+  "task_key": "N40-shiur-session-memory-token-budget",
+  "task_desc": "Memoria de sesion por shiur con presupuesto de tokens inyectada en el prompt",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

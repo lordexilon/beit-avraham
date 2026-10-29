@@ -1,0 +1,125 @@
+{
+  "session_id": "01a127ec-08d4-7970-bedb-0c79611345bc",
+  "agent_path": "/root/pilot_development_3_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-25-43-01a127ec-08d4-7970-bedb-0c79611345bc.jsonl",
+  "source_sha256": "0109236db4fce8cc79c34ba7bf785b13304345c7037ccd9ff4ea76d16d613499",
+  "started_at": "2026-10-10T22:25:44.385Z",
+  "finished_at": "2026-10-10T22:27:33.517Z",
+  "turn_intervals": [
+    [
+      1791671143715,
+      1791671253517
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:25:54.856Z",
+      "counters": {
+        "input_tokens": 35585,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 73,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35658
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:26:01.855Z",
+      "counters": {
+        "input_tokens": 72727,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 136,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 72863
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:26:08.756Z",
+      "counters": {
+        "input_tokens": 110009,
+        "cached_input_tokens": 106368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 215,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 110224
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:26:33.674Z",
+      "counters": {
+        "input_tokens": 147739,
+        "cached_input_tokens": 143488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2310,
+        "reasoning_output_tokens": 126,
+        "total_tokens": 150049
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:26:55.463Z",
+      "counters": {
+        "input_tokens": 187637,
+        "cached_input_tokens": 180992,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3906,
+        "reasoning_output_tokens": 140,
+        "total_tokens": 191543
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:04.151Z",
+      "counters": {
+        "input_tokens": 229277,
+        "cached_input_tokens": 220672,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4013,
+        "reasoning_output_tokens": 165,
+        "total_tokens": 233290
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:19.907Z",
+      "counters": {
+        "input_tokens": 271214,
+        "cached_input_tokens": 262144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4928,
+        "reasoning_output_tokens": 192,
+        "total_tokens": 276142
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:29.444Z",
+      "counters": {
+        "input_tokens": 314310,
+        "cached_input_tokens": 303872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5257,
+        "reasoning_output_tokens": 192,
+        "total_tokens": 319567
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:33.464Z",
+      "counters": {
+        "input_tokens": 357793,
+        "cached_input_tokens": 346752,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5445,
+        "reasoning_output_tokens": 192,
+        "total_tokens": 363238
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:25:46.189Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Completed within `development-3/sca`.\n\nChanged: `study.cjs`, added `index.html`, `verification.cjs`, and concise `SCA_JOURNAL.md` with Pending → In progress → Done transitions.\n\nImplemented exclusive selection, click/Enter/Space activation, `aria-pressed`, per-line temporary notes, safe literal text rendering, validated ids, and isolated state snapshots. Demo executes the actual component.\n\nEach verification invoked once:\n\n- `node --test acceptance.cjs`: 1 passed, 0 failed.\n- `node --check study.cjs`: passed.\n- `node --test verification.cjs`: 3 passed, 0 failed.\n\n`acceptance.cjs` and `package.json` unchanged. Manual browser QA at 320px/desktop and native Tab behavior remain unverified; supplemental tests use DOM doubles. No outside-directory reads, network, dependencies, or external persistence.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

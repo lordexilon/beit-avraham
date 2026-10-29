@@ -1,0 +1,29 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N32-shiur-cabala",
+  "execution_key": "4c794529-f2d2-4e8a-b0cf-d19a697be2a8",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-12T04:13:48.681Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-12T04:15:44.997Z"
+    }
+  ],
+  "evidence": {
+    "method": "task-boundary-conversation-captures",
+    "source_key": "antigravity:dd8ea3e2-0d86-4af9-ad40-dedd48ab3d8b",
+    "boundary_start": "2026-10-12T04:13:31+00:00",
+    "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+    "boundary_end": "2026-10-12T04:15:28+00:00",
+    "capture_event_ids": [
+      "dcd16f82-9601-4ff3-81d9-ceed3c7f6af6"
+    ],
+    "interval_tokens": 1096058
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "session_id": "01a127ea-86fa-7081-8424-dc4aeccb6cec",
+  "agent_path": "/root/pilot_development_3_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-24-04-01a127ea-86fa-7081-8424-dc4aeccb6cec.jsonl",
+  "source_sha256": "8a71165b4d190411a103539414a5cfb84719d26156415f50cd6cbaf1f582942c",
+  "started_at": "2026-10-10T22:24:04.811Z",
+  "finished_at": "2026-10-10T22:25:36.722Z",
+  "turn_intervals": [
+    [
+      1791671044407,
+      1791671136722
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:24:13.004Z",
+      "counters": {
+        "input_tokens": 35571,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 71,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35642
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:24:20.675Z",
+      "counters": {
+        "input_tokens": 71626,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 197,
+        "reasoning_output_tokens": 11,
+        "total_tokens": 71823
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:24:48.316Z",
+      "counters": {
+        "input_tokens": 108175,
+        "cached_input_tokens": 103296,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2167,
+        "reasoning_output_tokens": 234,
+        "total_tokens": 110342
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:24:56.914Z",
+      "counters": {
+        "input_tokens": 146837,
+        "cached_input_tokens": 139136,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2328,
+        "reasoning_output_tokens": 268,
+        "total_tokens": 149165
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:05.730Z",
+      "counters": {
+        "input_tokens": 185905,
+        "cached_input_tokens": 177664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2496,
+        "reasoning_output_tokens": 294,
+        "total_tokens": 188401
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:23.042Z",
+      "counters": {
+        "input_tokens": 225332,
+        "cached_input_tokens": 216576,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3483,
+        "reasoning_output_tokens": 348,
+        "total_tokens": 228815
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:32.352Z",
+      "counters": {
+        "input_tokens": 265987,
+        "cached_input_tokens": 255872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3608,
+        "reasoning_output_tokens": 406,
+        "total_tokens": 269595
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:36.674Z",
+      "counters": {
+        "input_tokens": 306909,
+        "cached_input_tokens": 296320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3832,
+        "reasoning_output_tokens": 406,
+        "total_tokens": 310741
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:24:06.628Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implementación completada exclusivamente en `development-3/control`.\n\n- `study.cjs`: selección única por click, Enter y Espacio; `aria-pressed`; notas temporales por línea; texto literal seguro; validación de identificadores y copia del estado.\n- `index.html`: demostración adaptable con la misma implementación, foco visible y aviso de notas temporales.\n- `behavior.test.cjs`: pruebas adicionales de eventos, conservación de notas, instantáneas e identificadores especiales.\n- `acceptance.cjs` y `package.json` intactos.\n\nPruebas ejecutadas:\n- `node --test acceptance.cjs`: 3 invocaciones, todas **1/1 aprobadas**.\n- `node --test acceptance.cjs behavior.test.cjs`: **3/3 aprobadas**.\n\nUna escritura de `index.html` encontró un bloqueo temporal; el reintento funcionó y se comprobó el contenido corregido.\n\nLimitación: no se realizó comprobación visual en navegador a 320 px o desktop; el comportamiento se verificó mediante DOM simulado.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

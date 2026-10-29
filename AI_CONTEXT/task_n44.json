@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 6: Audio y Podcast",
+  "node_id": "N44",
+  "task_key": "N44-episodio-resumen-ia-dos-voces-tts",
+  "task_desc": "Episodio generado por IA con guion de dos voces y TTS, cacheado y etiquetado como resumen",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

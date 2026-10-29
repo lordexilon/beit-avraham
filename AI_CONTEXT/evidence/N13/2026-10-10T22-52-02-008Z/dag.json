@@ -1,0 +1,338 @@
+{
+  "sprints": [
+    {
+      "id": "11111111-2222-3333-4444-555555555555:Frontend - Base implementada",
+      "name": "Frontend - Base implementada",
+      "nodes": [
+        {
+          "id": "N1",
+          "position": {
+            "x": 50,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N1: Frontend Beit Avraham: logo, folio respo..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N2",
+          "position": {
+            "x": 300,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N2: Integracion directa del Alefato propio m..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "11111111-2222-3333-4444-555555555555:Medicion por tarea",
+      "name": "Medicion por tarea",
+      "nodes": [
+        {
+          "id": "N3",
+          "position": {
+            "x": 50,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N3: CLI de tareas con inicio pausa reanudaci..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N4",
+          "position": {
+            "x": 300,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N4: Capturas al abrir/cerrar tarea, referenc..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N5",
+          "position": {
+            "x": 550,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N5: Registro de costos con previsualizacion ..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N6",
+          "position": {
+            "x": 800,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N6: CLI de referencias y evaluacion de ahorr..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N7",
+          "position": {
+            "x": 50,
+            "y": 250
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N7: Workflow integrado: apertura/cierre capt..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N8",
+          "position": {
+            "x": 300,
+            "y": 250
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N8: Verificacion Matrix API espejo y navegad..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "11111111-2222-3333-4444-555555555555:Instalador - Validacion operativa",
+      "name": "Instalador - Validacion operativa",
+      "nodes": [
+        {
+          "id": "N9",
+          "position": {
+            "x": 50,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N9: Instalador original corregido; copia lim..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "11111111-2222-3333-4444-555555555555:Evaluacion comparativa",
+      "name": "Evaluacion comparativa",
+      "nodes": [
+        {
+          "id": "N10",
+          "position": {
+            "x": 50,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N10: Workflow ingles corregido y protocolo co..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N11",
+          "position": {
+            "x": 300,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N11: Fixtures aislados y recolector comparati..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        },
+        {
+          "id": "N12",
+          "position": {
+            "x": 550,
+            "y": 100
+          },
+          "className": "",
+          "data": {
+            "status": "✅ Hecho",
+            "label": "✅ N12: Ejecuciones aisladas control SCA e infor..."
+          },
+          "style": {
+            "background": "rgba(6, 78, 59, 0.3)",
+            "border": "2px solid #10b981",
+            "color": "#34d399",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "11111111-2222-3333-4444-555555555555:Auditoria de uso efectivo SCA",
+      "name": "Auditoria de uso efectivo SCA",
+      "nodes": [
+        {
+          "id": "N13",
+          "position": {
+            "x": 50,
+            "y": 100
+          },
+          "className": "animate-pulse-warning",
+          "data": {
+            "status": "⏳ En progreso",
+            "label": "⏳ N13: Auditar capacidades efectivamente usadas..."
+          },
+          "style": {
+            "background": "rgba(120, 53, 15, 0.3)",
+            "border": "2px dashed #f59e0b",
+            "color": "#fbbf24",
+            "borderRadius": "8px",
+            "fontWeight": "bold",
+            "width": 180
+          }
+        }
+      ],
+      "edges": []
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N13",
+      "position": {
+        "x": 50,
+        "y": 100
+      },
+      "className": "animate-pulse-warning",
+      "data": {
+        "status": "⏳ En progreso",
+        "label": "⏳ N13: Auditar capacidades efectivamente usadas..."
+      },
+      "style": {
+        "background": "rgba(120, 53, 15, 0.3)",
+        "border": "2px dashed #f59e0b",
+        "color": "#fbbf24",
+        "borderRadius": "8px",
+        "fontWeight": "bold",
+        "width": 180
+      }
+    }
+  ],
+  "edges": [],
+  "schemaWarning": false,
+  "measurement": {
+    "project_name": "Beit Avraham",
+    "scope": "cycle",
+    "active_cycle": {
+      "id": "11111111-2222-3333-4444-555555555555",
+      "project_name": "Beit Avraham",
+      "name": "Ciclo 1: Medicion Inicial",
+      "status": "active",
+      "started_at": "2026-10-09T18:19:15.618385+00:00",
+      "closed_at": null,
+      "created_at": "2026-10-09T18:19:15.618385+00:00",
+      "metadata": {}
+    }
+  },
+  "dependencyNote": "El ledger registra nodos y estados. Las dependencias no están registradas; no se infieren del orden."
+}

@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N41",
+  "task_key": "N41-ai-usage-telemetry-rates",
+  "task_desc": "Telemetria de uso IA en fsca.ai_usage con tarifa declarada y fecha",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 6: Audio y Podcast",
+  "node_id": "N45",
+  "task_key": "N45-voz-en-vivo-nova-sonic-feature-flag",
+  "task_desc": "Voz en vivo con Nova Sonic 2.5 bajo feature flag, solo si N39 es estable",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 9: Experiencia de Usuario y Chat Moderno",
+  "node_id": "N52",
+  "task_key": "N52-simplificacion-chat-sin-audio-grok",
+  "task_desc": "Simplificación del chat de Javrutá: remover controles y dependencias de audio en la conversación para enfocar en diálogo textual puro con xAI Grok",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

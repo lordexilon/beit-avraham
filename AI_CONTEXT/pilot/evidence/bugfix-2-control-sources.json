@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "study.cjs": "2683cc0da6ef3de61b67c271e8e57d3f5e7d0f33bf590b2010bd2064e1b96709",
+    "acceptance.cjs": "fb2af02e9d325851b7d754a1a75fdab1c63aeb6f5c087dc4825e94c0596b03f3"
+  },
+  "source": {
+    "acceptance.cjs": {
+      "sha256": "fb2af02e9d325851b7d754a1a75fdab1c63aeb6f5c087dc4825e94c0596b03f3",
+      "text": "const t=require('node:test'),a=require('node:assert/strict'),{activeAt}=require('./study.cjs');t('fronteras y huecos',()=>{const lines=Object.freeze([Object.freeze({id:'a',start:0,end:7}),Object.freeze({id:'b',start:7,end:12})]);a.equal(activeAt(lines,7),'b');a.equal(activeAt(lines,12),null);a.equal(activeAt(lines,-1),null);a.equal(activeAt([{id:'z',start:10,end:20}],5),null);a.equal(activeAt([],0),null);a.equal(activeAt(lines,0),'a');});\n"
+    },
+    "package.json": {
+      "sha256": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+      "text": "{\n  \"private\": true,\n  \"scripts\": {\n    \"test\": \"node --test acceptance.cjs\"\n  }\n}\n"
+    },
+    "study.cjs": {
+      "sha256": "9254e5084d02ed9b7e9be61d7c928a7752737ed035e4e4236b7b00b5000209d9",
+      "text": "exports.activeAt = (lines, seconds) => {\n  if (seconds < 0) return null;\n\n  const activeLine = lines.find(\n    line => seconds >= line.start && seconds < line.end\n  );\n  return activeLine?.id ?? null;\n};\r\n"
+    },
+    "TASK.md": {
+      "sha256": "b3ac6c8463d8d7aa1bca7d72f25414c7c9a4139fdb09dab042ddd34ad7a08d75",
+      "text": "Corregir activeAt(lines,seconds): inicio inclusivo, fin exclusivo; huecos y tiempos negativos devuelven null; no mutar ni ordenar el arreglo del llamador.\n\n{\n  \"automated\": \"node --test acceptance.cjs\",\n  \"manual\": [],\n  \"rubric\": [\n    \"correctness\",\n    \"readability\",\n    \"responsibilities\",\n    \"maintainability\"\n  ],\n  \"minimum_each\": 1,\n  \"max_regressions\": 0\n}\n"
+    }
+  }
+}

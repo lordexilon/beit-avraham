@@ -1,0 +1,30 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N3-verificacion",
+  "execution_key": "b6578a0f-fcce-49cb-9217-f9f880a4739f",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-10T19:16:36.242Z"
+    },
+    {
+      "action": "pause",
+      "at": "2026-10-10T19:18:48.613Z"
+    },
+    {
+      "action": "resume",
+      "at": "2026-10-10T19:19:04.420Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-10T19:19:24.167Z"
+    }
+  ],
+  "evidence": {
+    "method": "explicit-local-clock-events",
+    "scope": "Explicit agent work window; not continuous inference time"
+  }
+}

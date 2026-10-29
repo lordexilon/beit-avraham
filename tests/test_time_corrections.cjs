@@ -1,0 +1,8 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const {resolveTimeCorrections}=require('../sca-studio/src/lib/measurement-time');
+const {buildDashboard}=require('../sca-studio/src/lib/cycle-dashboard');
+const old={id:'old',project_name:'p',cycle_id:'c',task_key:'trial',kind:'agent_execution',origin:'measured',events:[{action:'start',at:'2026-01-01T00:00:00Z'},{action:'finish',at:'2026-01-01T01:00:00Z'}],intervals:[[0,3600000]],active_seconds:3600,elapsed_seconds:3600,evidence:{}};
+const newer={...old,id:'new',events:[{action:'start',at:'2026-01-01T00:00:00Z'},{action:'finish',at:'2026-01-01T00:01:00Z'}],intervals:[[0,60000]],active_seconds:60,elapsed_seconds:60,evidence:{supersedes_time_record_id:'old'}};
+test('immutable history retained, current duration and exports exclude superseded timing',()=>{const rows=[old,newer];assert.deepEqual(resolveTimeCorrections(rows),[newer]);assert.equal(rows.length,2);const dashboard=buildDashboard({project_name:'p',active_cycle:{id:'c'}},{time:rows});assert.equal(dashboard.time.length,1);assert.equal(dashboard.exports.Tiempos_historial.length,2);assert.equal(dashboard.cards.find(c=>c.key==='agent').value,60/3600);});
+test('correction cannot cross scope or create forks/cycles',()=>{assert.throws(()=>resolveTimeCorrections([old,{...newer,cycle_id:'other'}]),/alcance/);assert.throws(()=>resolveTimeCorrections([old,newer,{...newer,id:'fork'}]),/ambiguas/);assert.throws(()=>resolveTimeCorrections([{...old,evidence:{supersedes_time_record_id:'new'}},newer]),/Ciclo/);assert.throws(()=>resolveTimeCorrections([{...newer,evidence:{supersedes_time_record_id:'missing'}}]),/alcance/);});
+

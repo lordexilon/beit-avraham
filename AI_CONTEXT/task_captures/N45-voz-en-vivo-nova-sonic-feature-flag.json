@@ -1,0 +1,27 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N45-voz-en-vivo-nova-sonic-feature-flag",
+  "execution_key": "d5b0acca-06cf-4be2-a780-694aa9534b8a",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-29T13:53:37.653Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-29T14:00:33.818Z"
+    }
+  ],
+  "evidence": {
+    "method": "task-boundary-conversation-captures",
+    "source_key": "antigravity:dd8ea3e2-0d86-4af9-ad40-dedd48ab3d8b",
+    "boundary_start": "2026-10-12T05:28:35+00:00",
+    "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+    "boundary_end": "2026-10-12T05:28:35+00:00",
+    "capture_event_ids": [],
+    "interval_tokens": 0
+  }
+}

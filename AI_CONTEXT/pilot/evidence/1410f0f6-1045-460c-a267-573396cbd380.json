@@ -1,0 +1,17 @@
+{
+  "pair_id": "development-2",
+  "arm": "control",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: seleccion y notas\nok 1 - seleccion y notas\n  ---\n  duration_ms: 9.0351\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 315.9383\n",
+  "stderr": "",
+  "at": "2026-10-10T22:22:37.949Z",
+  "acceptance_hash": "ea1fcab0918322b7b560b32bc493d84ad2190b68011f11e47ef579245e8c7a90",
+  "source_hashes": {
+    "acceptance.cjs": "ea1fcab0918322b7b560b32bc493d84ad2190b68011f11e47ef579245e8c7a90",
+    "index.html": "ab1826ac092fbdbe96850bfddd491a032f8e7ea134c02cc4d6979fcf7cde7b05",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "study.cjs": "2f4b2becaf9d2bc8550a17977862f5d7cf89ddf92c1beff0e84dbaa5d2cbbc4e",
+    "TASK.md": "996ff57fd10a882c9119e368cf65fe847de5b553c466634bda3aad9c31502100"
+  }
+}

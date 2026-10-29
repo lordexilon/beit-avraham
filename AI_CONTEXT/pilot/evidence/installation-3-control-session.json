@@ -1,0 +1,70 @@
+{
+  "session_id": "01a127ec-dc42-70e2-aeda-786cef5507de",
+  "agent_path": "/root/pilot_installation_3_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-26-36-01a127ec-dc42-70e2-aeda-786cef5507de.jsonl",
+  "source_sha256": "53e27432036b30ae8ad3387e39757c681d588df174d5bbb804baa7208b8ac1df",
+  "started_at": "2026-10-10T22:26:37.932Z",
+  "finished_at": "2026-10-10T22:27:15.889Z",
+  "turn_intervals": [
+    [
+      1791671197291,
+      1791671235889
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:26:47.492Z",
+      "counters": {
+        "input_tokens": 35576,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 64,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35640
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:26:54.444Z",
+      "counters": {
+        "input_tokens": 71468,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 149,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71617
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:11.791Z",
+      "counters": {
+        "input_tokens": 108038,
+        "cached_input_tokens": 105088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1283,
+        "reasoning_output_tokens": 134,
+        "total_tokens": 109321
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:15.848Z",
+      "counters": {
+        "input_tokens": 145891,
+        "cached_input_tokens": 141440,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1473,
+        "reasoning_output_tokens": 154,
+        "total_tokens": 147364
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:26:40.157Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implementado `bootstrap.cjs` únicamente en el directorio asignado.\n\n- Copia recursivamente `scripts` y `migrations`, exige archivos utilizables y valida `project_name`/`cycle_id`.\n- Guarda `AI_CONTEXT/project_binding.json`.\n- Omite archivos reconocibles como secretos; rechaza enlaces simbólicos, destinos ocupados y rutas superpuestas.\n- Conservé `acceptance.cjs` y `package.json`.\n\nPrueba: una invocación de `node --test acceptance.cjs`, con `TEMP`/`TMP` dentro de `.tmp`: **1 aprobada, 0 fallidas**.\n\nLimitaciones: filtrado de secretos por nombre/extensión; no inspecciona su contenido. Este fixture no certifica instalación real, Matrix, captura ni API/UI.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

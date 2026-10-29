@@ -1,0 +1,185 @@
+{
+  "session_id": "01a1278b-ec59-7f83-af19-ec7d09cf3c2a",
+  "agent_path": "/root/pilot_development_2_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-40-44-01a1278b-ec59-7f83-af19-ec7d09cf3c2a.jsonl",
+  "source_sha256": "ab74aa8ceb12728684343cd07c2d0f8686c506bdaa8346ec5d2b6ad04a672e74",
+  "started_at": "2026-10-10T20:40:44.973Z",
+  "finished_at": "2026-10-10T22:29:21.498Z",
+  "turn_intervals": [
+    [
+      1791664844530,
+      1791664886688
+    ],
+    [
+      1791670804089,
+      1791670840393
+    ],
+    [
+      1791671298928,
+      1791671361498
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:40:52.629Z",
+      "counters": {
+        "input_tokens": 35586,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 78,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35664
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:58.219Z",
+      "counters": {
+        "input_tokens": 72908,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 157,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 73065
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:25.975Z",
+      "counters": {
+        "input_tokens": 110680,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2002,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 112682
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:26.510Z",
+      "counters": {
+        "input_tokens": 110680,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2002,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 112682
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:10.157Z",
+      "counters": {
+        "input_tokens": 150479,
+        "cached_input_tokens": 144128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2068,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 152547
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:22.566Z",
+      "counters": {
+        "input_tokens": 190487,
+        "cached_input_tokens": 183808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2731,
+        "reasoning_output_tokens": 53,
+        "total_tokens": 193218
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:35.760Z",
+      "counters": {
+        "input_tokens": 231365,
+        "cached_input_tokens": 223616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3365,
+        "reasoning_output_tokens": 122,
+        "total_tokens": 234730
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:40.356Z",
+      "counters": {
+        "input_tokens": 272933,
+        "cached_input_tokens": 264320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3561,
+        "reasoning_output_tokens": 122,
+        "total_tokens": 276494
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:28:47.733Z",
+      "counters": {
+        "input_tokens": 314862,
+        "cached_input_tokens": 305664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3731,
+        "reasoning_output_tokens": 148,
+        "total_tokens": 318593
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:28:57.605Z",
+      "counters": {
+        "input_tokens": 358825,
+        "cached_input_tokens": 347392,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4189,
+        "reasoning_output_tokens": 158,
+        "total_tokens": 363014
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:29:04.995Z",
+      "counters": {
+        "input_tokens": 403780,
+        "cached_input_tokens": 391168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4328,
+        "reasoning_output_tokens": 158,
+        "total_tokens": 408108
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:29:17.437Z",
+      "counters": {
+        "input_tokens": 449214,
+        "cached_input_tokens": 435968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4816,
+        "reasoning_output_tokens": 169,
+        "total_tokens": 454030
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:29:21.445Z",
+      "counters": {
+        "input_tokens": 495195,
+        "cached_input_tokens": 481280,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4987,
+        "reasoning_output_tokens": 169,
+        "total_tokens": 500182
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:40:46.771Z",
+      "model": "gpt-6.1-sol"
+    },
+    {
+      "at": "2026-10-10T22:20:04.481Z",
+      "model": "gpt-6.1-sol"
+    },
+    {
+      "at": "2026-10-10T22:28:33.621Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Fixed the inline demo: literal `</script>` prematurely closed its JavaScript block. Unicode escapes now preserve the displayed text without terminating the block.\n\nAdded a regression checking actual HTML script boundaries and executing the actual module plus initialization in a Node VM with simulated DOM. It checks three controls, literal text and selection.\n\nExtra invocations:\n\n- `node --test verification.cjs` before fix: 2 passed, 1 failed.\n- `node --test acceptance.cjs` after fix: 1 passed.\n- `node --test verification.cjs` after fix: 3 passed.\n\nCumulative: acceptance 2 invocations, both passed; verification 3 invocations, one failed. Journal preserves the external browser failure and correction. Acceptance/package files unchanged.\n\nNo real-browser validation performed here; visual and keyboard acceptance remain pending.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

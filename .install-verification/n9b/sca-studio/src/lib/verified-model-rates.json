@@ -1,0 +1,232 @@
+{
+  "verified_at": "2026-10-08T00:00:00Z",
+  "models": [
+    {
+      "id": "google:gemini-2.5-flash:api",
+      "display_name": "Gemini 2.5 Flash",
+      "provider": "google",
+      "canonical_model_id": "gemini-2.5-flash",
+      "modality": "api",
+      "identity_status": "identified",
+      "evidence": {
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "note": "Identidad catalogada; no atribuye proveedor ni modalidad al histórico"
+      }
+    },
+    {
+      "id": "google:gemini-3.8-flash:api",
+      "display_name": "Gemini 3.8 Flash",
+      "provider": "google",
+      "canonical_model_id": "gemini-3.8-flash",
+      "modality": "api",
+      "identity_status": "identified",
+      "evidence": {
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "note": "Identidad catalogada; no atribuye proveedor ni modalidad al histórico"
+      }
+    },
+    {
+      "id": "google:gemini-3.1-pro-preview:api",
+      "display_name": "Gemini 3.1 Pro Preview",
+      "provider": "google",
+      "canonical_model_id": "gemini-3.1-pro-preview",
+      "modality": "api",
+      "identity_status": "identified",
+      "evidence": {
+        "source": "https://ai.google.dev/gemini-api/docs/pricing",
+        "note": "Identidad catalogada; no atribuye proveedor ni modalidad al histórico"
+      }
+    },
+    {
+      "id": "anthropic:claude-sonnet-4-6:api",
+      "display_name": "Claude Sonnet 4.6",
+      "provider": "anthropic",
+      "canonical_model_id": "claude-sonnet-4-6",
+      "modality": "api",
+      "identity_status": "identified",
+      "evidence": {
+        "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "note": "Identidad catalogada; no atribuye proveedor ni modalidad al histórico"
+      }
+    },
+    {
+      "id": "local:gpt-oss-120b:local",
+      "display_name": "GPT-OSS 120B (local)",
+      "provider": "local",
+      "canonical_model_id": "gpt-oss-120b",
+      "modality": "local",
+      "identity_status": "identified",
+      "evidence": {
+        "source": "https://developers.openai.com/api/docs/models/gpt-oss-120b",
+        "note": "Identidad catalogada; no atribuye proveedor ni modalidad al histórico"
+      }
+    }
+  ],
+  "rates": [
+    {
+      "id": "9c176742-516f-50d1-992b-d8999e6b8ca7",
+      "model_id": "google:gemini-2.5-flash:api",
+      "service_mode": "standard",
+      "context_tokens": "[0,)",
+      "effective_during": "[2026-10-08T00:00:00Z,)",
+      "currency": "USD",
+      "input_usd_per_million": 0.3,
+      "output_usd_per_million": 2.5,
+      "cache_read_usd_per_million": 0.03,
+      "cache_write_usd_per_million": null,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified_at": "2026-10-08T00:00:00Z",
+      "basis": "official",
+      "effective_date_evidence": "Aplicación desde verificación; no prueba de tarifa histórica anterior",
+      "author": "Codex N10",
+      "pricing_rules": {
+        "supported_components": [
+          "input",
+          "output",
+          "cache_read"
+        ],
+        "scope": "standard global text; tools/cache storage/taxes excluded"
+      },
+      "notes": "Estimación equivalente API. La fecha inicial no presume precio de sesiones pasadas."
+    },
+    {
+      "id": "9445fa1d-d479-5b33-9bbc-3ff31324d764",
+      "model_id": "google:gemini-3.8-flash:api",
+      "service_mode": "standard",
+      "context_tokens": "[0,)",
+      "effective_during": "[2026-10-08T00:00:00Z,2027-01-01T00:00:00Z)",
+      "currency": "USD",
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 3.75,
+      "cache_read_usd_per_million": 0.075,
+      "cache_write_usd_per_million": null,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified_at": "2026-10-08T00:00:00Z",
+      "basis": "official",
+      "effective_date_evidence": "Aplicación desde verificación; no prueba de tarifa histórica anterior",
+      "author": "Codex N10",
+      "pricing_rules": {
+        "supported_components": [
+          "input",
+          "output",
+          "cache_read"
+        ],
+        "scope": "standard global text; tools/cache storage/taxes excluded"
+      },
+      "notes": "Estimación equivalente API. La fecha inicial no presume precio de sesiones pasadas."
+    },
+    {
+      "id": "023d6dd2-f08b-5e9c-89de-98aa569bd6c5",
+      "model_id": "google:gemini-3.8-flash:api",
+      "service_mode": "standard",
+      "context_tokens": "[0,)",
+      "effective_during": "[2027-01-01T00:00:00Z,)",
+      "currency": "USD",
+      "input_usd_per_million": 1.5,
+      "output_usd_per_million": 7.5,
+      "cache_read_usd_per_million": 0.15,
+      "cache_write_usd_per_million": null,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified_at": "2026-10-08T00:00:00Z",
+      "basis": "official",
+      "effective_date_evidence": "Cambio efectivo el 2027-01-01 anunciado en la fuente oficial",
+      "author": "Codex N10",
+      "pricing_rules": {
+        "supported_components": [
+          "input",
+          "output",
+          "cache_read"
+        ],
+        "scope": "standard global text; tools/cache storage/taxes excluded"
+      },
+      "notes": "Estimación equivalente API. La fecha inicial no presume precio de sesiones pasadas."
+    },
+    {
+      "id": "15e5dea6-4d88-5ec3-ac60-fd8a22d5890f",
+      "model_id": "google:gemini-3.1-pro-preview:api",
+      "service_mode": "standard",
+      "context_tokens": "[0,200001)",
+      "effective_during": "[2026-10-08T00:00:00Z,)",
+      "currency": "USD",
+      "input_usd_per_million": 2,
+      "output_usd_per_million": 12,
+      "cache_read_usd_per_million": 0.2,
+      "cache_write_usd_per_million": null,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified_at": "2026-10-08T00:00:00Z",
+      "basis": "official",
+      "effective_date_evidence": "Aplicación desde verificación; no prueba de tarifa histórica anterior",
+      "author": "Codex N10",
+      "pricing_rules": {
+        "supported_components": [
+          "input",
+          "output",
+          "cache_read"
+        ],
+        "scope": "standard global text; tools/cache storage/taxes excluded"
+      },
+      "notes": "Estimación equivalente API. La fecha inicial no presume precio de sesiones pasadas."
+    },
+    {
+      "id": "26c7c298-8028-589a-85d0-17a2a44abe86",
+      "model_id": "google:gemini-3.1-pro-preview:api",
+      "service_mode": "standard",
+      "context_tokens": "[200001,)",
+      "effective_during": "[2026-10-08T00:00:00Z,)",
+      "currency": "USD",
+      "input_usd_per_million": 4,
+      "output_usd_per_million": 18,
+      "cache_read_usd_per_million": 0.4,
+      "cache_write_usd_per_million": null,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified_at": "2026-10-08T00:00:00Z",
+      "basis": "official",
+      "effective_date_evidence": "Aplicación desde verificación; no prueba de tarifa histórica anterior",
+      "author": "Codex N10",
+      "pricing_rules": {
+        "supported_components": [
+          "input",
+          "output",
+          "cache_read"
+        ],
+        "scope": "standard global text; tools/cache storage/taxes excluded"
+      },
+      "notes": "Estimación equivalente API. La fecha inicial no presume precio de sesiones pasadas."
+    },
+    {
+      "id": "2d8c4413-d4c9-5f6d-8ad0-b0f75d57d19d",
+      "model_id": "anthropic:claude-sonnet-4-6:api",
+      "service_mode": "standard",
+      "context_tokens": "[0,)",
+      "effective_during": "[2026-10-08T00:00:00Z,)",
+      "currency": "USD",
+      "input_usd_per_million": 3,
+      "output_usd_per_million": 15,
+      "cache_read_usd_per_million": 0.3,
+      "cache_write_usd_per_million": 3.75,
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified_at": "2026-10-08T00:00:00Z",
+      "basis": "official",
+      "effective_date_evidence": "Aplicación desde verificación; no prueba de tarifa histórica anterior",
+      "author": "Codex N10",
+      "pricing_rules": {
+        "supported_components": [
+          "input",
+          "output",
+          "cache_read",
+          "cache_write_5m",
+          "cache_write_1h"
+        ],
+        "scope": "standard global text; tools/cache storage/taxes excluded",
+        "cache_write_1h_usd_per_million": 6
+      },
+      "notes": "Estimación equivalente API. La fecha inicial no presume precio de sesiones pasadas."
+    }
+  ],
+  "unresolved": {
+    "Gemini 1.5 Flash": "Modelo histórico; tarifa de la fecha y proveedor pendientes",
+    "Claude 3.5 Sonnet": "Versión fechada/proveedor y tarifa histórica pendientes",
+    "GPT-OSS 128B": "No inferir que es 120b ni que la ejecución fue local",
+    "GPT-6 (Codex; variante no expuesta)": "Variante y modalidad pendientes; no sustituir otra tarifa"
+  }
+}

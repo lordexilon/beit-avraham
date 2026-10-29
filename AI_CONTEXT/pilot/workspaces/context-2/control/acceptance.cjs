@@ -1,0 +1,1 @@
+const t=require('node:test'),a=require('node:assert/strict'),{visibleSources}=require('./study.cjs'),catalog=require('./catalog.cjs');t('politica y alcance',()=>{a.deepEqual(visibleSources(catalog,'c2').map(x=>x.id),['own','licensed']);a.deepEqual(visibleSources(catalog,'missing'),[]);a.equal(catalog.length,4);});

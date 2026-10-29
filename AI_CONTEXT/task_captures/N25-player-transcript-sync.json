@@ -1,0 +1,29 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N25-player-transcript-sync",
+  "execution_key": "64620dcf-61d2-48fc-a1ca-c12613d2734a",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-12T02:26:13.788Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-12T02:31:48.942Z"
+    }
+  ],
+  "evidence": {
+    "method": "task-boundary-conversation-captures",
+    "source_key": "antigravity:dd8ea3e2-0d86-4af9-ad40-dedd48ab3d8b",
+    "boundary_start": "2026-10-12T02:25:20+00:00",
+    "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+    "boundary_end": "2026-10-12T02:31:13+00:00",
+    "capture_event_ids": [
+      "d23e1425-c348-4fe1-9eff-6f3502858742"
+    ],
+    "interval_tokens": 2022542
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "version": 1,
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "created_at": "2026-10-10T20:33:22.341Z",
+  "status": "prepared_not_executed",
+  "pairs": [
+    {
+      "id": "development-1",
+      "category": "development",
+      "snapshot_hash": "2e8cc6c0fa55e423421e7b1597f82d558feea1b52adc0f382866d48f44d2c5f9",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "aa3e9a7f563d8180691d595eb490455fb3bb1b33ead637761b2f03295a9cb4c4",
+        "acceptance.cjs": "e9ebe3cc91381fa0248ed21f26cacad7148aa98526b1d306a949d8369638a769"
+      },
+      "task": "Implementar mount(container, lines) en study.cjs y una pagina de demostracion. Seleccion unica por click y teclado, aria-pressed, notas temporales por linea, sin HTML inseguro. No agregar dependencias.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Pagina funciona en navegador a 320px y desktop",
+          "Botones accesibles por Tab y Enter; solo uno aria-pressed=true",
+          "Texto con etiquetas se muestra literal; notas conservadas al cambiar seleccion"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "development-2",
+      "category": "development",
+      "snapshot_hash": "51e1b97ba7a6dbce541738ea2c26dc7ce5a324c8ff0907efbee4c427c5dcbf89",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "aa3e9a7f563d8180691d595eb490455fb3bb1b33ead637761b2f03295a9cb4c4",
+        "acceptance.cjs": "ea1fcab0918322b7b560b32bc493d84ad2190b68011f11e47ef579245e8c7a90"
+      },
+      "task": "Implementar mount(container, lines) en study.cjs y una pagina de demostracion. Seleccion unica por click y teclado, aria-pressed, notas temporales por linea, sin HTML inseguro. No agregar dependencias.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Pagina funciona en navegador a 320px y desktop",
+          "Botones accesibles por Tab y Enter; solo uno aria-pressed=true",
+          "Texto con etiquetas se muestra literal; notas conservadas al cambiar seleccion"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "sca",
+        "control"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "development-3",
+      "category": "development",
+      "snapshot_hash": "c5263adf8f6448f6fdcea634597ea640594982906e37f5ee0d2de090e93f226a",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "aa3e9a7f563d8180691d595eb490455fb3bb1b33ead637761b2f03295a9cb4c4",
+        "acceptance.cjs": "1149193ea466dc8296e28edd9498df911388b2db3c85e6102c8fb354ee0217ea"
+      },
+      "task": "Implementar mount(container, lines) en study.cjs y una pagina de demostracion. Seleccion unica por click y teclado, aria-pressed, notas temporales por linea, sin HTML inseguro. No agregar dependencias.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Pagina funciona en navegador a 320px y desktop",
+          "Botones accesibles por Tab y Enter; solo uno aria-pressed=true",
+          "Texto con etiquetas se muestra literal; notas conservadas al cambiar seleccion"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "bugfix-1",
+      "category": "bugfix",
+      "snapshot_hash": "5942102758b890bb5b1da7a99554cf47315f2728794d4e1d3582baa23b8de22c",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "2683cc0da6ef3de61b67c271e8e57d3f5e7d0f33bf590b2010bd2064e1b96709",
+        "acceptance.cjs": "edff3172fa52a25490c4a9e27f0b705baaf45d21007686654764260a65ad0c6d"
+      },
+      "task": "Corregir activeAt(lines,seconds): inicio inclusivo, fin exclusivo; huecos y tiempos negativos devuelven null; no mutar ni ordenar el arreglo del llamador.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "bugfix-2",
+      "category": "bugfix",
+      "snapshot_hash": "77e4943e272f91ca4122f06b087b149ab186d79137ada6a6b1bc31fe1736631a",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "2683cc0da6ef3de61b67c271e8e57d3f5e7d0f33bf590b2010bd2064e1b96709",
+        "acceptance.cjs": "fb2af02e9d325851b7d754a1a75fdab1c63aeb6f5c087dc4825e94c0596b03f3"
+      },
+      "task": "Corregir activeAt(lines,seconds): inicio inclusivo, fin exclusivo; huecos y tiempos negativos devuelven null; no mutar ni ordenar el arreglo del llamador.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "sca",
+        "control"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "bugfix-3",
+      "category": "bugfix",
+      "snapshot_hash": "b5858dbbdbd039c9941d9edb1f389c2c10aaff58223cb81b8c7efcb30a2f3f1b",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "2683cc0da6ef3de61b67c271e8e57d3f5e7d0f33bf590b2010bd2064e1b96709",
+        "acceptance.cjs": "e960385956e1805b323775c49754b74d20276f90c36eaea02101f4d277e0d321"
+      },
+      "task": "Corregir activeAt(lines,seconds): inicio inclusivo, fin exclusivo; huecos y tiempos negativos devuelven null; no mutar ni ordenar el arreglo del llamador.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "refactor-1",
+      "category": "refactor",
+      "snapshot_hash": "f33f5e14d9cc80bf9d07eceadc8b38dc697e812e96d2412444261b1657138506",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "8fb92d03d4da9cae2dd1cff72690307a02dd9ef5990f8a17b73997ce6f2ccb4c",
+        "acceptance.cjs": "911ac59bca64624812d332e53bad7e1b923046092448eded75a34a57367b5de8"
+      },
+      "task": "Separar validacion y renderizado de summarize sin alterar el contrato; eliminar duplicacion. Mantener exports.summarize y no agregar dependencias.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Revisar separacion de responsabilidades y duplicacion con la misma rubrica"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "refactor-2",
+      "category": "refactor",
+      "snapshot_hash": "8db4d9f1b99e3fde40857c8b221d5799d6e94f043b477e7cb8c93af80b571a86",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "8fb92d03d4da9cae2dd1cff72690307a02dd9ef5990f8a17b73997ce6f2ccb4c",
+        "acceptance.cjs": "512a1f01745fdbf658fe6847c6099f8a00129278f175d33aa597b99f4f62dd77"
+      },
+      "task": "Separar validacion y renderizado de summarize sin alterar el contrato; eliminar duplicacion. Mantener exports.summarize y no agregar dependencias.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Revisar separacion de responsabilidades y duplicacion con la misma rubrica"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "sca",
+        "control"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "refactor-3",
+      "category": "refactor",
+      "snapshot_hash": "cf79a18a3c7ade43cfa00a317767081387fb0b3f8149a9fa4b88f9784377db46",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "study.cjs": "8fb92d03d4da9cae2dd1cff72690307a02dd9ef5990f8a17b73997ce6f2ccb4c",
+        "acceptance.cjs": "6c53cd2b51ac8c28e010898023e588bdcb3ff034a1ff4bec6dad730857f1664a"
+      },
+      "task": "Separar validacion y renderizado de summarize sin alterar el contrato; eliminar duplicacion. Mantener exports.summarize y no agregar dependencias.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Revisar separacion de responsabilidades y duplicacion con la misma rubrica"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "context-1",
+      "category": "context",
+      "snapshot_hash": "0f05807b66fd2c0fffc060a1a279e2a2b970c6079cfe418bb1c3cba27faa5e7d",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "docs/policy.md": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+        "catalog.cjs": "ec83f6999e786066c54d98e51d89afc8594e87e3cfffdf4d0c05448c320865ce",
+        "study.cjs": "1c5084f277edff6f5033eb96d59a937afb1c0d449a258fadb24cdb6434daa8c2",
+        "acceptance.cjs": "71229316bc9175d3f814af5c629a0c7be6f170881c7afdc1f075914556ca742a"
+      },
+      "task": "Agregar visibleSources(catalog,courseId) respetando politica de cursos pagos y fuentes propias/autorizadas documentada en docs/policy.md; no cambiar esa regla.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "context-2",
+      "category": "context",
+      "snapshot_hash": "696ee017c72c512d06483f0a5046f9d4d705595263e348d44a99d8dfef2e5b33",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "docs/policy.md": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+        "catalog.cjs": "dad8ce5b73587c5d5ed47407f148ed68aca0bac66788ecca1d8e4b3497fb0076",
+        "study.cjs": "1c5084f277edff6f5033eb96d59a937afb1c0d449a258fadb24cdb6434daa8c2",
+        "acceptance.cjs": "1ed73129d74592971b7f4a166e11b6b9f4cb7057a735640fcc6ce9b934f660f3"
+      },
+      "task": "Agregar visibleSources(catalog,courseId) respetando politica de cursos pagos y fuentes propias/autorizadas documentada en docs/policy.md; no cambiar esa regla.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "sca",
+        "control"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "context-3",
+      "category": "context",
+      "snapshot_hash": "19afbdaa7745d1197e74f352d26fc55c383eddf15c1867bc1b8e28f0d7ec731e",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "docs/policy.md": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+        "catalog.cjs": "3e14225e229e31a12c5c14daaaf373b50eb48d3a31dd2144c8e5d4dc7bf7486b",
+        "study.cjs": "1c5084f277edff6f5033eb96d59a937afb1c0d449a258fadb24cdb6434daa8c2",
+        "acceptance.cjs": "7d34aa564c0f1a7f6583af0f74075b886cd8c9f38e22543d98a2fe44ba2fa02d"
+      },
+      "task": "Agregar visibleSources(catalog,courseId) respetando politica de cursos pagos y fuentes propias/autorizadas documentada en docs/policy.md; no cambiar esa regla.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "installation-1",
+      "category": "installation",
+      "snapshot_hash": "a634459a28287747f0081d03c45763d9d930564a47e888f801f9a3fa8b7c10d6",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "bootstrap.cjs": "2b94e8e0080969a8f590720f8192a5d0eaa92a57be16245acb692eb473df232d",
+        "acceptance.cjs": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95"
+      },
+      "task": "Implementar prepare(src,dest,binding) en bootstrap.cjs: copiar scripts y migrations obligatorios, guardar binding valido, omitir secretos y fallar si faltan piezas o si destino no esta vacio. Es ejercicio aislado de bootstrap, no certificacion del instalador real.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Para certificar instalacion real ejecutar adicionalmente instalador original, Matrix aislada, captura y verificacion API/UI; este fixture solo evalua bootstrap"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "installation-2",
+      "category": "installation",
+      "snapshot_hash": "d60de939bb53f7fc90a7da99b0cb1843b9f19e0b9b9e760ec6cbd0a8b377b399",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "bootstrap.cjs": "2b94e8e0080969a8f590720f8192a5d0eaa92a57be16245acb692eb473df232d",
+        "acceptance.cjs": "077a184144f4fadaa092e3980f68da227412e4173d876edb9aae4c667a7d20c1"
+      },
+      "task": "Implementar prepare(src,dest,binding) en bootstrap.cjs: copiar scripts y migrations obligatorios, guardar binding valido, omitir secretos y fallar si faltan piezas o si destino no esta vacio. Es ejercicio aislado de bootstrap, no certificacion del instalador real.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Para certificar instalacion real ejecutar adicionalmente instalador original, Matrix aislada, captura y verificacion API/UI; este fixture solo evalua bootstrap"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "sca",
+        "control"
+      ],
+      "time_limit_minutes": 30
+    },
+    {
+      "id": "installation-3",
+      "category": "installation",
+      "snapshot_hash": "880e8478a48e986092faef76bb20ff6fecd2893de0c27f508f196ff0972fb4ef",
+      "file_hashes": {
+        "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+        "bootstrap.cjs": "2b94e8e0080969a8f590720f8192a5d0eaa92a57be16245acb692eb473df232d",
+        "acceptance.cjs": "6c2dd0cb5fc6632a2559389d3bf69eeb79432115cbfcd5ab1c102d5c08d773ac"
+      },
+      "task": "Implementar prepare(src,dest,binding) en bootstrap.cjs: copiar scripts y migrations obligatorios, guardar binding valido, omitir secretos y fallar si faltan piezas o si destino no esta vacio. Es ejercicio aislado de bootstrap, no certificacion del instalador real.",
+      "acceptance": {
+        "automated": "node --test acceptance.cjs",
+        "manual": [
+          "Para certificar instalacion real ejecutar adicionalmente instalador original, Matrix aislada, captura y verificacion API/UI; este fixture solo evalua bootstrap"
+        ],
+        "rubric": [
+          "correctness",
+          "readability",
+          "responsibilities",
+          "maintainability"
+        ],
+        "minimum_each": 1,
+        "max_regressions": 0
+      },
+      "order": [
+        "control",
+        "sca"
+      ],
+      "time_limit_minutes": 30
+    }
+  ]
+}

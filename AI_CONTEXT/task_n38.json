@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N38",
+  "task_key": "N38-shiur-temporal-context-window",
+  "task_desc": "Contexto por tramo temporal del shiur: deteccion de minuto y recuperacion de fragmentos vecinos",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

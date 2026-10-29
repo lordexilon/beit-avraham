@@ -1,0 +1,16 @@
+{
+  "pair_id": "installation-1",
+  "arm": "control",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: bootstrap completo sin secretos\nok 1 - bootstrap completo sin secretos\n  ---\n  duration_ms: 76.9424\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 259.7812\n",
+  "stderr": "",
+  "at": "2026-10-10T22:22:37.017Z",
+  "acceptance_hash": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95",
+  "source_hashes": {
+    "acceptance.cjs": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95",
+    "bootstrap.cjs": "61f4838ef5bc7fc1989b407c0fcd8564f07391ce360afb75c8d3f399e0f36c12",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "TASK.md": "3059beeeef5deeb64b5af25d0184aa0773cfc0a62b4276781dcb06c5aa25af7f"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "session_id": "01a1278a-3114-7b53-b8b5-99c101d96e4a",
+  "agent_path": "/root/pilot_bugfix_1_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-38-50-01a1278a-3114-7b53-b8b5-99c101d96e4a.jsonl",
+  "source_sha256": "b22425763d6c5244a5d9e194fde9de1f692b357b26897f7ff09dd44e9738daa2",
+  "started_at": "2026-10-10T20:38:51.404Z",
+  "finished_at": "2026-10-10T20:39:39.197Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:38:59.312Z",
+      "counters": {
+        "input_tokens": 35606,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 68,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35674
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:04.801Z",
+      "counters": {
+        "input_tokens": 72698,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 126,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 72824
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:10.033Z",
+      "counters": {
+        "input_tokens": 109928,
+        "cached_input_tokens": 106240,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 200,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 110128
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:18.046Z",
+      "counters": {
+        "input_tokens": 147500,
+        "cached_input_tokens": 143232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 448,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 147948
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:27.226Z",
+      "counters": {
+        "input_tokens": 185378,
+        "cached_input_tokens": 180608,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 636,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 186014
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:34.206Z",
+      "counters": {
+        "input_tokens": 223590,
+        "cached_input_tokens": 218368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 837,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 224427
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:39.154Z",
+      "counters": {
+        "input_tokens": 262113,
+        "cached_input_tokens": 256384,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 930,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 263043
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:38:53.310Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implemented `activeAt`: inclusive start, exclusive end, explicit negative-time rejection, null for gaps, no mutation or sorting.\n\nChanged: `study.cjs`, `SCA_JOURNAL.md`.\n\nTest invocations: **1** (`node --test acceptance.cjs`). Result: **1 passed, 0 failed**.\n\nAcceptance and package files unchanged. Local validation only; no network, deployment, Matrix writes, or human-review claim.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

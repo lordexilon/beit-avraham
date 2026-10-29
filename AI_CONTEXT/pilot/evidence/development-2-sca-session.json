@@ -1,0 +1,63 @@
+{
+  "session_id": "01a1278b-ec59-7f83-af19-ec7d09cf3c2a",
+  "agent_path": "/root/pilot_development_2_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-40-44-01a1278b-ec59-7f83-af19-ec7d09cf3c2a.jsonl",
+  "source_sha256": "ef5c0077d8392b5e918b3b7fe59e3b738681a683dbae7e2b7e15158a18b87679",
+  "started_at": "2026-10-10T20:40:44.973Z",
+  "finished_at": "2026-10-10T20:41:26.688Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:40:52.629Z",
+      "counters": {
+        "input_tokens": 35586,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 78,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35664
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:58.219Z",
+      "counters": {
+        "input_tokens": 72908,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 157,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 73065
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:25.975Z",
+      "counters": {
+        "input_tokens": 110680,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2002,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 112682
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:26.510Z",
+      "counters": {
+        "input_tokens": 110680,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2002,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 112682
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:40:46.771Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": null,
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

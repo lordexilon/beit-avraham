@@ -1,0 +1,103 @@
+{
+  "session_id": "01a127ed-8a42-7003-b7a4-d4f8308d2fe4",
+  "agent_path": "/root/pilot_installation_3_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-27-22-01a127ed-8a42-7003-b7a4-d4f8308d2fe4.jsonl",
+  "source_sha256": "f0067af8d5bec0dfafad50cfbde17e4a746c7ee66763b52f5ccf33ee7a44be78",
+  "started_at": "2026-10-10T22:27:23.322Z",
+  "finished_at": "2026-10-10T22:28:31.880Z",
+  "turn_intervals": [
+    [
+      1791671242828,
+      1791671311880
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:27:31.032Z",
+      "counters": {
+        "input_tokens": 35590,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 73,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35663
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:36.350Z",
+      "counters": {
+        "input_tokens": 72728,
+        "cached_input_tokens": 67840,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 162,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 72890
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:27:54.932Z",
+      "counters": {
+        "input_tokens": 110415,
+        "cached_input_tokens": 103296,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1466,
+        "reasoning_output_tokens": 21,
+        "total_tokens": 111881
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:28:09.882Z",
+      "counters": {
+        "input_tokens": 149512,
+        "cached_input_tokens": 140800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2549,
+        "reasoning_output_tokens": 27,
+        "total_tokens": 152061
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:28:21.595Z",
+      "counters": {
+        "input_tokens": 189839,
+        "cached_input_tokens": 179712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3141,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 192980
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:28:28.153Z",
+      "counters": {
+        "input_tokens": 230836,
+        "cached_input_tokens": 219904,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3359,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 234195
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:28:31.820Z",
+      "counters": {
+        "input_tokens": 272107,
+        "cached_input_tokens": 260736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3540,
+        "reasoning_output_tokens": 41,
+        "total_tokens": 275647
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:27:25.219Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implemented `bootstrap.cjs` and recorded Pending → In progress → Done transitions in `SCA_JOURNAL.md`.\n\n- Copies required scripts/migrations recursively.\n- Validates binding and persists only project_name/cycle_id.\n- Excludes secret filenames/private-key extensions.\n- Rejects missing/empty required pieces, nonempty destinations, source overlap and symlinks.\n\nVerification: one `node --test acceptance.cjs` invocation with TEMP/TMP inside assigned directory: **1 passed, 0 failed**. One focused `node -e` invocation: passed nested-copy, secret-filtering, whitelist and negative-validation checks.\n\n`acceptance.cjs` and `package.json` unchanged. No external reads/writes, network or dependencies.\n\nLimitations: filename-based secret exclusion; copying I/O failures may leave partial output. Fixture does not certify real installer/Matrix/API/UI.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

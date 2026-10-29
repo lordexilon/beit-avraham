@@ -1,0 +1,91 @@
+{
+  "revision": 1,
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "pair_id": "installation-1",
+  "arm": "sca",
+  "snapshot_hash": "a634459a28287747f0081d03c45763d9d930564a47e888f801f9a3fa8b7c10d6",
+  "outcome": "awaiting_review",
+  "synthetic": false,
+  "environment": "Windows shared host / Node v22.12.0",
+  "model_id": "gpt-6.1-sol",
+  "provider": "Codex subscription",
+  "runtime_version": "Codex subagent / v22.12.0",
+  "tools_policy": "local file edits and Node; no dependencies/network; assigned protocol difference only",
+  "budget_policy": "30 minutes per execution",
+  "sca_version": "workflow-only-v1",
+  "session_id": "01a127e8-e44e-7323-bc27-d509065a7969",
+  "started_at": "2026-10-10T22:22:17.192Z",
+  "finished_at": "2026-10-10T22:23:35.537Z",
+  "attempts": 1,
+  "regressions": 0,
+  "first_attempt_accepted": false,
+  "human_active_seconds": null,
+  "agent_window_seconds": 78.345,
+  "setup_seconds": null,
+  "time_evidence": "evidence/installation-1-sca-session.json",
+  "tokens": {
+    "input_uncached": 8846,
+    "input_cached": 264576,
+    "output": 3784,
+    "evidence": "evidence/installation-1-sca-session.json",
+    "exclusive": true
+  },
+  "costs": {
+    "confirmed_charge": null,
+    "allocated_subscription": null,
+    "api_equivalent": null,
+    "local_operation": null
+  },
+  "test_run": "evidence\\56d62947-6db4-4274-8ede-96d6dc706851.json",
+  "manual_checks": {},
+  "diff_evidence": "evidence/installation-1-sca-sources.json",
+  "reviewer": "Codex automated test collector; human review pending",
+  "review_evidence": "evidence/installation-1-sca-review.json",
+  "quality": {
+    "correctness": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "readability": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "responsibilities": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "maintainability": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    }
+  },
+  "evidence_files": [
+    {
+      "path": "evidence/installation-1-sca-session.json",
+      "sha256": "fa7fb749a36c43c92d9cf6a86c988a15691bb760e2a1fc2672890ea67beedc2b"
+    },
+    {
+      "path": "evidence\\56d62947-6db4-4274-8ede-96d6dc706851.json",
+      "sha256": "a460943df01ae718dc3945b0bb2662b0ae2b91317317949cd3e23234cce544a9"
+    },
+    {
+      "path": "evidence/installation-1-sca-sources.json",
+      "sha256": "72cfaaf800dd96dafdbdcbca494806b45ebea0079a44da072bdafc977e504ce3"
+    },
+    {
+      "path": "evidence/installation-1-sca-review.json",
+      "sha256": "c1aff1e143506801eb81bdce7eb3fba8192902fe9b53ea63ca67d7b8846ed5aa"
+    }
+  ],
+  "automated_test_exit": 0,
+  "automated_test_invocations": 0,
+  "limitations": [
+    "human review pending",
+    "first_attempt_accepted is false until human acceptance; test invocations are not necessarily solution attempts",
+    "regressions=0 only within frozen automated suite",
+    "shared base agent instructions; no isolated IDE-level experiment",
+    "setup/maintenance and human time unmeasured"
+  ],
+  "recorded_at": "2026-10-10T22:25:34.925Z"
+}

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beit Avraham · Propuesta UX de audio y podcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens reales de src/app/globals.css ============ */
+:root{
+  --paper:#fdf9f1; --cream:#f4efe5; --ink:#18363d; --muted:#6b706c;
+  --gold:#ad823b; --line:#e8e1d5;
+  --serif:"Merriweather",Georgia,serif; --sans:"Plus Jakarta Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e4d9;color:var(--ink);font-family:var(--sans);font-size:14px}
+
+/* ============ tablero de revisión (no es parte del producto) ============ */
+.board{max-width:1560px;margin:0 auto;padding:40px 24px 80px}
+.board-head{margin-bottom:36px}
+.board-head h1{font:400 30px/1.35 var(--serif);margin:0 0 10px}
+.board-head p{color:#5c635d;font-size:13px;line-height:1.8;max-width:760px;margin:0}
+.board-head .kicker{font-size:10px;letter-spacing:2px;font-weight:700;color:var(--gold);margin:0 0 12px}
+.frame-block{margin-bottom:44px}
+.frame-label{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}
+.frame-label b{font:600 12px var(--sans);letter-spacing:1.5px;text-transform:uppercase;color:#8a8578}
+.frame-label span{font-size:12px;color:#77746a}
+.device{background:var(--paper);border:1px solid #d8d0bf;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px #6c542618}
+.device.desktop{width:1440px;max-width:100%}
+.mobile-row{display:flex;gap:28px;flex-wrap:wrap}
+.device.mobile{width:390px;border-radius:26px;border:8px solid #222d2e;height:820px;position:relative}
+.notes{margin-top:12px;display:grid;gap:6px}
+.notes li{font-size:12px;line-height:1.75;color:#5c635d}
+.notes li b{color:var(--ink)}
+.legend{margin-top:14px;border-left:3px solid var(--gold);padding:2px 0 2px 14px;font-size:12px;line-height:1.8;color:#5c635d}
+
+/* ============ shell de la app (idéntico al real) ============ */
+.topbar{height:86px;display:flex;align-items:center;gap:24px;padding:0 30px;background:var(--paper);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:58px;height:58px;border-radius:50%;object-fit:cover}
+.brand>span{font-family:var(--serif);font-size:18px;letter-spacing:1px}
+.brand small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.2px;color:var(--muted);margin-top:6px}
+.header-divider{height:24px;border-left:1px solid var(--line)}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.breadcrumb span{margin:0 12px;color:#b3ac9e}
+.demo-badge{margin-left:auto;border:1px solid #dfcba6;background:#f6ecd9;color:#7b5a24;padding:7px 11px;border-radius:30px;font-size:11px;white-space:nowrap}
+.app-body{display:flex;min-height:800px}
+.navigation{width:228px;flex:0 0 228px;background:var(--cream);padding:32px 16px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}
+.eyebrow{font-size:10px;letter-spacing:1.5px;font-weight:700;color:var(--gold);line-height:1.8;margin:0 0 12px}
+.navigation .eyebrow{padding:0 13px;color:#8b8b7f}
+.navigation nav{display:grid;gap:8px}
+.nav-item{display:flex;align-items:center;gap:12px;width:100%;padding:13px 12px;border:0;border-radius:7px;background:transparent;text-align:left;font-size:12px;color:#68716c}
+.nav-item>span{font-size:21px;width:22px;text-align:center}
+.nav-item.active{background:var(--ink);color:#fff;font-weight:600}
+.nav-item .nav-new{margin-left:auto;font-size:8px;letter-spacing:.5px;border:1px solid #d9c9a8;background:#f6ecd9;color:#7b5a24;padding:2px 5px;border-radius:20px}
+.invitation{padding:23px 17px;margin:20px 0;border-top:1px solid #e1d7c4;border-bottom:1px solid #e1d7c4}
+.invitation>span{font-size:32px;color:var(--gold)}
+.invitation h2{font:400 16px/1.7 var(--serif);margin:10px 0}
+.invitation p{color:var(--muted);font-size:12px;line-height:1.8;margin:0}
+.community{font-size:10px;letter-spacing:1.5px;padding:0 15px;color:#8a826f}
+.community span{display:block;font-size:9px;letter-spacing:0;margin-top:5px}
+.main-content{flex:1;min-width:0;padding:33px 32px 0;background:var(--paper)}
+.lesson-heading{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}
+.lesson-heading h1{font:400 clamp(23px,2.2vw,34px)/1.5 var(--serif);margin:0 0 10px;letter-spacing:-.8px}
+.subtitle{color:var(--muted);font-size:12px;line-height:1.8;margin:0;max-width:640px}
+.lesson-stamp{text-align:center;min-width:120px}
+.lesson-stamp>span{font:28px Georgia,serif;color:var(--gold)}
+.lesson-stamp small{display:block;font-size:10px;color:var(--muted);margin-top:8px}
+.page-footer{display:flex;gap:15px;justify-content:space-between;border-top:1px solid var(--line);padding:20px 0;margin-top:34px;font-size:9px;color:#8c8e81}
+
+/* ============ piezas existentes reutilizadas ============ */
+.panel{border:1px solid var(--line);background:#fffefa;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 24px #6c542605}
+.panel-heading{padding:22px 20px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line)}
+.panel-heading h2{font:400 19px/1.5 var(--serif);margin:0}
+.panel-heading .eyebrow{font-size:8px;letter-spacing:1px;margin:0 0 5px}
+.primary-button{border:0;background:var(--ink);color:white;border-radius:6px;padding:13px 18px;font-size:12px;font-weight:600}
+.ghost-button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:6px;padding:12px 16px;font-size:12px}
+.tag{font-size:9px;border:1px solid var(--line);border-radius:20px;padding:5px 9px;color:#7c8176}
+
+/* ============ NUEVO: sección Escuchar ============ */
+.listen-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:22px;align-items:start}
+.series-card{background:#fffefa;border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;gap:22px;align-items:flex-start;box-shadow:0 6px 24px #6c542605;margin-bottom:18px}
+.series-cover{width:132px;height:132px;flex:0 0 132px;border-radius:8px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 65% 8%,#4b645855,transparent 70%),linear-gradient(140deg,#1b3b40,#142e34);display:grid;place-items:center}
+.series-cover .glyph{font:700 54px/1 var(--serif);color:#d8c39a;opacity:.9}
+.series-cover .fab{position:absolute;bottom:8px;left:8px;width:30px;height:30px;border-radius:50%;background:#fdf9f1e6;display:grid;place-items:center;color:var(--ink);font-size:13px}
+.series-info h2{font:400 23px/1.4 var(--serif);margin:4px 0 8px}
+.series-info p{font-size:12px;line-height:1.8;color:var(--muted);margin:0 0 14px;max-width:520px}
+.series-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#7c8176;margin-bottom:16px}
+.series-meta b{color:var(--ink);font-weight:600}
+.subscribe-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rss-field{display:flex;align-items:center;gap:8px;margin-top:12px;background:var(--cream);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:10px;color:#6f7368}
+.rss-field code{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--ink)}
+
+.episode-list{display:grid;gap:12px}
+.episode{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px;align-items:center;background:#fffefa;border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:0 4px 16px #6c542605}
+.episode.playing{border-color:#dcc39a;background:#fbf6ea;box-shadow:0 8px 22px #6c542610}
+.ep-thumb{width:96px;height:72px;border-radius:6px;position:relative;overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(135deg,#223f42,#162e33)}
+.ep-thumb .glyph{font:700 26px var(--serif);color:#c9b389;opacity:.85}
+.ep-thumb .n{position:absolute;top:6px;left:7px;font-size:9px;letter-spacing:1px;color:#dccdaa}
+.ep-main h3{font:400 16px/1.45 var(--serif);margin:0 0 6px}
+.ep-main p{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 10px;max-width:560px}
+.ep-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:10px;color:#8a8d80;align-items:center}
+.ep-meta .dot{width:3px;height:3px;border-radius:50%;background:#c4bda9}
+.ep-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.play-round{width:42px;height:42px;border-radius:50%;border:1px solid var(--ink);background:var(--ink);color:#fff;font-size:15px;display:grid;place-items:center}
+.play-round.ghost{background:transparent;color:var(--ink);border-color:#d5cbb5}
+.mini-note{font-size:9px;color:#8a8d80}
+
+.panel-side h3{font:400 15px/1.5 var(--serif);margin:0}
+.side-block{padding:18px 20px;border-bottom:1px solid var(--line)}
+.side-block:last-child{border-bottom:0}
+.side-block p{font-size:11px;line-height:1.8;color:var(--muted);margin:8px 0 0}
+.pill-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.stat-row{display:flex;justify-content:space-between;font-size:11px;color:#7c8176;padding:5px 0}
+.stat-row b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* ============ NUEVO: reproductor de episodio ============ */
+.player{border-radius:10px;overflow:hidden;position:relative;color:#f4ead7;padding:24px 24px 20px;
+  background:radial-gradient(ellipse at 60% 0%,#4b645866,transparent 70%),linear-gradient(130deg,#1b3b40,#142e34)}
+.player-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:22px}
+.player-top .tag-dark{font-size:9px;letter-spacing:2px;color:#c9bda0}
+.player-top h2{font:300 24px/1.45 var(--serif);margin:8px 0 0;max-width:520px}
+.player-now{font-size:11px;color:#d8cbb1;margin-top:18px;display:flex;align-items:center;gap:8px}
+.player-now .bar{width:2px;height:14px;background:var(--gold)}
+.controls{display:flex;align-items:center;gap:14px}
+.big-play{width:52px;height:52px;border-radius:50%;background:#f4ead7;color:var(--ink);border:0;font-size:18px;display:grid;place-items:center}
+.ctrl{width:36px;height:36px;border-radius:50%;border:1px solid #ffffff2e;background:transparent;color:#f4ead7;font-size:12px;display:grid;place-items:center}
+.timeline{position:relative;height:6px;border-radius:3px;background:#ffffff1f;margin:20px 0 8px;cursor:pointer}
+.timeline .fill{position:absolute;inset:0 auto 0 0;width:34%;background:var(--gold);border-radius:3px}
+.timeline .tick{position:absolute;top:-5px;width:1px;height:16px;background:#ffffff45}
+.timeline .knob{position:absolute;left:34%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:#f4ead7;box-shadow:0 2px 6px #0006}
+.times{display:flex;justify-content:space-between;font-size:10px;color:#b9c3bb;font-variant-numeric:tabular-nums}
+.player-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:14px;border-top:1px solid #ffffff1c}
+.speed-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid #ffffff33;border-radius:20px;padding:5px 10px;font-size:10px;color:#e5dcc8}
+.download-link{font-size:10px;color:#cfd6cd;display:flex;align-items:center;gap:6px}
+
+.chapters{display:grid;gap:2px;padding:8px}
+.chapter{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;background:transparent;border:1px solid transparent;border-radius:6px;padding:12px 10px;text-align:left;width:100%}
+.chapter:hover{background:#f9f6f0}
+.chapter.current{background:#f6f1e7;border-left:3px solid var(--gold)}
+.chapter time{font-size:10px;font-weight:600;color:#938e80;font-variant-numeric:tabular-nums;padding-top:2px}
+.chapter.current time{color:var(--gold)}
+.chapter span{font:300 12px/1.9 var(--serif);color:#5d645c}
+.chapter.current span{color:var(--ink)}
+.chapter small{display:block;font:9px/1.7 var(--sans);color:#9a9587;margin-top:3px}
+
+.episode-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;align-items:start}
+.about-card{background:#fffefa;border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:18px}
+.about-card h3{font:400 16px/1.5 var(--serif);margin:0 0 10px}
+.about-card p{font-size:12px;line-height:1.9;color:var(--muted);margin:0 0 14px}
+.origin-note{display:flex;gap:10px;align-items:flex-start;margin-top:16px;padding:12px;background:#f6ecd9;border:1px solid #e5d3b3;border-radius:6px}
+.origin-note span{color:var(--gold);font-size:15px;line-height:1.4}
+.origin-note p{margin:0;font-size:10px;line-height:1.8;color:#7b5a24}
+
+/* ============ móvil ============ */
+.m-topbar{height:74px;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid var(--line);background:var(--paper)}
+.m-topbar img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.m-topbar .t{font-family:var(--serif);font-size:14px;letter-spacing:.5px}
+.m-topbar .burger{margin-left:auto;font-size:20px;color:var(--ink)}
+.m-body{padding:22px 16px 104px;height:calc(100% - 74px);overflow:hidden;background:var(--paper)}
+.m-body h1{font:400 25px/1.5 var(--serif);margin:8px 0 8px}
+.m-cover{width:100%;height:150px;border-radius:10px;position:relative;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(ellipse at 70% 5%,#4b645866,transparent 70%),linear-gradient(140deg,#1b3b40,#142e34);margin:14px 0 12px}
+.m-cover .glyph{font:700 52px var(--serif);color:#d8c39a;opacity:.9}
+.m-episode{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.m-episode .th{width:56px;height:56px;border-radius:6px;background:linear-gradient(135deg,#223f42,#162e33);display:grid;place-items:center;font:700 18px var(--serif);color:#c9b389}
+.m-episode h3{font:400 13px/1.5 var(--serif);margin:0 0 4px}
+.m-episode small{font-size:9px;color:#8a8d80}
+.m-episode .pb{width:32px;height:32px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-size:11px;color:var(--ink)}
+.m-miniplayer{position:absolute;left:8px;right:8px;bottom:8px;background:var(--ink);color:#f4ead7;border-radius:10px;padding:12px 14px;box-shadow:0 10px 24px #142e3355}
+.m-miniplayer .row{display:flex;align-items:center;gap:10px}
+.m-miniplayer h4{font:400 12px/1.4 var(--serif);margin:0;flex:1}
+.m-miniplayer small{display:block;font-size:9px;color:#b9c3bb;margin-top:2px}
+.m-miniplayer .pp{width:34px;height:34px;border-radius:50%;background:#f4ead7;color:var(--ink);border:0;display:grid;place-items:center;font-size:12px}
+.m-progress{height:2px;background:#ffffff2b;border-radius:2px;margin-top:10px;position:relative}
+.m-progress i{position:absolute;inset:0 auto 0 0;width:38%;background:var(--gold);border-radius:2px}
+.m-sheet{position:absolute;inset:0;background:var(--paper);border-radius:26px 26px 0 0;box-shadow:0 -18px 40px #6c542626;display:flex;flex-direction:column;overflow:hidden}
+.m-sheet .handle{width:44px;height:4px;border-radius:2px;background:#d9d2c1;margin:10px auto 0}
+.m-sheet .head{padding:18px 18px 14px;border-bottom:1px solid var(--line)}
+.m-sheet .head small{font-size:9px;letter-spacing:1.5px;color:var(--gold);font-weight:700}
+.m-sheet .head h2{font:400 18px/1.45 var(--serif);margin:8px 0 6px}
+.m-sheet .head p{font-size:10px;color:var(--muted);margin:0}
+.m-sheet .chapters{padding:10px 8px;overflow:hidden}
+.m-sheet .controls-row{display:flex;align-items:center;justify-content:center;gap:22px;padding:14px 18px 18px;border-top:1px solid var(--line);margin-top:auto}
+.m-sheet .controls-row .big{width:52px;height:52px;border-radius:50%;background:var(--ink);color:#f4ead7;border:0;font-size:17px;display:grid;place-items:center}
+.m-sheet .controls-row .c{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;display:grid;place-items:center;font-size:11px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="board">
+
+  <div class="board-head">
+    <p class="kicker">BEIT AVRAHAM · PROPUESTA PARA REVISIÓN</p>
+    <h1>Experiencia de audio y podcast</h1>
+    <p>Cuatro pantallas construidas con los tokens reales del proyecto —paper <code>#fdf9f1</code>, ink <code>#18363d</code>, gold <code>#ad823b</code>, Merriweather y Plus Jakarta Sans— para que la discusión sea sobre el formato y no sobre un estilo nuevo. Nada de esto está implementado: es una maqueta estática.</p>
+    <div class="legend"><b>Alcance elegido:</b> podcast como serie con feed RSS público para Spotify y Apple Podcasts. La escucha dentro de la app se reduce a lo mínimo para poder previsualizar un episodio; no hay reproductor global que persiga al usuario por el folio.</div>
+  </div>
+
+  <!-- ================= A · SECCIÓN ESCUCHAR (desktop) ================= -->
+  <div class="frame-block">
+    <div class="frame-label"><b>A · Escritorio 1440</b><span>Sección «Escuchar»: la serie y sus episodios. Es la puerta de entrada al podcast.</span></div>
+    <div class="device desktop">
+      <header class="topbar">
+        <div class="brand">
+          <img src="../beit-avraham.jpg" alt="Beit Avraham">
+          <span>Beit Avraham<small>Estudio de Torá · Comunidad</small></span>
+        </div>
+        <div class="header-divider"></div>
+        <div class="breadcrumb">Biblioteca<span>/</span>Escuchar</div>
+        <div class="demo-badge">● Demostración · sin audio real</div>
+      </header>
+      <div class="app-body">
+        <aside class="navigation">
+          <div>
+            <p class="eyebrow">ESTUDIO</p>
+            <nav>
+              <button class="nav-item"><span>▤</span>Folio de estudio</button>
+              <button class="nav-item"><span>א</span>Alefato interactivo</button>
+              <button class="nav-item"><span>▦</span>Biblioteca de shiurim</button>
+              <button class="nav-item active"><span>◍</span>Escuchar<span class="nav-new">NUEVO</span></button>
+              <button class="nav-item"><span>✧</span>Índice de fuentes</button>
+              <button class="nav-item"><span>◌</span>Mis conversaciones</button>
+              <button class="nav-item"><span>◷</span>Mi seder y progreso</button>
+            </nav>
+            <div class="invitation">
+              <span>❧</span>
+              <h2>Estudiar en compañía</h2>
+              <p>Cada clase es una invitación a detenernos, escuchar y volver al texto.</p>
+            </div>
+          </div>
+          <p class="community">COMUNIDAD BEIT AVRAHAM<span>Asunción · Paraguay</span></p>
+        </aside>
+
+        <main class="main-content">
+          <div class="lesson-heading">
+            <div>
+              <p class="eyebrow">ESCUCHAR · PODCAST</p>
+              <h1>Clases para escuchar donde estés</h1>
+              <p class="subtitle">El audio original de cada shiur, con sus capítulos. Suscribite desde tu app de podcasts y la clase te acompaña fuera de la pantalla.</p>
+            </div>
+            <div class="lesson-stamp"><span>א</span><small>Serie en curso</small></div>
+          </div>
+
+          <div class="listen-grid">
+            <div>
+              <div class="series-card">
+                <div class="series-cover">
+                  <span class="glyph">שבת</span>
+                  <span class="fab">▶</span>
+                </div>
+                <div class="series-info">
+                  <p class="eyebrow">SERIE · SHABAT</p>
+                  <h2>Shabat: los fundamentos</h2>
+                  <p>Cuatro clases para recorrer el mandamiento del Shabat desde las fuentes de la Torá hasta su vivencia en comunidad.</p>
+                  <div class="series-meta">
+                    <span><b>4</b> episodios</span>
+                    <span><b>2 h 45 min</b> en total</span>
+                    <span>Actualizado <b>hace 2 semanas</b></span>
+                  </div>
+                  <div class="subscribe-row">
+                    <button class="primary-button">Suscribirse en Apple Podcasts</button>
+                    <button class="ghost-button">Spotify</button>
+                    <button class="ghost-button">Copiar enlace</button>
+                  </div>
+                  <div class="rss-field">
+                    <span>RSS</span><code>beithavraham.org/podcast/shabat/feed.xml</code>
+                  </div>
+                </div>
+              </div>
+
+              <div class="episode-list">
+                <article class="episode">
+                  <div class="ep-thumb"><span class="n">EP 04</span><span class="glyph">ז</span></div>
+                  <div class="ep-main">
+                    <h3>¿De dónde proviene el mandamiento de cumplir con el Shabat?</h3>
+                    <p>Fuentes de la Torá, las preguntas de los sabios y el sentido sagrado del día.</p>
+                    <div class="ep-meta"><span>45 min</span><i class="dot"></i><span>4 capítulos</span><i class="dot"></i><span>Rabinato Beit Avraham</span></div>
+                  </div>
+                  <div class="ep-actions">
+                    <button class="play-round">▶</button>
+                    <span class="mini-note">Escuchar</span>
+                  </div>
+                </article>
+
+                <article class="episode playing">
+                  <div class="ep-thumb"><span class="n">EP 03</span><span class="glyph">ב</span></div>
+                  <div class="ep-main">
+                    <h3>El despertar y la gratitud: Modo Aní</h3>
+                    <p>La primera plegaria del día y la psicología de la gratitud matutina.</p>
+                    <div class="ep-meta"><span>30 min</span><i class="dot"></i><span>3 capítulos</span><i class="dot"></i><span>Rabinato Beit Avraham</span></div>
+                  </div>
+                  <div class="ep-actions">
+                    <button class="play-round">❙❙</button>
+                    <span class="mini-note" style="color:var(--gold);font-weight:600">12:04</span>
+                  </div>
+                </article>
+
+                <article class="episode">
+                  <div class="ep-thumb"><span class="n">EP 02</span><span class="glyph">פ</span></div>
+                  <div class="ep-main">
+                    <h3>Libertad y memoria: el Seder de Pésaj</h3>
+                    <p>Cómo transmitir la historia de generación en generación a través de preguntas.</p>
+                    <div class="ep-meta"><span>40 min</span><i class="dot"></i><span>4 capítulos</span><i class="dot"></i><span>Rabinato Beit Avraham</span></div>
+                  </div>
+                  <div class="ep-actions">
+                    <button class="play-round ghost">▶</button>
+                    <span class="mini-note">Escuchar</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="panel panel-side">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">SUSCRIPCIÓN</p>
+                  <h2>Cómo escucharlo</h2>
+                </div>
+              </div>
+              <div class="side-block">
+                <h3>En tu app de podcasts</h3>
+                <p>Buscá «Beit Avraham» en Apple Podcasts o Spotify, o pegá el enlace RSS en cualquier lector. Los episodios nuevos aparecen solos.</p>
+                <div class="pill-row"><span class="tag">Apple Podcasts</span><span class="tag">Spotify</span><span class="tag">Overcast</span><span class="tag">Pocket Casts</span></div>
+              </div>
+              <div class="side-block">
+                <h3>Qué incluye el feed</h3>
+                <div class="stat-row"><span>Episodios publicados</span><b>4</b></div>
+                <div class="stat-row"><span>Capítulos por episodio</span><b>3–4</b></div>
+                <div class="stat-row"><span>Idioma</span><b>Español</b></div>
+                <div class="stat-row"><span>Descarga offline</span><b>Sí</b></div>
+              </div>
+              <div class="side-block">
+                <h3>Sobre el audio</h3>
+                <p>Son las clases originales, sin síntesis ni resumen. Si en el futuro se publica un resumen generado por IA, aparecerá marcado como tal y no con la voz del docente.</p>
+              </div>
+            </div>
+          </div>
+
+          <footer class="page-footer">
+            <span>BEIT AVRAHAM · DEMOSTRACIÓN</span>
+            <span>Maqueta estática para revisión · sin audio real</span>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>Por qué la serie no es una tarjeta de biblioteca:</b> la portada, el recuento y los botones de suscripción están en el primer bloque, porque quien llega a «Escuchar» ya decidió; lo que necesita es suscribirse o poner play.</li>
+      <li><b>El feed es visible, no escondido:</b> la URL RSS se muestra siempre. En productos de nicho, el usuario técnico (y el que usa un lector raro) es el que difunde.</li>
+      <li><b>Estado «reproduciendo»</b> se marca con borde dorado y tiempo transcurrido, igual que un fragmento activo en el folio. No se agrega un color nuevo.</li>
+      <li><b>Nota de origen</b> en el panel lateral: deja preparado el terreno para cuando existan episodios generados por IA, sin confundirlos con la clase.</li>
+    </ul>
+  </div>
+
+  <!-- ================= B · EPISODIO (desktop) ================= -->
+  <div class="frame-block">
+    <div class="frame-label"><b>B · Escritorio 1440</b><span>Episodio abierto: reproductor con capítulos. Los capítulos son los mismos fragmentos del folio.</span></div>
+    <div class="device desktop">
+      <header class="topbar">
+        <div class="brand">
+          <img src="../beit-avraham.jpg" alt="Beit Avraham">
+          <span>Beit Avraham<small>Estudio de Torá · Comunidad</small></span>
+        </div>
+        <div class="header-divider"></div>
+        <div class="breadcrumb">Escuchar<span>/</span>Shabat: los fundamentos<span>/</span>Episodio 03</div>
+        <div class="demo-badge">● Demostración · sin audio real</div>
+      </header>
+      <div class="app-body">
+        <aside class="navigation">
+          <div>
+            <p class="eyebrow">ESTUDIO</p>
+            <nav>
+              <button class="nav-item"><span>▤</span>Folio de estudio</button>
+              <button class="nav-item"><span>א</span>Alefato interactivo</button>
+              <button class="nav-item"><span>▦</span>Biblioteca de shiurim</button>
+              <button class="nav-item active"><span>◍</span>Escuchar<span class="nav-new">NUEVO</span></button>
+              <button class="nav-item"><span>✧</span>Índice de fuentes</button>
+              <button class="nav-item"><span>◌</span>Mis conversaciones</button>
+              <button class="nav-item"><span>◷</span>Mi seder y progreso</button>
+            </nav>
+            <div class="invitation">
+              <span>❧</span>
+              <h2>Estudiar en compañía</h2>
+              <p>Cada clase es una invitación a detenernos, escuchar y volver al texto.</p>
+            </div>
+          </div>
+          <p class="community">COMUNIDAD BEIT AVRAHAM<span>Asunción · Paraguay</span></p>
+        </aside>
+
+        <main class="main-content">
+          <div class="lesson-heading">
+            <div>
+              <p class="eyebrow">SHABAT: LOS FUNDAMENTOS · EPISODIO 03</p>
+              <h1>El despertar y la gratitud: Modo Aní</h1>
+              <p class="subtitle">La primera plegaria del día: reconocer la vida con conciencia y bendición.</p>
+            </div>
+            <div class="lesson-stamp"><span>✧</span><small>Audio original</small></div>
+          </div>
+
+          <div class="episode-layout">
+            <div>
+              <div class="player">
+                <div class="player-top">
+                  <div>
+                    <span class="tag-dark">BEIT AVRAHAM · SERIE SHABAT</span>
+                    <h2>El despertar y la gratitud: Modo Aní</h2>
+                  </div>
+                </div>
+
+                <div class="player-now"><span class="bar"></span> Capítulo 2 · El texto de Modo Aní</div>
+
+                <div class="timeline" role="slider" aria-label="Progreso del episodio" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100">
+                  <span class="tick" style="left:25%"></span>
+                  <span class="tick" style="left:50%"></span>
+                  <span class="tick" style="left:78%"></span>
+                  <span class="fill"></span>
+                  <span class="knob"></span>
+                </div>
+                <div class="times"><span>12:04</span><span>−18:12</span></div>
+
+                <div class="player-foot">
+                  <div class="controls">
+                    <button class="ctrl">↺ 15</button>
+                    <button class="big-play">❙❙</button>
+                    <button class="ctrl">15 ↻</button>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:14px">
+                    <span class="speed-pill">1,0× ▾</span>
+                    <span class="download-link">↓ Descargar</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="about-card">
+                <h3>Sobre este episodio</h3>
+                <p>Análisis del texto de Modo Aní en el Shulján Aruj y la psicología de la gratitud matutina. La clase recorre el pasaje desde la literalidad del texto hasta su traducción práctica en la mañana del alumno.</p>
+                <div class="pill-row"><span class="tag">Tefilá</span><span class="tag">Kavaná</span><span class="tag">Mañana</span><span class="tag">Estudio de fuentes</span></div>
+                <div class="origin-note">
+                  <span>✦</span>
+                  <p><b>Audio original de la clase.</b> No es una síntesis ni un resumen generado. Cuando existan episodios resumidos por IA, se publicarán aparte y marcados como tales.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">CAPÍTULOS</p>
+                  <h2>Tres momentos de la clase</h2>
+                </div>
+                <button class="ghost-button" style="padding:6px 10px;font-size:10px">Abrir en el folio</button>
+              </div>
+              <div class="chapters">
+                <button class="chapter">
+                  <time>00:00</time>
+                  <span>La respiración del despertar<small>Antes de cualquier acción, un instante de reconocimiento.</small></span>
+                </button>
+                <button class="chapter current">
+                  <time>00:40</time>
+                  <span>El texto de Modo Aní<small>El alma nos es devuelta con fidelidad infinita.</small></span>
+                </button>
+                <button class="chapter">
+                  <time>01:25</time>
+                  <span>La intención como guía<small>La tefilá no es repetición mecánica.</small></span>
+                </button>
+              </div>
+              <p style="font-size:9px;text-align:center;color:#8a8b7e;padding:16px 20px;margin:auto 0 0;border-top:1px solid var(--line)">Los capítulos se generan desde los fragmentos del shiur</p>
+            </div>
+          </div>
+
+          <footer class="page-footer">
+            <span>BEIT AVRAHAM · DEMOSTRACIÓN</span>
+            <span>Maqueta estática para revisión · sin audio real</span>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>El mapa son los capítulos, no la barra:</b> el progreso lleva marcas en los minutos donde cambia el capítulo, y la lista lateral hace de índice. Es el mismo principio del folio, donde el índice de fragmentos es el mapa de la clase.</li>
+      <li><b>Reproductor oscuro:</b> reutiliza el degradado del bloque de video para que el audio se lea como «contenido», no como un control de sistema.</li>
+      <li><b>«Abrir en el folio»:</b> el puente con la experiencia de estudio. El audio no compite con el texto: lo alimenta.</li>
+      <li><b>La nota de origen es contenido, no pie legal:</b> está dentro del bloque descriptivo, con el mismo peso visual que los tags.</li>
+    </ul>
+  </div>
+
+  <!-- ================= C y D · MÓVIL ================= -->
+  <div class="frame-block">
+    <div class="frame-label"><b>C · Móvil 390</b><span>Lista de episodios con reproductor mínimo anclado.</span> &nbsp; <b>D · Móvil 390</b><span>Hoja expandida con capítulos.</span></div>
+    <div class="mobile-row">
+
+      <!-- C -->
+      <div class="device mobile">
+        <header class="m-topbar">
+          <img src="../beit-avraham.jpg" alt="">
+          <span class="t">Escuchar</span>
+          <span class="burger">☰</span>
+        </header>
+        <div class="m-body">
+          <p class="eyebrow">PODCAST · SERIE SHABAT</p>
+          <h1>Shabat: los fundamentos</h1>
+          <p class="subtitle" style="font-size:11px">Cuatro clases para recorrer el mandamiento del Shabat desde sus fuentes.</p>
+
+          <div class="m-cover"><span class="glyph">שבת</span></div>
+
+          <div style="display:flex;gap:8px;margin-bottom:6px">
+            <button class="primary-button" style="flex:1;padding:12px 10px;font-size:11px">Suscribirse</button>
+            <button class="ghost-button" style="padding:12px 10px;font-size:11px">RSS</button>
+          </div>
+
+          <div class="m-episode">
+            <div class="th">ז</div>
+            <div>
+              <h3>¿De dónde proviene el mandamiento?</h3>
+              <small>EP 04 · 45 min · 4 capítulos</small>
+            </div>
+            <div class="pb">▶</div>
+          </div>
+          <div class="m-episode">
+            <div class="th">ב</div>
+            <div>
+              <h3>El despertar y la gratitud</h3>
+              <small>EP 03 · 30 min · 3 capítulos</small>
+            </div>
+            <div class="pb">▶</div>
+          </div>
+          <div class="m-episode">
+            <div class="th">פ</div>
+            <div>
+              <h3>Libertad y memoria</h3>
+              <small>EP 02 · 40 min · 4 capítulos</small>
+            </div>
+            <div class="pb">▶</div>
+          </div>
+        </div>
+
+        <div class="m-miniplayer">
+          <div class="row">
+            <button class="pp">❙❙</button>
+            <div>
+              <h4>El despertar y la gratitud</h4>
+              <small>Cap. 2 · 12:04 de 30:16</small>
+            </div>
+            <span style="font-size:12px;color:#c9bda0">⌃</span>
+          </div>
+          <div class="m-progress"><i></i></div>
+        </div>
+      </div>
+
+      <!-- D -->
+      <div class="device mobile">
+        <div class="m-sheet">
+          <div class="handle"></div>
+          <div class="head">
+            <small>REPRODUCIENDO · EPISODIO 03</small>
+            <h2>El despertar y la gratitud: Modo Aní</h2>
+            <p>Shabat: los fundamentos · 30 min</p>
+          </div>
+
+          <div style="padding:14px 18px 6px">
+            <div class="timeline" style="background:#e8e1d5;height:4px">
+              <span class="tick" style="left:25%;background:#c9bda0"></span>
+              <span class="tick" style="left:50%;background:#c9bda0"></span>
+              <span class="tick" style="left:78%;background:#c9bda0"></span>
+              <span class="fill"></span>
+            </div>
+            <div class="times" style="color:#8a8d80;margin-top:8px"><span>12:04</span><span>−18:12</span></div>
+          </div>
+
+          <div class="chapters">
+            <button class="chapter">
+              <time>00:00</time>
+              <span>La respiración del despertar</span>
+            </button>
+            <button class="chapter current">
+              <time>00:40</time>
+              <span>El texto de Modo Aní<small>Reproduciendo · faltan 18 min</small></span>
+            </button>
+            <button class="chapter">
+              <time>01:25</time>
+              <span>La intención como guía</span>
+            </button>
+            <button class="chapter">
+              <time>02:10</time>
+              <span>Preguntas de la comunidad</span>
+            </button>
+          </div>
+
+          <div class="controls-row">
+            <button class="c">↺15</button>
+            <button class="big">❙❙</button>
+            <button class="c">15↻</button>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:0 18px 16px;font-size:10px;color:#8a8d80">
+            <span>1,0× ▾</span><span>↓ Descargar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="notes">
+      <li><b>La barra móvil mide 56 px y no tapa las notas:</b> se apoya sobre el contenido con un margen de 8 px, como una tarjeta, no como una barra del sistema.</li>
+      <li><b>Un solo gesto para expandir:</b> tocar la barra abre la hoja con capítulos. En la hoja, el progreso y los capítulos vuelven al papel claro; el oscuro queda reservado al reproductor de escritorio.</li>
+      <li><b>Sin reproductor global:</b> la barra solo existe dentro de «Escuchar». Si más adelante querés que siga sonando mientras estudiás, se convierte en transporte persistente sin rediseñar nada de esto.</li>
+      <li><b>«Suscribirse» es la acción principal en móvil:</b> el objetivo del podcast es sacar al alumno de la app, no retenerlo adentro.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

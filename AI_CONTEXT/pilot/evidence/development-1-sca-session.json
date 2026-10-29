@@ -1,0 +1,85 @@
+{
+  "session_id": "01a1278a-b1de-74d0-addd-78b21092448b",
+  "agent_path": "/root/pilot_development_1_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-39-23-01a1278a-b1de-74d0-addd-78b21092448b.jsonl",
+  "source_sha256": "cdd2b2e7d33960b7271b5b5a1974595724315890e8881d6d528cc157eb61fd31",
+  "started_at": "2026-10-10T20:39:25.164Z",
+  "finished_at": "2026-10-10T20:40:34.642Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:39:32.030Z",
+      "counters": {
+        "input_tokens": 35612,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 73,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35685
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:37.301Z",
+      "counters": {
+        "input_tokens": 72779,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 150,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 72929
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:05.493Z",
+      "counters": {
+        "input_tokens": 110374,
+        "cached_input_tokens": 106368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2011,
+        "reasoning_output_tokens": 121,
+        "total_tokens": 112385
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:21.068Z",
+      "counters": {
+        "input_tokens": 149973,
+        "cached_input_tokens": 143744,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3025,
+        "reasoning_output_tokens": 163,
+        "total_tokens": 152998
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:31.394Z",
+      "counters": {
+        "input_tokens": 190858,
+        "cached_input_tokens": 183168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3455,
+        "reasoning_output_tokens": 191,
+        "total_tokens": 194313
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:34.582Z",
+      "counters": {
+        "input_tokens": 232341,
+        "cached_input_tokens": 223872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3620,
+        "reasoning_output_tokens": 191,
+        "total_tokens": 235961
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:39:26.621Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implemented within the assigned directory:\n\n- `study.cjs`: exclusive selection, native keyboard buttons, `aria-pressed`, temporary notes, safe literal text, isolated state snapshots.\n- `index.html`: dependency-free demonstration using the actual implementation.\n- `study.test.cjs`: interaction, safety and browser-script execution checks.\n- `SCA_JOURNAL.md`: plan transitions, evidence and limitations.\n\nTests:\n- `node --test acceptance.cjs`: 1 passed.\n- `node --test acceptance.cjs study.test.cjs`: 4 passed.\n\nPreserved `acceptance.cjs` and `package.json`. No network, deployment or Matrix writes.\n\nLimitation: real browser rendering at 320px/desktop and physical keyboard interaction remain unverified; demo execution was checked through Node VM.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

@@ -1,0 +1,10 @@
+{
+  "status": "human_review_pending",
+  "automated_test_exit": 0,
+  "manual_checks": [
+    "Pagina funciona en navegador a 320px y desktop",
+    "Botones accesibles por Tab y Enter; solo uno aria-pressed=true",
+    "Texto con etiquetas se muestra literal; notas conservadas al cambiar seleccion"
+  ],
+  "quality_scores": null
+}

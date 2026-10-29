@@ -1,0 +1,18 @@
+{
+  "pair_id": "bugfix-3",
+  "arm": "sca",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: fronteras y huecos\nok 1 - fronteras y huecos\n  ---\n  duration_ms: 1.6993\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 207.3181\n",
+  "stderr": "",
+  "at": "2026-10-10T22:25:35.546Z",
+  "acceptance_hash": "e960385956e1805b323775c49754b74d20276f90c36eaea02101f4d277e0d321",
+  "source_hashes": {
+    "acceptance.cjs": "e960385956e1805b323775c49754b74d20276f90c36eaea02101f4d277e0d321",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "SCA_JOURNAL.md": "8d3a6672a06a453cc2407919d04e028fd78fb92f1fc88d814843bfa9101470a4",
+    "SCA_PROTOCOL.md": "38398646c5737988056c82bd2cdf9233d1c13a7dc108ebadcb3c3d0b619a590f",
+    "study.cjs": "782a7a76a833176f298065a1693db4f568190765e278fb5b08c9d0bb04fff46f",
+    "TASK.md": "b3ac6c8463d8d7aa1bca7d72f25414c7c9a4139fdb09dab042ddd34ad7a08d75"
+  }
+}

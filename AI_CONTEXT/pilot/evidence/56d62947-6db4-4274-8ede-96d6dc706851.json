@@ -1,0 +1,19 @@
+{
+  "pair_id": "installation-1",
+  "arm": "sca",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: bootstrap completo sin secretos\nok 1 - bootstrap completo sin secretos\n  ---\n  duration_ms: 120.2876\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 389.9537\n",
+  "stderr": "",
+  "at": "2026-10-10T22:25:34.533Z",
+  "acceptance_hash": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95",
+  "source_hashes": {
+    "acceptance.cjs": "10a6b169112116a72a69f6eb7f39d6ce3d5b688627da0f9e964ac326916d0d95",
+    "bootstrap.cjs": "612b0da6b7363f7440f1db8b24f1607dca572c0851777f4f58a57032298f08ab",
+    "bootstrap.test.cjs": "5e17bb07c12b39449025a477b7c3bf78d2aba1457a9d1fd2d5ec5731d307b628",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "SCA_JOURNAL.md": "73d52da7260c3176124413164e4d38586a4ced5e167f456818f397d22b3d6c3d",
+    "SCA_PROTOCOL.md": "38398646c5737988056c82bd2cdf9233d1c13a7dc108ebadcb3c3d0b619a590f",
+    "TASK.md": "3059beeeef5deeb64b5af25d0184aa0773cfc0a62b4276781dcb06c5aa25af7f"
+  }
+}

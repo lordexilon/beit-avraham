@@ -1,0 +1,81 @@
+{
+  "session_id": "01a127e8-fe4c-77a2-9450-754c65f51173",
+  "agent_path": "/root/pilot_refactor_3_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-22-23-01a127e8-fe4c-77a2-9450-754c65f51173.jsonl",
+  "source_sha256": "07b5a2069330522235607ac35c3004ce5d3a36a27464e910cb5567d105e469ce",
+  "started_at": "2026-10-10T22:22:24.262Z",
+  "finished_at": "2026-10-10T22:22:59.974Z",
+  "turn_intervals": [
+    [
+      1791670943835,
+      1791670979974
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:22:32.468Z",
+      "counters": {
+        "input_tokens": 35563,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 58,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35621
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:22:38.755Z",
+      "counters": {
+        "input_tokens": 71396,
+        "cached_input_tokens": 69248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 136,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71532
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:22:44.902Z",
+      "counters": {
+        "input_tokens": 107773,
+        "cached_input_tokens": 104960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 206,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 107979
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:22:55.732Z",
+      "counters": {
+        "input_tokens": 144480,
+        "cached_input_tokens": 141184,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 741,
+        "reasoning_output_tokens": 67,
+        "total_tokens": 145221
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:22:59.944Z",
+      "counters": {
+        "input_tokens": 181866,
+        "cached_input_tokens": 177664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 901,
+        "reasoning_output_tokens": 67,
+        "total_tokens": 182767
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:22:26.109Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implementado únicamente en `refactor-3/control/study.cjs`:\n\n- `validateLines` concentra la validación sin duplicación.\n- `renderSummary` calcula y renderiza el resultado.\n- Conservados `exports.summarize`, error `Invalid`, longitudes originales y texto recortado.\n- `acceptance.cjs` y `package.json` intactos; sin dependencias.\n\nPruebas: dos invocaciones de `node --test acceptance.cjs` — antes y después. Ambas: 1 prueba aprobada, 0 fallos.\n\nRevisión manual: responsabilidades separadas, nombres claros y menor duplicación. Límite: la aceptación cubre los casos declarados; no prueba objetos con getters cambiantes o efectos secundarios.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

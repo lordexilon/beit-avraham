@@ -1,0 +1,14 @@
+{
+  "pair_id": "bugfix-1",
+  "arm": "control",
+  "exit_code": 1,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: fronteras y huecos\nnot ok 1 - fronteras y huecos\n  ---\n  duration_ms: 10.4046\n  location: 'C:\\\\Users\\\\Legion 5\\\\Documents\\\\ChatGPT\\\\Beit Avraham\\\\AI_CONTEXT\\\\pilot\\\\workspaces\\\\bugfix-1\\\\control\\\\acceptance.cjs:1:96'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    'a' !== 'b'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'b'\n  actual: 'a'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (C:\\Users\\Legion 5\\Documents\\ChatGPT\\Beit Avraham\\AI_CONTEXT\\pilot\\workspaces\\bugfix-1\\control\\acceptance.cjs:1:232)\n    Test.runInAsyncScope (node:async_hooks:211:14)\n    Test.run (node:internal/test_runner/test:934:25)\n    Test.start (node:internal/test_runner/test:833:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 0\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 271.8169\n",
+  "stderr": "",
+  "at": "2026-10-10T20:33:57.651Z",
+  "acceptance_hash": "edff3172fa52a25490c4a9e27f0b705baaf45d21007686654764260a65ad0c6d",
+  "source_hashes": {
+    "acceptance.cjs": "edff3172fa52a25490c4a9e27f0b705baaf45d21007686654764260a65ad0c6d",
+    "study.cjs": "2683cc0da6ef3de61b67c271e8e57d3f5e7d0f33bf590b2010bd2064e1b96709"
+  }
+}

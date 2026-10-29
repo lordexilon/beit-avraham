@@ -1,0 +1,22 @@
+{
+  "name": "sca-compliant-agent-framework",
+  "version": "3.0.0",
+  "description": "Smart Context Architecture v3.0 Base Framework",
+  "scripts": {
+    "setup": "node scripts/setup_sca.js",
+    "setup:mcp": "npm install -g @modelcontextprotocol/server-postgres @modelcontextprotocol/server-github",
+    "sca:init": "node scripts/setup_sca.js"
+  },
+  "keywords": [
+    "agents",
+    "ai",
+    "mcp",
+    "sca"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
+    "dotenv": "^17.4.2"
+  }
+}

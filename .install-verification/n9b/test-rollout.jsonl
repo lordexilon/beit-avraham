@@ -1,0 +1,3 @@
+{"type":"session_meta","payload":{"id":"installer-test-7d2912e1-e374-4037-892d-dca79ffbc0e6","cwd":"C:\\Users\\Legion 5\\Documents\\ChatGPT\\Beit Avraham\\.install-verification\\n9b"}}
+{"type":"event_msg","timestamp":"2026-10-10T20:19:30.058Z","payload":{"type":"token_count","info":{"total_token_usage":{"input_tokens":100,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":100,"reasoning_output_tokens":0,"total_tokens":200}}}}
+{"type":"event_msg","timestamp":"2026-10-10T20:19:40.199Z","payload":{"type":"token_count","info":{"total_token_usage":{"input_tokens":110,"cached_input_tokens":0,"cache_write_input_tokens":0,"output_tokens":110,"reasoning_output_tokens":0,"total_tokens":220}}}}

@@ -1,0 +1,22 @@
+{
+  "operation": "task",
+  "input": {
+    "status": "pending_evidence",
+    "project_name": "Beit Avraham",
+    "cycle_id": "11111111-2222-3333-4444-555555555555",
+    "task_key": "N54-enfoque-pedagogico-moreh-y-google-meet",
+    "evaluation_key": "N54-enfoque-pedagogico-moreh-y-google-meet-workflow",
+    "evidence": {
+      "capture_window": {
+        "method": "task-boundary-conversation-captures",
+        "source_key": "antigravity:dd8ea3e2-0d86-4af9-ad40-dedd48ab3d8b",
+        "boundary_start": "2026-10-12T05:28:35+00:00",
+        "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+        "boundary_end": "2026-10-12T05:28:35+00:00",
+        "capture_event_ids": [],
+        "interval_tokens": 0
+      },
+      "limitation": "Associated conversation window is not verified exclusive task usage"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "ES-01-mishna-39-melajot",
+    "lang": "es",
+    "query": "¿Cuáles son las 39 labores prohibidas en Shabat y su relación con el Mishkán?",
+    "expected_source": "Mishná Shabat 7:2",
+    "category": "Halajá"
+  },
+  {
+    "id": "HE-01-mishna-39-melajot",
+    "lang": "he",
+    "query": "ארבעים חסר אחת מלאכות אבות מלאכות המשכן בשבת",
+    "expected_source": "Mishná Shabat 7:2",
+    "category": "Halajá"
+  },
+  {
+    "id": "ES-02-talmud-dos-shabatot",
+    "lang": "es",
+    "query": "¿Qué recompensa de redención prometió Rabí Shimón bar Yojai al cuidar dos Shabatot?",
+    "expected_source": "Talmud Babli, Shabat 118b",
+    "category": "Agadá"
+  },
+  {
+    "id": "HE-02-talmud-dos-shabatot",
+    "lang": "he",
+    "query": "אלמלי משמרין ישראל שתי שבתות כהלכתן מיד נגאלים שבת קיח",
+    "expected_source": "Talmud Babli, Shabat 118b",
+    "category": "Agadá"
+  },
+  {
+    "id": "ES-03-shuljan-despertar-leon",
+    "lang": "es",
+    "query": "¿Cómo levantarse como un león por la mañana y rezar la plegaria Modo Aní de gratitud?",
+    "expected_source": "Shulján Aruj, Oraj Jayim 1:1",
+    "category": "Código Halájico"
+  },
+  {
+    "id": "HE-03-shuljan-despertar-leon",
+    "lang": "he",
+    "query": "יתגבר כארי לעמוד בבוקר לעבודת בוראו מודה אני לפניך",
+    "expected_source": "Shulján Aruj, Oraj Jayim 1:1",
+    "category": "Código Halájico"
+  },
+  {
+    "id": "ES-04-rambam-cuatro-deberes",
+    "lang": "es",
+    "query": "¿Cuáles son las cuatro cosas de Shabat según el Rambam: Zajor, Shamor, Kavod y Oneg?",
+    "expected_source": "Rambam, Mishné Torá, Hiljot Shabat 30:1",
+    "category": "Codificación"
+  },
+  {
+    "id": "HE-04-rambam-cuatro-deberes",
+    "lang": "he",
+    "query": "ארבעה דברים נאמרו בשבת שניים מן התורה זכור ושמור ושניים מדברי סופרים כבוד ועונג",
+    "expected_source": "Rambam, Mishné Torá, Hiljot Shabat 30:1",
+    "category": "Codificación"
+  },
+  {
+    "id": "ES-05-hagada-egipto",
+    "lang": "es",
+    "query": "¿Por qué en cada generación debe uno considerarse como si hubiera salido personalmente de Egipto?",
+    "expected_source": "Hagadá de Pésaj - Maguid",
+    "category": "Liturgia"
+  },
+  {
+    "id": "HE-05-hagada-egipto",
+    "lang": "he",
+    "query": "בכל דור ודור חייב אדם לראות את עצמו כאילו הוא יצא ממצרים",
+    "expected_source": "Hagadá de Pésaj - Maguid",
+    "category": "Liturgia"
+  },
+  {
+    "id": "ES-06-avot-hillel",
+    "lang": "es",
+    "query": "¿Qué enseñó Hillel sobre 'si no soy para mí quién será por mí y si no es ahora cuándo'?",
+    "expected_source": "Pirké Avot 1:14",
+    "category": "Ética"
+  },
+  {
+    "id": "HE-06-avot-hillel",
+    "lang": "he",
+    "query": "אם אין אני לי מי לי וכשאני לעצמי מה אני ואם לא עכשיו אימתי הלל",
+    "expected_source": "Pirké Avot 1:14",
+    "category": "Ética"
+  },
+  {
+    "id": "ES-07-yetzira-senderos-sefirot",
+    "lang": "es",
+    "query": "¿Cuáles son los 32 senderos de sabiduría y las diez Sefirot de la nada en Séfer Yetzirá?",
+    "expected_source": "Séfer Yetzirá 1:1-2",
+    "category": "Cábala"
+  },
+  {
+    "id": "HE-07-yetzira-senderos-sefirot",
+    "lang": "he",
+    "query": "בשלושים ושתים נתיבות פליאות חכמה עשר ספירות בלימה עשרים ושתים אותיות יסוד",
+    "expected_source": "Séfer Yetzirá 1:1-2",
+    "category": "Cábala"
+  },
+  {
+    "id": "ES-08-zohar-chispa-oscuridad",
+    "lang": "es",
+    "query": "¿Qué chispa de oscuridad primordial emanó del Infinito Ein Sof según el Zóhar en Bereshit?",
+    "expected_source": "Zóhar, Parashat Bereshit 15a",
+    "category": "Cábala"
+  },
+  {
+    "id": "HE-08-zohar-chispa-oscuridad",
+    "lang": "he",
+    "query": "בריש רעותא דמלכא גליף גליפו בטהירו עילאה בוצינא דקרדינותא אין סוף זוהר",
+    "expected_source": "Zóhar, Parashat Bereshit 15a",
+    "category": "Cábala"
+  }
+]

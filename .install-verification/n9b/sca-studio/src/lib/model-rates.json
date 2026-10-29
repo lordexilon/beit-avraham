@@ -1,0 +1,13 @@
+{
+  "verified_at": "2026-10-08",
+  "rates": {
+    "gemini-2.5-flash": {
+      "provider": "google",
+      "input_usd_per_million": 0.3,
+      "cached_input_usd_per_million": 0.03,
+      "output_usd_per_million": 2.5,
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "scope": "Standard paid text; API-equivalent estimate, excludes tools/cache storage/taxes"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+ "project_name":"Beit Avraham",
+ "sprint_name":"Medicion por tarea",
+ "node_id":"N7",
+ "task_key":"N7-verificacion",
+ "task_desc":"Workflow integrado: apertura/cierre captura tiempo evaluacion y DAG; referencia monetaria/ahorro pendiente"
+}

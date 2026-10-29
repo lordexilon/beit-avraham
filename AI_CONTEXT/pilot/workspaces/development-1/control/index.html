@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudio de líneas</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #eef1ee; color: #21352b; font: 1rem/1.5 system-ui, sans-serif; }
+    main { max-width: 48rem; margin: auto; padding: 1rem; }
+    h1 { font-size: 1.8rem; }
+    .study-line { margin: 1rem 0; padding: 1rem; border: 1px solid #bbc9bf; border-radius: .6rem; background: #fff; }
+    button, textarea { width: 100%; font: inherit; border: 1px solid #687e70; border-radius: .3rem; }
+    button { padding: .75rem; color: inherit; background: #f3f6f3; text-align: left; white-space: pre-wrap; overflow-wrap: anywhere; cursor: pointer; }
+    button[aria-pressed="true"] { background: #244b38; color: white; border-color: #244b38; }
+    :focus-visible { outline: 3px solid #986011; outline-offset: 3px; }
+    label { display: block; margin-top: 1rem; }
+    label span { display: block; margin-bottom: .4rem; overflow-wrap: anywhere; }
+    textarea { display: block; padding: .5rem; min-height: 5rem; resize: vertical; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Estudio de líneas</h1>
+    <p>Selecciona una línea con un clic, Enter o Espacio. Usa Tab para recorrer los controles.</p>
+    <p>Las notas se conservan al cambiar de selección durante esta sesión. Al recargar se borran.</p>
+    <div id="study"></div>
+  </main>
+  <script src="study.cjs"></script>
+  <script>
+    Study.mount(document.getElementById('study'), [
+      { id: 'a', text: 'Escuchar con atención antes de responder.' },
+      { id: 'b', text: 'Aprender una idea y ponerla en práctica.' },
+      { id: 'c', text: '<script>Este texto se muestra literalmente.<\/script>' }
+    ]);
+  </script>
+</body>
+</html>

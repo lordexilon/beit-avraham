@@ -1,0 +1,16 @@
+{
+  "pair_id": "refactor-3",
+  "arm": "control",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: contrato conservado\nok 1 - contrato conservado\n  ---\n  duration_ms: 2.7723\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 252.2076\n",
+  "stderr": "",
+  "at": "2026-10-10T22:23:28.745Z",
+  "acceptance_hash": "6c53cd2b51ac8c28e010898023e588bdcb3ff034a1ff4bec6dad730857f1664a",
+  "source_hashes": {
+    "acceptance.cjs": "6c53cd2b51ac8c28e010898023e588bdcb3ff034a1ff4bec6dad730857f1664a",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "study.cjs": "40dfa5346fdea5a6a4a92a8f9d9ae79b088278b36d0ab397188513701f1de454",
+    "TASK.md": "5bc885151979a4f0f5903b9ce81ffe9be4eefb9a00bc60dbfa7320985623d3dc"
+  }
+}

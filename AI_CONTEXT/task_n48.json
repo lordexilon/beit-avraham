@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 7: ABM de contenido",
+  "node_id": "N48",
+  "task_key": "N48-abm-corpus-rag-knowledge-base",
+  "task_desc": "Carga y ABM del corpus RAG: alta de documentos, reindexado y baja contra knowledge_base",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

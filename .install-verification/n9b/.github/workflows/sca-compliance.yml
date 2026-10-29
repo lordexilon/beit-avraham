@@ -1,0 +1,40 @@
+﻿name: SCA Compliance Check
+
+on:
+  pull_request:
+    branches: [ "main", "master", "develop" ]
+
+jobs:
+  compliance:
+    name: Check AI_CONTEXT Memory Updates
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Verify SCA Memory Integrity
+        run: |
+          echo "🔍 Analizando commits del Pull Request..."
+          
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} HEAD)
+          CHANGES_OUTSIDE_CONTEXT=$(echo "$CHANGED_FILES" | grep -v -E '^AI_CONTEXT/|^\.github/' || true)
+          
+          if [ -n "$CHANGES_OUTSIDE_CONTEXT" ]; then
+            echo "Se detectaron cambios en el código fuente:"
+            echo "$CHANGES_OUTSIDE_CONTEXT"
+            
+            if echo "$CHANGED_FILES" | grep -q '^AI_CONTEXT/'; then
+              echo "✅ Compliance SCA Aprobado: El agente/desarrollador actualizó la memoria de la IA."
+              exit 0
+            else
+              echo "❌ ERROR DE COMPLIANCE SCA ❌"
+              echo "Se ha modificado el código fuente pero no se detectaron actualizaciones en AI_CONTEXT/."
+              echo "Protocolo Estricto: Toda alteración debe quedar registrada en la memoria para evitar que la IA alucine."
+              exit 1
+            fi
+          else
+            echo "✅ Compliance SCA Aprobado: No hay cambios en el código."
+          fi

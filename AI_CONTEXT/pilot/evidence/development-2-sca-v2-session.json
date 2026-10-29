@@ -1,0 +1,122 @@
+{
+  "session_id": "01a1278b-ec59-7f83-af19-ec7d09cf3c2a",
+  "agent_path": "/root/pilot_development_2_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-40-44-01a1278b-ec59-7f83-af19-ec7d09cf3c2a.jsonl",
+  "source_sha256": "1f796062560f33ef2cae2d4fd2ed3e5258813f7aa8a01de9a2420813a895bb0c",
+  "started_at": "2026-10-10T20:40:44.973Z",
+  "finished_at": "2026-10-10T22:20:40.393Z",
+  "turn_intervals": [
+    [
+      1791664844530,
+      1791664886688
+    ],
+    [
+      1791670804089,
+      1791670840393
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:40:52.629Z",
+      "counters": {
+        "input_tokens": 35586,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 78,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35664
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:58.219Z",
+      "counters": {
+        "input_tokens": 72908,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 157,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 73065
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:25.975Z",
+      "counters": {
+        "input_tokens": 110680,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2002,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 112682
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:26.510Z",
+      "counters": {
+        "input_tokens": 110680,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2002,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 112682
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:10.157Z",
+      "counters": {
+        "input_tokens": 150479,
+        "cached_input_tokens": 144128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2068,
+        "reasoning_output_tokens": 19,
+        "total_tokens": 152547
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:22.566Z",
+      "counters": {
+        "input_tokens": 190487,
+        "cached_input_tokens": 183808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2731,
+        "reasoning_output_tokens": 53,
+        "total_tokens": 193218
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:35.760Z",
+      "counters": {
+        "input_tokens": 231365,
+        "cached_input_tokens": 223616,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3365,
+        "reasoning_output_tokens": 122,
+        "total_tokens": 234730
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:40.356Z",
+      "counters": {
+        "input_tokens": 272933,
+        "cached_input_tokens": 264320,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3561,
+        "reasoning_output_tokens": 122,
+        "total_tokens": 276494
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:40:46.771Z",
+      "model": "gpt-6.1-sol"
+    },
+    {
+      "at": "2026-10-10T22:20:04.481Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Completed within the assigned directory.\n\n- Implemented `study.cjs`: exclusive selection, native keyboard-accessible buttons, `aria-pressed`, temporary per-line notes, safe literal text, input validation and isolated state snapshots.\n- Added `index.html` using the actual module, responsive styles and labeled notes editor.\n- Added `verification.cjs` and completed local `SCA_JOURNAL.md` transitions.\n- Preserved `acceptance.cjs` and `package.json`.\n\nTests: `node --test acceptance.cjs` invoked once: 1 passed, 0 failed. `node --test verification.cjs` invoked once: 2 passed, 0 failed.\n\nLimitations: real-browser visual/keyboard checks remain unperformed. HTTP hosting must serve `.cjs` with a permitted JavaScript MIME type; demo can be opened locally. Notes reset on reload.\n\nThe reported usage-limit interruption was separate from task difficulty; no test failure occurred.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

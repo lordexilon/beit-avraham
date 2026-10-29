@@ -1,0 +1,93 @@
+{
+  "evaluated_at": "2026-10-29T15:24:22.822Z",
+  "sprint": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N36",
+  "fixtures_count": 16,
+  "models": {
+    "baseline": {
+      "name": "Baseline Determinista",
+      "es": {
+        "count": 8,
+        "hit1Count": 8,
+        "hit1Rate": 100,
+        "hit3Count": 8,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "he": {
+        "count": 8,
+        "hit1Count": 0,
+        "hit1Rate": 0,
+        "hit3Count": 2,
+        "hit3Rate": 25,
+        "mrr": 0.2345
+      },
+      "total": {
+        "count": 16,
+        "hit1Count": 8,
+        "hit1Rate": 50,
+        "hit3Count": 10,
+        "hit3Rate": 62.5,
+        "mrr": 0.6173
+      },
+      "latencyMs": 1.19
+    },
+    "titan_v2": {
+      "name": "Amazon Titan Embeddings V2",
+      "es": {
+        "count": 8,
+        "hit1Count": 8,
+        "hit1Rate": 100,
+        "hit3Count": 8,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "he": {
+        "count": 8,
+        "hit1Count": 8,
+        "hit1Rate": 100,
+        "hit3Count": 8,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "total": {
+        "count": 16,
+        "hit1Count": 16,
+        "hit1Rate": 100,
+        "hit3Count": 16,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "latencyMs": 1.13
+    },
+    "cohere_multilingual": {
+      "name": "Cohere Embed Multilingual V3",
+      "es": {
+        "count": 8,
+        "hit1Count": 8,
+        "hit1Rate": 100,
+        "hit3Count": 8,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "he": {
+        "count": 8,
+        "hit1Count": 8,
+        "hit1Rate": 100,
+        "hit3Count": 8,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "total": {
+        "count": 16,
+        "hit1Count": 16,
+        "hit1Rate": 100,
+        "hit3Count": 16,
+        "hit3Rate": 100,
+        "mrr": 1
+      },
+      "latencyMs": 1.18
+    }
+  },
+  "winner": "Cohere Embed Multilingual V3"
+}

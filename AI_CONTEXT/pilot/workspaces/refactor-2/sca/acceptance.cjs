@@ -1,0 +1,1 @@
+const t=require('node:test'),a=require('node:assert/strict'),{summarize}=require('./study.cjs');t('contrato conservado',()=>{a.deepEqual(summarize([{text:' a '},{text:'b2'}]),{count:2,total:5,text:'a | b2'});a.deepEqual(summarize([]),{count:0,total:0,text:''});for(const x of [null,{},[{}],[{text:3}]])a.throws(()=>summarize(x));});

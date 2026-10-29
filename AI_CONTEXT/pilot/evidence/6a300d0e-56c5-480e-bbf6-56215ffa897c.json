@@ -1,0 +1,20 @@
+{
+  "pair_id": "context-3",
+  "arm": "sca",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: politica y alcance\nok 1 - politica y alcance\n  ---\n  duration_ms: 3.8784\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 210.6793\n",
+  "stderr": "",
+  "at": "2026-10-10T22:28:36.018Z",
+  "acceptance_hash": "7d34aa564c0f1a7f6583af0f74075b886cd8c9f38e22543d98a2fe44ba2fa02d",
+  "source_hashes": {
+    "acceptance.cjs": "7d34aa564c0f1a7f6583af0f74075b886cd8c9f38e22543d98a2fe44ba2fa02d",
+    "catalog.cjs": "3e14225e229e31a12c5c14daaaf373b50eb48d3a31dd2144c8e5d4dc7bf7486b",
+    "docs\\policy.md": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "SCA_JOURNAL.md": "564133e3e1942c8e7807ac461c90b86a49a7e78692454831b3371905448f528b",
+    "SCA_PROTOCOL.md": "38398646c5737988056c82bd2cdf9233d1c13a7dc108ebadcb3c3d0b619a590f",
+    "study.cjs": "e9f0efe687642892e74baf9028e425a9b6f99f86b1c413295174f5f7490d0218",
+    "TASK.md": "5daf11266cb12473fee74d12f58a6b530e370ea98e6a18bc92e96c532c1c8553"
+  }
+}

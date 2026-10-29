@@ -1,0 +1,35 @@
+{
+  "baseline": {
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "docs/policy.md": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+    "catalog.cjs": "ec83f6999e786066c54d98e51d89afc8594e87e3cfffdf4d0c05448c320865ce",
+    "study.cjs": "1c5084f277edff6f5033eb96d59a937afb1c0d449a258fadb24cdb6434daa8c2",
+    "acceptance.cjs": "71229316bc9175d3f814af5c629a0c7be6f170881c7afdc1f075914556ca742a"
+  },
+  "source": {
+    "acceptance.cjs": {
+      "sha256": "71229316bc9175d3f814af5c629a0c7be6f170881c7afdc1f075914556ca742a",
+      "text": "const t=require('node:test'),a=require('node:assert/strict'),{visibleSources}=require('./study.cjs'),catalog=require('./catalog.cjs');t('politica y alcance',()=>{a.deepEqual(visibleSources(catalog,'c1').map(x=>x.id),['own','licensed']);a.deepEqual(visibleSources(catalog,'missing'),[]);a.equal(catalog.length,4);});\n"
+    },
+    "catalog.cjs": {
+      "sha256": "ec83f6999e786066c54d98e51d89afc8594e87e3cfffdf4d0c05448c320865ce",
+      "text": "module.exports=[{id:'own',courseId:'c1',owned:true},{id:'free',courseId:'c1',permission:'public'},{id:'licensed',courseId:'c1',permission:'licensed'},{id:'other',courseId:'other',owned:true}];\n"
+    },
+    "docs\\policy.md": {
+      "sha256": "309a56dcc53671e3d5fabc4d194a5d52b0c85644357ce6f147a9f2b788e951d3",
+      "text": "Cursos pagos: permitir owned=true o permission=licensed. Nunca incluir una fuente externa gratuita sin permiso explicito. Filtrar por courseId y preservar orden.\n"
+    },
+    "package.json": {
+      "sha256": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+      "text": "{\n  \"private\": true,\n  \"scripts\": {\n    \"test\": \"node --test acceptance.cjs\"\n  }\n}\n"
+    },
+    "study.cjs": {
+      "sha256": "d362dbe5cb390f0db7dbd76237ea1549e0af42d30cc13f9bcf345e580faa107f",
+      "text": "/** Return course sources that are owned or explicitly licensed, in catalog order. */\nfunction visibleSources(catalog, courseId) {\n  return catalog.filter(source =>\n    source.courseId === courseId &&\n    (source.owned === true || source.permission === 'licensed')\n  );\n}\n\nexports.visibleSources = visibleSources;\r\n"
+    },
+    "TASK.md": {
+      "sha256": "5daf11266cb12473fee74d12f58a6b530e370ea98e6a18bc92e96c532c1c8553",
+      "text": "Agregar visibleSources(catalog,courseId) respetando politica de cursos pagos y fuentes propias/autorizadas documentada en docs/policy.md; no cambiar esa regla.\n\n{\n  \"automated\": \"node --test acceptance.cjs\",\n  \"manual\": [],\n  \"rubric\": [\n    \"correctness\",\n    \"readability\",\n    \"responsibilities\",\n    \"maintainability\"\n  ],\n  \"minimum_each\": 1,\n  \"max_regressions\": 0\n}\n"
+    }
+  }
+}

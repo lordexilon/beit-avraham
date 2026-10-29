@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N35",
+  "task_key": "N35-retrieval-benchmark-fixtures-mrr",
+  "task_desc": "Banco de evaluacion de recuperacion: fixtures ES/HE y metricas hit@1, hit@3 y MRR contra Matrix",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

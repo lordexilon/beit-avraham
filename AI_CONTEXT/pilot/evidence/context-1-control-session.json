@@ -1,0 +1,81 @@
+{
+  "session_id": "01a127e7-8510-7440-93bc-15c8b942dbcf",
+  "agent_path": "/root/pilot_context_1_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-20-46-01a127e7-8510-7440-93bc-15c8b942dbcf.jsonl",
+  "source_sha256": "8de80b61bcd9c0c817ceb78c4d9c1f6b0121c1a0fbd5abf6fa901b48675ff553",
+  "started_at": "2026-10-10T22:20:47.556Z",
+  "finished_at": "2026-10-10T22:21:17.864Z",
+  "turn_intervals": [
+    [
+      1791670847178,
+      1791670877864
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:20:56.230Z",
+      "counters": {
+        "input_tokens": 35560,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 57,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35617
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:00.776Z",
+      "counters": {
+        "input_tokens": 71365,
+        "cached_input_tokens": 69248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 112,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71477
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:05.618Z",
+      "counters": {
+        "input_tokens": 107305,
+        "cached_input_tokens": 104832,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 187,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 107492
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:14.919Z",
+      "counters": {
+        "input_tokens": 143609,
+        "cached_input_tokens": 140544,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 381,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 143990
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:17.833Z",
+      "counters": {
+        "input_tokens": 180286,
+        "cached_input_tokens": 176640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 504,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 180790
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:20:49.792Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implementado `visibleSources(catalog, courseId)` en `study.cjs`: filtra el curso solicitado y permite únicamente `owned === true` o `permission === 'licensed'`, preservando el orden y sin modificar el catálogo.\n\nPrueba: una invocación de `node --test acceptance.cjs`; 1 prueba aprobada, 0 fallos.\n\n`acceptance.cjs` y `package.json` permanecen intactos. Sin dependencias, red ni cambios fuera del directorio asignado. Limitación: validación automatizada limitada al caso incluido en aceptación.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

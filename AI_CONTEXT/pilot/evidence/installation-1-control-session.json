@@ -1,0 +1,81 @@
+{
+  "session_id": "01a127e7-92c4-7a41-b3a6-451821877093",
+  "agent_path": "/root/pilot_installation_1_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-20-50-01a127e7-92c4-7a41-b3a6-451821877093.jsonl",
+  "source_sha256": "0660085c0af1e30a8a88518d7d5ecbda5beb51c992b382e0ba3039d95eb9478e",
+  "started_at": "2026-10-10T22:20:51.100Z",
+  "finished_at": "2026-10-10T22:21:29.573Z",
+  "turn_intervals": [
+    [
+      1791670850752,
+      1791670889573
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:20:58.613Z",
+      "counters": {
+        "input_tokens": 35563,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 71,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35634
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:03.648Z",
+      "counters": {
+        "input_tokens": 71601,
+        "cached_input_tokens": 69248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 149,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71750
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:20.108Z",
+      "counters": {
+        "input_tokens": 108153,
+        "cached_input_tokens": 103168,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1281,
+        "reasoning_output_tokens": 71,
+        "total_tokens": 109434
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:25.790Z",
+      "counters": {
+        "input_tokens": 146334,
+        "cached_input_tokens": 139520,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1387,
+        "reasoning_output_tokens": 86,
+        "total_tokens": 147721
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:21:29.521Z",
+      "counters": {
+        "input_tokens": 184769,
+        "cached_input_tokens": 175360,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1568,
+        "reasoning_output_tokens": 112,
+        "total_tokens": 186337
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:20:53.640Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implemented `prepare` in `bootstrap.cjs`: validates binding, requires nonempty scripts/migrations, copies their files, excludes common secret files, rejects symlinks and nonempty destinations, and writes `AI_CONTEXT/project_binding.json`.\n\nKept `acceptance.cjs` and `package.json` intact.\n\nTest invocations:\n\n- `node --test acceptance.cjs`: failed with sandbox `EPERM` during the fixture’s temporary-directory rename.\n- Same command with process `TEMP`/`TMP` set to the assigned directory: passed, **1 test, 0 failures**.\n\nOnly `bootstrap.cjs` was edited. This fixture validates bootstrap behavior; real installer, Matrix, capture, and API/UI certification remain untested.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

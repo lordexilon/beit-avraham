@@ -1,0 +1,85 @@
+{
+  "session_id": "01a1278b-3b39-7842-a751-e537ff736850",
+  "agent_path": "/root/pilot_bugfix_2_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-39-58-01a1278b-3b39-7842-a751-e537ff736850.jsonl",
+  "source_sha256": "21d17d5421fb75a7674dfbc94bef546c83e0d5e7532e073e228997c9e6dcc3a8",
+  "started_at": "2026-10-10T20:39:59.534Z",
+  "finished_at": "2026-10-10T20:40:37.193Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:40:07.261Z",
+      "counters": {
+        "input_tokens": 35583,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 74,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35657
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:11.373Z",
+      "counters": {
+        "input_tokens": 72654,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 138,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 72792
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:19.207Z",
+      "counters": {
+        "input_tokens": 109864,
+        "cached_input_tokens": 106240,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 357,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 110221
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:27.463Z",
+      "counters": {
+        "input_tokens": 147561,
+        "cached_input_tokens": 143232,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 628,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 148189
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:34.527Z",
+      "counters": {
+        "input_tokens": 185676,
+        "cached_input_tokens": 180736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 852,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 186528
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:40:37.157Z",
+      "counters": {
+        "input_tokens": 224124,
+        "cached_input_tokens": 218624,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 950,
+        "reasoning_output_tokens": 10,
+        "total_tokens": 225074
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:40:01.060Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implemented `activeAt`: inclusive start, exclusive end, null for negative times and gaps, without sorting or mutating caller data.\n\nChanged files: `study.cjs`, new `SCA_JOURNAL.md`.\n\nVerification: `node --test acceptance.cjs` invoked once; exit 0, 1 passed, 0 failed.\n\nLimitations: supplied local suite only; overlapping intervals retain first-match caller order. No dependencies, network, deployment or Matrix writes.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

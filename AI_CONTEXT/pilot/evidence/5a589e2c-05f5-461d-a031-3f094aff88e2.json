@@ -1,0 +1,18 @@
+{
+  "pair_id": "refactor-3",
+  "arm": "sca",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: contrato conservado\nok 1 - contrato conservado\n  ---\n  duration_ms: 4.0825\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 207.5703\n",
+  "stderr": "",
+  "at": "2026-10-10T22:25:36.516Z",
+  "acceptance_hash": "6c53cd2b51ac8c28e010898023e588bdcb3ff034a1ff4bec6dad730857f1664a",
+  "source_hashes": {
+    "acceptance.cjs": "6c53cd2b51ac8c28e010898023e588bdcb3ff034a1ff4bec6dad730857f1664a",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "SCA_JOURNAL.md": "28cb83ab24d18af1743f616f36425d4487351631399e6f69385d7351a50b0b28",
+    "SCA_PROTOCOL.md": "38398646c5737988056c82bd2cdf9233d1c13a7dc108ebadcb3c3d0b619a590f",
+    "study.cjs": "d6028b263f150273dfdcdbb5854245c89219fed2fefaf1268f9e8772a35328dd",
+    "TASK.md": "5bc885151979a4f0f5903b9ce81ffe9be4eefb9a00bc60dbfa7320985623d3dc"
+  }
+}

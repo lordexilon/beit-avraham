@@ -1,0 +1,9 @@
+{
+  "operation": "cost",
+  "input": {
+    "project_name": "Beit Avraham",
+    "cycle_id": "11111111-2222-3333-4444-555555555555",
+    "capture_event_id": "833a79ae-7559-4075-b2d0-13e7e18a1319",
+    "assessment_key": "N5-cost-identity-review"
+  }
+}

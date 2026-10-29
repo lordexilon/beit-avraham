@@ -1,0 +1,10 @@
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const root=path.resolve(__dirname,'..'),base=path.join(root,'AI_CONTEXT/pilot');
+const id=process.argv[2],manifest=JSON.parse(fs.readFileSync(path.join(base,'manifest.json'))),pair=manifest.pairs.find(p=>p.id===id);
+if(!pair)throw new Error('Par no registrado');
+const dir=path.join(base,'workspaces',id,'sca'),target=path.join(dir,'SCA_PROTOCOL.md');
+if(fs.existsSync(target))throw new Error('Protocolo ya preparado');
+const workflow=fs.readFileSync(path.join(root,'.agent/workflows/swarm_router.md'),'utf8');
+const instructions='# SCA workflow-only-v1 benchmark profile\n\nThis profile measures planning, selective context recovery and verification. It does not activate vector retrieval, remote Matrix or concurrent swarm execution. All substeps of this fixture are authorized within N12. Use a LOCAL SCA_JOURNAL.md to record scope, plan with explicit Pending/In progress/Done transitions, relevant context references, verification results and limitations. Complete only after checking the result. All persistence stays inside this fixture; the parent records Matrix telemetry centrally. Do not execute the root project CLI or read outside this directory. Keep journal concise. Never invent savings/costs or human review.\n\nOriginal workflow (commands are reference; use the local journal in this isolated profile):\n\n'+workflow;
+fs.writeFileSync(target,instructions,{flag:'wx'});
+console.log(JSON.stringify({pair:id,profile:'workflow-only-v1',protocol_sha256:crypto.createHash('sha256').update(instructions).digest('hex')}));

@@ -1,0 +1,85 @@
+{
+  "session_id": "01a12789-2d52-7a72-a23d-2e1899edadcc",
+  "agent_path": "/root/pilot_development_1_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-37-44-01a12789-2d52-7a72-a23d-2e1899edadcc.jsonl",
+  "source_sha256": "9dd6bdf6a4441c825324cb95ef295fa27c2bdcfa0420564d75ddbd34732be77a",
+  "started_at": "2026-10-10T20:37:45.434Z",
+  "finished_at": "2026-10-10T20:39:01.165Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:37:53.930Z",
+      "counters": {
+        "input_tokens": 35643,
+        "cached_input_tokens": 22016,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 86,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35729
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:37:59.435Z",
+      "counters": {
+        "input_tokens": 71629,
+        "cached_input_tokens": 57472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 165,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71794
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:38:19.039Z",
+      "counters": {
+        "input_tokens": 108219,
+        "cached_input_tokens": 93312,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1876,
+        "reasoning_output_tokens": 93,
+        "total_tokens": 110095
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:38:39.213Z",
+      "counters": {
+        "input_tokens": 146593,
+        "cached_input_tokens": 129664,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3530,
+        "reasoning_output_tokens": 115,
+        "total_tokens": 150123
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:38:58.057Z",
+      "counters": {
+        "input_tokens": 186768,
+        "cached_input_tokens": 167808,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4759,
+        "reasoning_output_tokens": 155,
+        "total_tokens": 191527
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:39:01.122Z",
+      "counters": {
+        "input_tokens": 228466,
+        "cached_input_tokens": 207744,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4918,
+        "reasoning_output_tokens": 155,
+        "total_tokens": 233384
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:37:47.246Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implementado `mount` con selección única, click/Enter/Espacio, `aria-pressed`, notas temporales y texto literal seguro. `index.html` usa directamente esa implementación, sin dependencias.\n\nArchivos cambiados: `study.cjs`, `index.html`, `study.test.cjs`. `acceptance.cjs` y `package.json` permanecen intactos.\n\nDos invocaciones de pruebas:\n\n- `node --test acceptance.cjs`: 1 aprobada, 0 fallidas.\n- `node --test acceptance.cjs study.test.cjs`: 4 aprobadas, 0 fallidas.\n\nLimitación: carga y eventos verificados con DOM simulado y VM; falta revisión visual en navegador real a 320px y desktop.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

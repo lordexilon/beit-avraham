@@ -1,0 +1,43 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N12-piloto",
+  "execution_key": "d6b190b5-11a1-4331-9ccc-869b8143932a",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-10T20:37:31.744Z"
+    },
+    {
+      "action": "pause",
+      "at": "2026-10-10T20:41:29.937Z"
+    },
+    {
+      "action": "resume",
+      "at": "2026-10-10T22:19:17.749Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-10T22:35:57.692Z"
+    }
+  ],
+  "evidence": {
+    "method": "task-boundary-conversation-captures",
+    "source_key": "codex:01a121b1-0062-7e20-bfc5-e0eae777c1bc",
+    "boundary_start": "2026-10-10T20:36:49.115+00:00",
+    "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+    "account_limit_pause": {
+      "pause_at": "2026-10-10T20:41:29.937Z",
+      "resume_at": "2026-10-10T22:19:17.749Z",
+      "source_sha256": "5d7ea209f38c8bcebd77f925888a6acf1dbcccf8f39fdf8039f9e2cc5a0476af",
+      "method": "Retrospective reconciliation from last observed activity before explicit user continuation; approximate work/wait boundary, not continuous inference telemetry"
+    },
+    "boundary_end": "2026-10-10T22:35:47.16+00:00",
+    "capture_event_ids": [
+      "9c238183-6d44-4580-b6df-cdbf15c6f2f9"
+    ],
+    "interval_tokens": 12568486
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "29a549a4-2ffb-4bdd-a3cc-d602e7fe1526",
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "execution_key": "6f7d269d-f903-1c9d-c24e-62cd45fc5795-correction-d6a0bdc3bead",
+  "task_key": "pilot-development-1-control",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "at": "2026-10-10T20:37:44.648Z",
+      "action": "start"
+    },
+    {
+      "at": "2026-10-10T20:39:01.165Z",
+      "action": "finish"
+    }
+  ],
+  "intervals": [
+    [
+      1791664664648,
+      1791664741165
+    ]
+  ],
+  "active_seconds": 76.517,
+  "elapsed_seconds": 76.517,
+  "evidence": {
+    "method": "independent-codex-subagent-reported-turn-durations",
+    "reason": "Reconcile reported turn durations, excluding account wait and including later correction attempts",
+    "source": "evidence/development-1-control-session.json",
+    "limitation": "Intervals derived from completion timestamp and reported duration_ms; exclude waits between turns. Wall clock, not human time or continuous inference; shared host. Tokens remain evidence only, no capture event or savings attribution.",
+    "session_id": "01a12789-2d52-7a72-a23d-2e1899edadcc",
+    "correction_backup": "pilot-development-1-control-before-timing-correction-1791671565028.json",
+    "timing_source_sha256": "9dd6bdf6a4441c825324cb95ef295fa27c2bdcfa0420564d75ddbd34732be77a",
+    "measured_session_tokens": {
+      "output": 4918,
+      "evidence": "evidence/development-1-control-session.json",
+      "exclusive": true,
+      "input_cached": 207744,
+      "input_uncached": 20722
+    },
+    "supersedes_time_record_id": "3b5e3a99-152f-44d8-bcb4-54cd78af80f6"
+  }
+}

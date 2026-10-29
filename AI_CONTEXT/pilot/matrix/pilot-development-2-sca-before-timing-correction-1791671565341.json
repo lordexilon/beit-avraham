@@ -1,0 +1,52 @@
+{
+  "id": "a7b9d34b-2f4a-4461-9598-66cd8b7e03e1",
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "execution_key": "06d2f0d9-4a6d-360d-9b2c-1decfccd6686",
+  "task_key": "pilot-development-2-sca",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "at": "2026-10-10T20:40:44.530Z",
+      "action": "start"
+    },
+    {
+      "at": "2026-10-10T20:41:26.688Z",
+      "action": "pause"
+    },
+    {
+      "at": "2026-10-10T22:20:04.089Z",
+      "action": "resume"
+    },
+    {
+      "at": "2026-10-10T22:20:40.393Z",
+      "action": "finish"
+    }
+  ],
+  "intervals": [
+    [
+      1791664844530,
+      1791664886688
+    ],
+    [
+      1791670804089,
+      1791670840393
+    ]
+  ],
+  "active_seconds": 78.462,
+  "elapsed_seconds": 5995.863,
+  "evidence": {
+    "method": "independent-codex-subagent-session-clock",
+    "source": "evidence/development-2-sca-v2-session.json",
+    "limitation": "Wall clock, not human time or continuous inference; shared host. Full-session tokens remain evidence only, no capture event or savings attribution.",
+    "session_id": "01a1278b-ec59-7f83-af19-ec7d09cf3c2a",
+    "measured_session_tokens": {
+      "output": 3561,
+      "evidence": "evidence/development-2-sca-v2-session.json",
+      "exclusive": true,
+      "input_cached": 264320,
+      "input_uncached": 8613
+    }
+  }
+}

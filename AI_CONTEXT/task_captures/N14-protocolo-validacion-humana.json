@@ -1,0 +1,27 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "task_key": "N14-protocolo-validacion-humana",
+  "execution_key": "34083745-49e9-45f6-9612-1779f93852c5",
+  "kind": "agent_execution",
+  "origin": "measured",
+  "events": [
+    {
+      "action": "start",
+      "at": "2026-10-10T23:01:39.480Z"
+    },
+    {
+      "action": "finish",
+      "at": "2026-10-10T23:08:14.641Z"
+    }
+  ],
+  "evidence": {
+    "method": "task-boundary-conversation-captures",
+    "source_key": "codex:01a121b1-0062-7e20-bfc5-e0eae777c1bc",
+    "boundary_start": "2026-10-10T22:57:56.447+00:00",
+    "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+    "boundary_end": "2026-10-10T22:57:56.447+00:00",
+    "capture_event_ids": [],
+    "interval_tokens": 0
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "session_id": "01a1278b-fcba-7060-b158-0052e6c54b88",
+  "agent_path": "/root/pilot_bugfix_2_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-40-48-01a1278b-fcba-7060-b158-0052e6c54b88.jsonl",
+  "source_sha256": "8845b9cc869aed6554ab63c89b79845ec114e50babf30fc8aa3075fcf4b35dca",
+  "started_at": "2026-10-10T20:40:48.927Z",
+  "finished_at": "2026-10-10T20:41:18.807Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T20:40:58.543Z",
+      "counters": {
+        "input_tokens": 35565,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 65,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35630
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:03.631Z",
+      "counters": {
+        "input_tokens": 71385,
+        "cached_input_tokens": 69248,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 128,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71513
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:10.649Z",
+      "counters": {
+        "input_tokens": 107338,
+        "cached_input_tokens": 91264,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 201,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 107539
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:17.965Z",
+      "counters": {
+        "input_tokens": 143632,
+        "cached_input_tokens": 126848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 344,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 143976
+      }
+    },
+    {
+      "timestamp": "2026-10-10T20:41:18.673Z",
+      "counters": {
+        "input_tokens": 143632,
+        "cached_input_tokens": 126848,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 344,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 143976
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:40:50.947Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": null,
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 7: ABM de contenido",
+  "node_id": "N46",
+  "task_key": "N46-abm-shiurim-fuentes-crud",
+  "task_desc": "ABM de shiurim, fragmentos y fuentes halajicas: modelo editable y pantalla de alta, edicion y baja",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

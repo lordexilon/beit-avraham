@@ -1,0 +1,23 @@
+{
+  "operation": "task",
+  "input": {
+    "project_name": "Beit Avraham",
+    "cycle_id": "11111111-2222-3333-4444-555555555555",
+    "task_key": "N28-javruta-api-companion",
+    "evaluation_key": "N28-javruta-api-companion-workflow",
+    "evidence": {
+      "capture_window": {
+        "method": "task-boundary-conversation-captures",
+        "source_key": "antigravity:dd8ea3e2-0d86-4af9-ad40-dedd48ab3d8b",
+        "boundary_start": "2026-10-12T03:08:26+00:00",
+        "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+        "boundary_end": "2026-10-12T03:11:48+00:00",
+        "capture_event_ids": [
+          "52d8d64f-9eb7-4642-96a6-f2a02167eec9"
+        ],
+        "interval_tokens": 2750911
+      },
+      "limitation": "Associated conversation window is not verified exclusive task usage"
+    }
+  }
+}

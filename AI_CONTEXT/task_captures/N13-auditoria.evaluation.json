@@ -1,0 +1,23 @@
+{
+  "operation": "task",
+  "input": {
+    "project_name": "Beit Avraham",
+    "cycle_id": "11111111-2222-3333-4444-555555555555",
+    "task_key": "N13-auditoria",
+    "evaluation_key": "N13-auditoria-workflow",
+    "evidence": {
+      "capture_window": {
+        "method": "task-boundary-conversation-captures",
+        "source_key": "codex:01a121b1-0062-7e20-bfc5-e0eae777c1bc",
+        "boundary_start": "2026-10-10T22:51:30.985+00:00",
+        "attribution": "Conversation interval associated with task window; not exclusive task usage; includes pauses and other activity",
+        "boundary_end": "2026-10-10T22:52:36.467+00:00",
+        "capture_event_ids": [
+          "1ae4a549-d11d-4772-961a-99468a6cb4e4"
+        ],
+        "interval_tokens": 404914
+      },
+      "limitation": "Associated conversation window is not verified exclusive task usage"
+    }
+  }
+}

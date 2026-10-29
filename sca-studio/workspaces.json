@@ -1,0 +1,9 @@
+﻿{
+  "workspaces": [
+    {
+      "id": "default",
+      "name": "SCA Framework (Current)",
+      "path": "../AI_CONTEXT"
+    }
+  ]
+}

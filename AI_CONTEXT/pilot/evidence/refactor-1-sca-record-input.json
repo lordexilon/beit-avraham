@@ -1,0 +1,89 @@
+{
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "pair_id": "refactor-1",
+  "arm": "sca",
+  "snapshot_hash": "f33f5e14d9cc80bf9d07eceadc8b38dc697e812e96d2412444261b1657138506",
+  "outcome": "awaiting_review",
+  "synthetic": false,
+  "environment": "Windows shared host / Node v22.12.0",
+  "model_id": "gpt-6.1-sol",
+  "provider": "Codex subscription",
+  "runtime_version": "Codex subagent / v22.12.0",
+  "tools_policy": "local file edits and Node; no dependencies/network; assigned protocol difference only",
+  "budget_policy": "30 minutes per execution",
+  "sca_version": "workflow-only-v1",
+  "session_id": "01a1278a-3e36-7460-b235-7ab76d7b03be",
+  "started_at": "2026-10-10T20:38:55.031Z",
+  "finished_at": "2026-10-10T20:39:45.708Z",
+  "attempts": 1,
+  "regressions": 0,
+  "first_attempt_accepted": false,
+  "human_active_seconds": null,
+  "agent_window_seconds": 50.677,
+  "setup_seconds": null,
+  "time_evidence": "evidence/refactor-1-sca-session.json",
+  "tokens": {
+    "input_uncached": 6675,
+    "input_cached": 257280,
+    "output": 1585,
+    "evidence": "evidence/refactor-1-sca-session.json",
+    "exclusive": true
+  },
+  "costs": {
+    "confirmed_charge": null,
+    "allocated_subscription": null,
+    "api_equivalent": null,
+    "local_operation": null
+  },
+  "test_run": "evidence\\43187d5d-ad3c-400f-8886-260f98738207.json",
+  "manual_checks": {},
+  "diff_evidence": "evidence/refactor-1-sca-sources.json",
+  "reviewer": "Codex automated test collector; human review pending",
+  "review_evidence": "evidence/refactor-1-sca-review.json",
+  "quality": {
+    "correctness": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "readability": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "responsibilities": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "maintainability": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    }
+  },
+  "evidence_files": [
+    {
+      "path": "evidence/refactor-1-sca-session.json",
+      "sha256": "236a91ea6af641c4ac934a40f31f6a180a5ad474cb93ba36b4c228d04b2dfd31"
+    },
+    {
+      "path": "evidence\\43187d5d-ad3c-400f-8886-260f98738207.json",
+      "sha256": "01b1cfc06b846ab46d99600790d254913c2ad1861f13c89452e8c33294c89ed2"
+    },
+    {
+      "path": "evidence/refactor-1-sca-sources.json",
+      "sha256": "5e1898b654b894da2d924503232112a71eeab69f3153ad254f0d95e528c5dd6d"
+    },
+    {
+      "path": "evidence/refactor-1-sca-review.json",
+      "sha256": "9fafeda094b2d0699fbf1715859196b47e32541c04c0272036a2dd0bab128eea"
+    }
+  ],
+  "automated_test_exit": 0,
+  "automated_test_invocations": 0,
+  "limitations": [
+    "human review pending",
+    "first_attempt_accepted is false until human acceptance; test invocations are not necessarily solution attempts",
+    "regressions=0 only within frozen automated suite",
+    "shared base agent instructions; no isolated IDE-level experiment",
+    "setup/maintenance and human time unmeasured"
+  ]
+}

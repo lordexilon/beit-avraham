@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "study.cjs": "8fb92d03d4da9cae2dd1cff72690307a02dd9ef5990f8a17b73997ce6f2ccb4c",
+    "acceptance.cjs": "512a1f01745fdbf658fe6847c6099f8a00129278f175d33aa597b99f4f62dd77"
+  },
+  "source": {
+    "acceptance.cjs": {
+      "sha256": "512a1f01745fdbf658fe6847c6099f8a00129278f175d33aa597b99f4f62dd77",
+      "text": "const t=require('node:test'),a=require('node:assert/strict'),{summarize}=require('./study.cjs');t('contrato conservado',()=>{a.deepEqual(summarize([{text:' a '},{text:'b2'}]),{count:2,total:5,text:'a | b2'});a.deepEqual(summarize([]),{count:0,total:0,text:''});for(const x of [null,{},[{}],[{text:3}]])a.throws(()=>summarize(x));});\n"
+    },
+    "package.json": {
+      "sha256": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+      "text": "{\n  \"private\": true,\n  \"scripts\": {\n    \"test\": \"node --test acceptance.cjs\"\n  }\n}\n"
+    },
+    "study.cjs": {
+      "sha256": "f61d53167e556d769c137bf4dbfcee687c7b5af1f2a6887a7d4e9c78ef831231",
+      "text": "function validateLines(lines) {\n  if (!Array.isArray(lines)) throw new Error('Invalid');\n\n  const texts = [];\n  for (const line of lines) {\n    if (!line || typeof line.text !== 'string') throw new Error('Invalid');\n    texts.push(line.text);\n  }\n  return texts;\n}\n\nfunction renderSummary(texts) {\n  let total = 0;\n  const trimmedTexts = [];\n  for (const text of texts) {\n    total += text.length;\n    trimmedTexts.push(text.trim());\n  }\n  return { count: texts.length, total, text: trimmedTexts.join(' | ') };\n}\n\nexports.summarize = function summarize(lines) {\n  return renderSummary(validateLines(lines));\n};\n"
+    },
+    "TASK.md": {
+      "sha256": "5bc885151979a4f0f5903b9ce81ffe9be4eefb9a00bc60dbfa7320985623d3dc",
+      "text": "Separar validacion y renderizado de summarize sin alterar el contrato; eliminar duplicacion. Mantener exports.summarize y no agregar dependencias.\n\n{\n  \"automated\": \"node --test acceptance.cjs\",\n  \"manual\": [\n    \"Revisar separacion de responsabilidades y duplicacion con la misma rubrica\"\n  ],\n  \"rubric\": [\n    \"correctness\",\n    \"readability\",\n    \"responsibilities\",\n    \"maintainability\"\n  ],\n  \"minimum_each\": 1,\n  \"max_regressions\": 0\n}\n"
+    }
+  }
+}

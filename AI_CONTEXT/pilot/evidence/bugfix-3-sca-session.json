@@ -1,0 +1,92 @@
+{
+  "session_id": "01a127e9-b8ae-71f2-9bd7-b93c715f237b",
+  "agent_path": "/root/pilot_bugfix_3_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-23-11-01a127e9-b8ae-71f2-9bd7-b93c715f237b.jsonl",
+  "source_sha256": "dd77590213f1ce7a43202efbcbefb47d439d52dba50ba7b3e83334cb81d960f1",
+  "started_at": "2026-10-10T22:23:11.884Z",
+  "finished_at": "2026-10-10T22:23:53.936Z",
+  "turn_intervals": [
+    [
+      1791670991436,
+      1791671033936
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:23:21.007Z",
+      "counters": {
+        "input_tokens": 35578,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 79,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35657
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:23:29.043Z",
+      "counters": {
+        "input_tokens": 72827,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 285,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 73112
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:23:37.399Z",
+      "counters": {
+        "input_tokens": 110550,
+        "cached_input_tokens": 106496,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 636,
+        "reasoning_output_tokens": 13,
+        "total_tokens": 111186
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:23:45.123Z",
+      "counters": {
+        "input_tokens": 148875,
+        "cached_input_tokens": 144000,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 944,
+        "reasoning_output_tokens": 22,
+        "total_tokens": 149819
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:23:51.220Z",
+      "counters": {
+        "input_tokens": 187767,
+        "cached_input_tokens": 182144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1040,
+        "reasoning_output_tokens": 46,
+        "total_tokens": 188807
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:23:53.901Z",
+      "counters": {
+        "input_tokens": 227027,
+        "cached_input_tokens": 220800,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1172,
+        "reasoning_output_tokens": 46,
+        "total_tokens": 228199
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:23:15.068Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Completed within assigned `bugfix-3/sca` directory.\n\n- `study.cjs`: inclusive start, exclusive end, explicit negative-time rejection; uses `find` without sorting or mutating caller input.\n- `SCA_JOURNAL.md`: scope, plan transitions, context, verification, limitations recorded.\n- `node --test acceptance.cjs`: invoked once, exit 0; 1 passed, 0 failed.\n- `acceptance.cjs` and `package.json` untouched.\n\nAn intermediate journal write encountered a transient file lock; retry succeeded and was verified. No network, external reads, Matrix or deployment changes.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

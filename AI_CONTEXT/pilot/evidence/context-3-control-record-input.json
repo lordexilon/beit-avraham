@@ -1,0 +1,90 @@
+{
+  "revision": 1,
+  "project_name": "Beit Avraham",
+  "cycle_id": "11111111-2222-3333-4444-555555555555",
+  "pair_id": "context-3",
+  "arm": "control",
+  "snapshot_hash": "19afbdaa7745d1197e74f352d26fc55c383eddf15c1867bc1b8e28f0d7ec731e",
+  "outcome": "awaiting_review",
+  "synthetic": false,
+  "environment": "Windows shared host / Node v22.12.0",
+  "model_id": "gpt-6.1-sol",
+  "provider": "Codex subscription",
+  "runtime_version": "Codex subagent / v22.12.0",
+  "tools_policy": "local file edits and Node; no dependencies/network; assigned protocol difference only",
+  "budget_policy": "30 minutes per execution",
+  "sca_version": "workflow-only-v1",
+  "session_id": "01a127ec-29dc-7553-919e-e07d84c5b0dc",
+  "started_at": "2026-10-10T22:25:51.935Z",
+  "finished_at": "2026-10-10T22:26:28.838Z",
+  "attempts": 1,
+  "regressions": 0,
+  "first_attempt_accepted": false,
+  "human_active_seconds": null,
+  "agent_window_seconds": 36.903,
+  "setup_seconds": null,
+  "time_evidence": "evidence/context-3-control-session.json",
+  "tokens": {
+    "input_uncached": 5130,
+    "input_cached": 175744,
+    "output": 589,
+    "evidence": "evidence/context-3-control-session.json",
+    "exclusive": true
+  },
+  "costs": {
+    "confirmed_charge": null,
+    "allocated_subscription": null,
+    "api_equivalent": null,
+    "local_operation": null
+  },
+  "test_run": "evidence\\2e64a6a6-37e7-40fa-a931-2edebe222d0a.json",
+  "manual_checks": {},
+  "diff_evidence": "evidence/context-3-control-sources.json",
+  "reviewer": "Codex automated test collector; human review pending",
+  "review_evidence": "evidence/context-3-control-review.json",
+  "quality": {
+    "correctness": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "readability": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "responsibilities": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    },
+    "maintainability": {
+      "score": null,
+      "reason": "Human review pending; automatic tests alone do not establish quality"
+    }
+  },
+  "evidence_files": [
+    {
+      "path": "evidence/context-3-control-session.json",
+      "sha256": "86df1360a9f586d4618a81f8ff02f7c60eebd6276a55e7606a4be311ba28a24c"
+    },
+    {
+      "path": "evidence\\2e64a6a6-37e7-40fa-a931-2edebe222d0a.json",
+      "sha256": "10925fc7f9185cdb95e9638c72fa9aa917ed38c375d2b7bdb1fc9aa4ba3fe313"
+    },
+    {
+      "path": "evidence/context-3-control-sources.json",
+      "sha256": "01e5a7b1ada222ea2330ff3e43c6ecd5a0e52a3484234402f0970a5f20a97bc4"
+    },
+    {
+      "path": "evidence/context-3-control-review.json",
+      "sha256": "dc8a9442eff0b87c92353e4434e5f25eee4f156564ece1b02d5c021302784873"
+    }
+  ],
+  "automated_test_exit": 0,
+  "automated_test_invocations": 0,
+  "limitations": [
+    "human review pending",
+    "first_attempt_accepted is false until human acceptance; test invocations are not necessarily solution attempts",
+    "regressions=0 only within frozen automated suite",
+    "shared base agent instructions; no isolated IDE-level experiment",
+    "setup/maintenance and human time unmeasured"
+  ]
+}

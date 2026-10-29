@@ -1,0 +1,9 @@
+{
+ "operation":"task",
+ "input":{
+  "project_name":"Beit Avraham",
+  "task_key":"N6-verificacion",
+  "evaluation_key":"N6-verificacion-sin-referencia",
+  "evidence":{"reason":"Sin referencia comparable previa ni tiempo humano registrado; no calcular ahorro"}
+ }
+}

@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 5: Motor RAG y Bedrock",
+  "node_id": "N37",
+  "task_key": "N37-match-knowledge-hybrid-rrf",
+  "task_desc": "match_knowledge_hybrid con RRF, tsvector espanol/simple hebreo y umbral calibrado",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

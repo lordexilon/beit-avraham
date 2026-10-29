@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estudio por líneas</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f1f3ef; color: #202c25; font-family: system-ui, sans-serif; }
+    main { max-width: 760px; margin: auto; padding: 24px 16px; }
+    h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+    p { line-height: 1.6; }
+    .study-line { padding: 16px; margin: 16px 0; border: 1px solid #a4afa6; border-radius: 12px; background: white; }
+    button, textarea { width: 100%; font: inherit; }
+    button { padding: 14px; border: 2px solid #6c7c70; border-radius: 8px; background: #f7f8f5; color: inherit; cursor: pointer; text-align: left; white-space: pre-wrap; overflow-wrap: anywhere; }
+    button[aria-pressed="true"] { border-color: #185735; background: #deeee3; }
+    button[aria-pressed="true"]::before { content: '✓ '; }
+    :focus-visible { outline: 3px solid #165caa; outline-offset: 3px; }
+    label { display: block; margin-top: 14px; }
+    label span { display: block; margin-bottom: 6px; font-size: .9rem; }
+    textarea { display: block; resize: vertical; border: 1px solid #6c7c70; border-radius: 6px; padding: 10px; min-height: 80px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Estudio por líneas</h1>
+    <p>Selecciona una línea con un clic, o usa Tab y Enter o Espacio. Solo una línea puede estar seleccionada. Las notas se conservan al cambiar la selección y se borran al recargar la página.</p>
+    <div id="study" aria-label="Líneas de estudio"></div>
+  </main>
+  <script src="study.cjs"></script>
+  <script>
+    window.studyDemo = Study.mount(document.getElementById('study'), [
+      { id: 'a', text: 'Escuchar antes de responder.' },
+      { id: 'b', text: 'Una pausa permite comprender mejor.' },
+      { id: 'literal', text: '<script>Este texto se muestra literalmente.<\/script>' }
+    ]);
+  </script>
+</body>
+</html>
+

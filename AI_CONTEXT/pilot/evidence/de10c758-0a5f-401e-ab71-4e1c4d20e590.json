@@ -1,0 +1,20 @@
+{
+  "pair_id": "development-2",
+  "arm": "sca",
+  "exit_code": 0,
+  "error": null,
+  "stdout": "TAP version 13\n# Subtest: seleccion y notas\nok 1 - seleccion y notas\n  ---\n  duration_ms: 3.0564\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 213.3595\n",
+  "stderr": "",
+  "at": "2026-10-10T22:30:22.451Z",
+  "acceptance_hash": "ea1fcab0918322b7b560b32bc493d84ad2190b68011f11e47ef579245e8c7a90",
+  "source_hashes": {
+    "acceptance.cjs": "ea1fcab0918322b7b560b32bc493d84ad2190b68011f11e47ef579245e8c7a90",
+    "index.html": "031643e2daa831e8cdaded1543edf6ffc800c22350e211f51fe381455b98bdb0",
+    "package.json": "0e84d8f89dc7c35431162690dee95147cd5d0445c5345ec38cd8c5540c8f972a",
+    "SCA_JOURNAL.md": "3ec782be89fccc829e83deefa20e89e607967d3ad9d16c8e9c1628c203c575a1",
+    "SCA_PROTOCOL.md": "38398646c5737988056c82bd2cdf9233d1c13a7dc108ebadcb3c3d0b619a590f",
+    "study.cjs": "fd4ac166014ca2d8ad7566ca0e966460740dc4ab01d6673ce95c066598d058ce",
+    "TASK.md": "996ff57fd10a882c9119e368cf65fe847de5b553c466634bda3aad9c31502100",
+    "verification.cjs": "a84bca8595a04f43fe616982386824fe2fae8cbaccdccc27840a9f210dcdb342"
+  }
+}

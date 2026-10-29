@@ -1,0 +1,873 @@
+{
+  "recorded_at": "2026-10-10T22:52:03.587Z",
+  "node": "N13",
+  "scope": "read-only API and regression audit; no new efficiency experiment",
+  "checks": [
+    {
+      "route": "project",
+      "http_status": 200
+    },
+    {
+      "route": "cycle-dashboard",
+      "http_status": 200
+    },
+    {
+      "route": "dag",
+      "http_status": 200
+    }
+  ],
+  "test_exit": 0,
+  "test_error": null,
+  "pilot": {
+    "runs": 30,
+    "accepted_comparable_pairs": 0,
+    "evidence_checks": [
+      {
+        "pair": "development-1",
+        "arm": "control",
+        "path": "evidence/development-1-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "control",
+        "path": "evidence\\f681ceab-3309-434a-991c-7e04480d7e0d.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "control",
+        "path": "evidence/development-1-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "control",
+        "path": "evidence/development-1-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "sca",
+        "path": "evidence/development-1-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "sca",
+        "path": "evidence\\63998749-2574-4aaf-a707-a6408457c60e.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "sca",
+        "path": "evidence/development-1-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "development-1",
+        "arm": "sca",
+        "path": "evidence/development-1-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "control",
+        "path": "evidence/development-2-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "control",
+        "path": "evidence\\1410f0f6-1045-460c-a267-573396cbd380.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "control",
+        "path": "evidence/development-2-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "control",
+        "path": "evidence/development-2-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "sca",
+        "path": "evidence/development-2-sca-v3-session.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "sca",
+        "path": "evidence\\de10c758-0a5f-401e-ab71-4e1c4d20e590.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "sca",
+        "path": "evidence/development-2-sca-v3-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "development-2",
+        "arm": "sca",
+        "path": "evidence/development-2-sca-v3-review.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "control",
+        "path": "evidence/development-3-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "control",
+        "path": "evidence\\761bd6cc-a008-4952-b723-5e0dbdaf1921.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "control",
+        "path": "evidence/development-3-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "control",
+        "path": "evidence/development-3-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "sca",
+        "path": "evidence/development-3-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "sca",
+        "path": "evidence\\9f60a46a-0b50-4eeb-a561-41e3c1cc6cbc.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "sca",
+        "path": "evidence/development-3-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "development-3",
+        "arm": "sca",
+        "path": "evidence/development-3-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "control",
+        "path": "evidence/bugfix-1-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "control",
+        "path": "evidence\\b33cbc1e-5294-4cf7-bbfb-e40347c0035c.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "control",
+        "path": "evidence/bugfix-1-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "control",
+        "path": "evidence/bugfix-1-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "sca",
+        "path": "evidence/bugfix-1-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "sca",
+        "path": "evidence\\60b670a6-c3b2-48f9-8937-95cd73b32b9e.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "sca",
+        "path": "evidence/bugfix-1-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-1",
+        "arm": "sca",
+        "path": "evidence/bugfix-1-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "control",
+        "path": "evidence/bugfix-2-control-v2-session.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "control",
+        "path": "evidence\\93b711e8-6b4c-43f5-bbca-d5af4a9c9aa4.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "control",
+        "path": "evidence/bugfix-2-control-v2-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "control",
+        "path": "evidence/bugfix-2-control-v2-review.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "sca",
+        "path": "evidence/bugfix-2-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "sca",
+        "path": "evidence\\2174fa83-bad9-46b7-a693-92214d286de6.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "sca",
+        "path": "evidence/bugfix-2-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-2",
+        "arm": "sca",
+        "path": "evidence/bugfix-2-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "control",
+        "path": "evidence/bugfix-3-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "control",
+        "path": "evidence\\16757e05-a173-4fac-8b16-039e7c501f6e.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "control",
+        "path": "evidence/bugfix-3-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "control",
+        "path": "evidence/bugfix-3-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "sca",
+        "path": "evidence/bugfix-3-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "sca",
+        "path": "evidence\\a3b1f08c-7175-4714-8bd7-3bd04d36f675.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "sca",
+        "path": "evidence/bugfix-3-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "bugfix-3",
+        "arm": "sca",
+        "path": "evidence/bugfix-3-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "control",
+        "path": "evidence/refactor-1-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "control",
+        "path": "evidence\\9680b316-e794-4025-b3d2-133594f4491d.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "control",
+        "path": "evidence/refactor-1-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "control",
+        "path": "evidence/refactor-1-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "sca",
+        "path": "evidence/refactor-1-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "sca",
+        "path": "evidence\\43187d5d-ad3c-400f-8886-260f98738207.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "sca",
+        "path": "evidence/refactor-1-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-1",
+        "arm": "sca",
+        "path": "evidence/refactor-1-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "control",
+        "path": "evidence/refactor-2-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "control",
+        "path": "evidence\\b63e448c-ac7f-4bc6-bfad-5cf007cd3b8d.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "control",
+        "path": "evidence/refactor-2-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "control",
+        "path": "evidence/refactor-2-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "sca",
+        "path": "evidence/refactor-2-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "sca",
+        "path": "evidence\\8641a745-39e6-4fb9-8e66-0e4166ab7906.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "sca",
+        "path": "evidence/refactor-2-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-2",
+        "arm": "sca",
+        "path": "evidence/refactor-2-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "control",
+        "path": "evidence/refactor-3-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "control",
+        "path": "evidence\\499fea3b-322e-41f1-96c2-bcf709fd7df8.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "control",
+        "path": "evidence/refactor-3-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "control",
+        "path": "evidence/refactor-3-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "sca",
+        "path": "evidence/refactor-3-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "sca",
+        "path": "evidence\\5a589e2c-05f5-461d-a031-3f094aff88e2.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "sca",
+        "path": "evidence/refactor-3-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "refactor-3",
+        "arm": "sca",
+        "path": "evidence/refactor-3-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "control",
+        "path": "evidence/context-1-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "control",
+        "path": "evidence\\f3d5070a-f9ca-4211-996c-b014d93a87d6.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "control",
+        "path": "evidence/context-1-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "control",
+        "path": "evidence/context-1-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "sca",
+        "path": "evidence/context-1-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "sca",
+        "path": "evidence\\ca7438b2-5055-472c-8915-2b24af4e1a91.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "sca",
+        "path": "evidence/context-1-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "context-1",
+        "arm": "sca",
+        "path": "evidence/context-1-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "control",
+        "path": "evidence/context-2-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "control",
+        "path": "evidence\\12f9bf87-0600-4ae5-9fc7-919454854f74.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "control",
+        "path": "evidence/context-2-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "control",
+        "path": "evidence/context-2-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "sca",
+        "path": "evidence/context-2-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "sca",
+        "path": "evidence\\6a1fec10-5157-4d39-8d15-cdee1626f5d2.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "sca",
+        "path": "evidence/context-2-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "context-2",
+        "arm": "sca",
+        "path": "evidence/context-2-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "control",
+        "path": "evidence/context-3-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "control",
+        "path": "evidence\\2e64a6a6-37e7-40fa-a931-2edebe222d0a.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "control",
+        "path": "evidence/context-3-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "control",
+        "path": "evidence/context-3-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "sca",
+        "path": "evidence/context-3-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "sca",
+        "path": "evidence\\6a300d0e-56c5-480e-bbf6-56215ffa897c.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "sca",
+        "path": "evidence/context-3-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "context-3",
+        "arm": "sca",
+        "path": "evidence/context-3-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "control",
+        "path": "evidence/installation-1-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "control",
+        "path": "evidence\\918132d3-5b10-4a11-83da-5451099325d9.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "control",
+        "path": "evidence/installation-1-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "control",
+        "path": "evidence/installation-1-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "sca",
+        "path": "evidence/installation-1-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "sca",
+        "path": "evidence\\56d62947-6db4-4274-8ede-96d6dc706851.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "sca",
+        "path": "evidence/installation-1-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-1",
+        "arm": "sca",
+        "path": "evidence/installation-1-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "control",
+        "path": "evidence/installation-2-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "control",
+        "path": "evidence\\e70d6ba8-852d-44ef-add4-44a4c668bd4d.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "control",
+        "path": "evidence/installation-2-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "control",
+        "path": "evidence/installation-2-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "sca",
+        "path": "evidence/installation-2-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "sca",
+        "path": "evidence\\3ccca8c7-1f2d-4d95-89ad-0279862071f8.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "sca",
+        "path": "evidence/installation-2-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-2",
+        "arm": "sca",
+        "path": "evidence/installation-2-sca-review.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "control",
+        "path": "evidence/installation-3-control-session.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "control",
+        "path": "evidence\\a3f93a99-6e0c-49c7-9fd7-e98fbde27534.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "control",
+        "path": "evidence/installation-3-control-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "control",
+        "path": "evidence/installation-3-control-review.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "sca",
+        "path": "evidence/installation-3-sca-session.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "sca",
+        "path": "evidence\\caf04bb0-857b-4860-b5db-ad7e4e406cd1.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "sca",
+        "path": "evidence/installation-3-sca-sources.json",
+        "valid": true
+      },
+      {
+        "pair": "installation-3",
+        "arm": "sca",
+        "path": "evidence/installation-3-sca-review.json",
+        "valid": true
+      }
+    ]
+  },
+  "missing": {
+    "human_time_records": 0,
+    "references": 0,
+    "declarations": 0
+  },
+  "indicator_states": [
+    {
+      "key": "declared_tokens",
+      "label": "Tokens declarados sin captura",
+      "value": null,
+      "status": "Declarado; excluido del total medido",
+      "text": "Sin medición"
+    },
+    {
+      "key": "human",
+      "label": "Tiempo humano activo (h)",
+      "value": null,
+      "status": "Tiempo sin registrar",
+      "text": "Sin medición"
+    },
+    {
+      "key": "hours_saved",
+      "label": "Ahorro humano estimado (h)",
+      "range": null,
+      "status": "Pendiente de referencia y tiempo",
+      "coverage": "0/35 tareas evaluadas con comparación temporal; 0 con tiempo superpuesto",
+      "text": "Pendiente de referencia"
+    },
+    {
+      "key": "tokens_saved",
+      "label": "Tokens ahorrados estimados",
+      "range": null,
+      "status": "Pendiente de referencia y atribución",
+      "coverage": "0/35 tareas evaluadas; 0 con atribución superpuesta",
+      "text": "Pendiente de referencia"
+    },
+    {
+      "key": "confirmed_charge",
+      "label": "Cargo confirmado (USD)",
+      "value": null,
+      "status": "Sin valoración",
+      "text": "Sin medición"
+    },
+    {
+      "key": "allocated_subscription",
+      "label": "Cuota asignada (USD)",
+      "value": null,
+      "status": "Sin valoración",
+      "text": "Sin medición"
+    },
+    {
+      "key": "api_equivalent",
+      "label": "Equivalente API (USD)",
+      "value": null,
+      "status": "Sin valoración",
+      "text": "Sin medición"
+    }
+  ],
+  "runtime": {
+    "codebase_memory_callable": false,
+    "vector_retrieval_exercised": false,
+    "native_codex_workers_used_in_N12": true,
+    "python_engine_exercised_in_this_audit": false
+  },
+  "files": [
+    {
+      "path": ".agent/workflows/swarm_router.md",
+      "snapshot": "source-0-swarm_router.md",
+      "sha256": "52d98c62e92b8721ae99eb6b969ea82e9c87fed7b8d8d1291235e7cd0b551a1f"
+    },
+    {
+      "path": ".agent/skills/swarm_engine/scripts/engine.py",
+      "snapshot": "source-1-engine.py",
+      "sha256": "b1eb11c774fb58d0e91340c3c30f80e7f72d2c09ff2c235556d05a79415b77ba"
+    },
+    {
+      "path": "AI_CONTEXT/memory_schema.md",
+      "snapshot": "source-2-memory_schema.md",
+      "sha256": "87715b7e2312f229f2ec6e51be1cf0a958a6ee3f53f4988ad6cc789ebf1dee40"
+    },
+    {
+      "path": "AI_CONTEXT/pilot/manifest.json",
+      "snapshot": "source-3-manifest.json",
+      "sha256": "0acbc12e4ee210b1e5cc3ffb8380fef0122aaf2cc7eb9afb3545445fd1e7f61e"
+    },
+    {
+      "path": "AI_CONTEXT/pilot/report.json",
+      "snapshot": "source-4-report.json",
+      "sha256": "6d09df6ed67491412dd2b44afc1eea209f10747f5ac23340c65fc6408cd05ce3"
+    },
+    {
+      "path": "AI_CONTEXT/pilot/results_review.md",
+      "snapshot": "source-5-results_review.md",
+      "sha256": "2d4259385272808cdc89f49dd30b19a1413fbf9b2cf192f4caeaac8f7a2f0c2d"
+    },
+    {
+      "path": "sca-studio/src/lib/cycle-dashboard.js",
+      "snapshot": "source-6-cycle-dashboard.js",
+      "sha256": "db30b8950ccc947ac63e306efa34951b441bb5362571fbbba720f821c877e761"
+    },
+    {
+      "path": "scripts/pilot_prepare_sca.cjs",
+      "snapshot": "source-7-pilot_prepare_sca.cjs",
+      "sha256": "459b54b5f2450c5eada5fd3864cea79b4383796c468af536c544d99cc202b037"
+    },
+    {
+      "path": "tests/test_pilot.cjs",
+      "snapshot": "source-8-test_pilot.cjs",
+      "sha256": "7da0e5ab455421b51cc76ef7dec44a4fa7887b72f2cf2ca3edf37ba958bbfd41"
+    },
+    {
+      "path": "tests/test_time_corrections.cjs",
+      "snapshot": "source-9-test_time_corrections.cjs",
+      "sha256": "f635b8b8c031845c783475677549fc77214fae1f39a70640d524e6a716a2a98d"
+    },
+    {
+      "path": "tests/test_task_evaluation.cjs",
+      "snapshot": "source-10-test_task_evaluation.cjs",
+      "sha256": "a801c9f52ab1144bcbd72f390bcff834b70cd06ca3b99002b6b992b867b7dbe9"
+    },
+    {
+      "path": "tests/test_task_workflow.cjs",
+      "snapshot": "source-11-test_task_workflow.cjs",
+      "sha256": "21b29840400349c6897aa2d3f6221704a10897ef76fccdb1985100a44488b318"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"project_name":"Beit Avraham","sprint_name":"Sprint 3: Motor RAG Real y Fuentes","node_id":"N30","task_key":"N30-javruta-rag-retrieval","task_desc":"Integracion de Retrieval en la API Javruta: consulta vectorial via match_knowledge e inyeccion de citas en el prompt"}

@@ -1,0 +1,67 @@
+{
+  "session_id": "01a1278c-50ab-7ef2-8648-03fb2b4a61ac",
+  "agent_path": "/root/pilot_refactor_2_control",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T17-41-10-01a1278c-50ab-7ef2-8648-03fb2b4a61ac.jsonl",
+  "source_sha256": "3a1dee37c7dd67b8617de0ce39f90fe47e7711c78b521c712c8f4d0f9810bec3",
+  "started_at": "2026-10-10T20:41:11.042Z",
+  "finished_at": "2026-10-10T22:20:27.128Z",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:20:05.771Z",
+      "counters": {
+        "input_tokens": 35652,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 71,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35723
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:12.068Z",
+      "counters": {
+        "input_tokens": 71604,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 149,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 71753
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:22.852Z",
+      "counters": {
+        "input_tokens": 107959,
+        "cached_input_tokens": 105088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 667,
+        "reasoning_output_tokens": 53,
+        "total_tokens": 108626
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:20:27.091Z",
+      "counters": {
+        "input_tokens": 144975,
+        "cached_input_tokens": 139008,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 825,
+        "reasoning_output_tokens": 53,
+        "total_tokens": 145800
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T20:41:13.075Z",
+      "model": "gpt-6.1-sol"
+    },
+    {
+      "at": "2026-10-10T22:19:59.425Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implementado en `study.cjs`: validación en `validateLines`, cálculo y renderizado en `renderSummary`; eliminada la validación duplicada. Conservados `exports.summarize`, campos, formato y error `Invalid`.\n\n`node --test acceptance.cjs`: 1 invocación en esta continuación, 1 prueba aprobada, 0 fallos. No consta una invocación anterior en el contexto recibido.\n\nRevisión manual: responsabilidades separadas, código legible y sin dependencias nuevas. `acceptance.cjs` y `package.json` intactos.\n\nLimitación: la prueba cubre entradas ordinarias; no verifica objetos con getters mutables. La interrupción por límite de uso fue externa a la dificultad de la tarea.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

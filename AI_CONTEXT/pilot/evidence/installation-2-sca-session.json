@@ -1,0 +1,92 @@
+{
+  "session_id": "01a127ea-ebe7-75f2-b9a1-2bba789ce2e5",
+  "agent_path": "/root/pilot_installation_2_sca",
+  "source_path": "C:\\Users\\Legion 5\\.codex\\sessions\\2026\\10\\10\\rollout-2026-10-10T19-24-30-01a127ea-ebe7-75f2-b9a1-2bba789ce2e5.jsonl",
+  "source_sha256": "0f6acc8a4ead8d94c7a79eaa434e14317bf0090cde167d7547347818a14ecf5f",
+  "started_at": "2026-10-10T22:24:31.027Z",
+  "finished_at": "2026-10-10T22:25:34.250Z",
+  "turn_intervals": [
+    [
+      1791671070482,
+      1791671134250
+    ]
+  ],
+  "interval_method": "completion timestamp minus reported duration_ms; excludes wait between turns",
+  "model": "gpt-6.1-sol",
+  "samples": [
+    {
+      "timestamp": "2026-10-10T22:24:39.032Z",
+      "counters": {
+        "input_tokens": 35590,
+        "cached_input_tokens": 33920,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 73,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 35663
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:24:45.597Z",
+      "counters": {
+        "input_tokens": 72728,
+        "cached_input_tokens": 69376,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 136,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 72864
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:24:52.427Z",
+      "counters": {
+        "input_tokens": 110006,
+        "cached_input_tokens": 106368,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 215,
+        "reasoning_output_tokens": 0,
+        "total_tokens": 110221
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:14.933Z",
+      "counters": {
+        "input_tokens": 147800,
+        "cached_input_tokens": 143488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1535,
+        "reasoning_output_tokens": 69,
+        "total_tokens": 149335
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:30.505Z",
+      "counters": {
+        "input_tokens": 187060,
+        "cached_input_tokens": 181120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2395,
+        "reasoning_output_tokens": 101,
+        "total_tokens": 189455
+      }
+    },
+    {
+      "timestamp": "2026-10-10T22:25:34.194Z",
+      "counters": {
+        "input_tokens": 227266,
+        "cached_input_tokens": 220160,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2558,
+        "reasoning_output_tokens": 101,
+        "total_tokens": 229824
+      }
+    }
+  ],
+  "model_evidence": [
+    {
+      "at": "2026-10-10T22:24:32.912Z",
+      "model": "gpt-6.1-sol"
+    }
+  ],
+  "final": "Implemented `prepare` in assigned `bootstrap.cjs`; recorded Pending → In progress → Done in `SCA_JOURNAL.md`.\n\n- Validates binding and destination; preflights required directories.\n- Copies nested scripts/migrations, omits common secret filenames, writes binding.\n- `node --test acceptance.cjs`: 1 invocation, exit 0, 1 passed, 0 failed.\n- Targeted inline Node checks: 1 invocation, exit 0; nested copy, secret exclusions, invalid binding, source nesting and empty migrations checks passed.\n- `acceptance.cjs` and `package.json` unchanged.\n\nLimitations: filename-based secret filtering; filesystem copy failures can leave partial output. This fixture does not certify original installer, Matrix, capture, API or UI.",
+  "limitation": "Whole independent subagent conversation, includes common system/developer context and all tool activity. Runtime model label is not billed API identity. Shared host may run other pairs concurrently."
+}

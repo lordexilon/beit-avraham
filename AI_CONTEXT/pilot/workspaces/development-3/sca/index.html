@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lectura y notas</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px 16px; background: #f1f2ee; color: #23312d; font: 17px/1.6 system-ui, sans-serif; }
+main { max-width: 760px; margin: auto; }
+h1 { line-height: 1.2; }
+.study-lines { display: grid; gap: 12px; margin: 24px 0; }
+button, textarea { font: inherit; color: inherit; border: 1px solid #75817b; border-radius: 8px; background: white; }
+button { text-align: left; padding: 14px; cursor: pointer; overflow-wrap: anywhere; }
+button[aria-pressed="true"] { border: 2px solid #236048; padding: 13px; background: #e0eee6; }
+button[aria-pressed="true"]::before { content: '✓ '; }
+button:focus-visible, textarea:focus-visible { outline: 3px solid #93631c; outline-offset: 3px; }
+label, label span { display: block; }
+textarea { display: block; width: 100%; margin-top: 8px; padding: 12px; resize: vertical; }
+.hint { font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Lectura y notas</h1>
+<p>Selecciona una línea con un clic, o usa Tab y Enter. Cada línea conserva su propia nota mientras esta página permanezca abierta.</p>
+<section id="study" aria-label="Líneas de estudio"></section>
+<p class="hint">Las notas son temporales: se borran al recargar. El texto con etiquetas se muestra literalmente.</p>
+</main>
+<script src="./study.cjs"></script>
+<script>
+Study.mount(document.getElementById('study'), [
+  { id: 'a', text: 'Línea 1: Lee con atención y vuelve sobre lo aprendido.' },
+  { id: 'b', text: 'Línea 2: <script>texto literal<\/script>' },
+  { id: 'c', text: 'Línea 3: Anota tus preguntas para continuar el estudio.' }
+]);
+</script>
+</body>
+</html>
