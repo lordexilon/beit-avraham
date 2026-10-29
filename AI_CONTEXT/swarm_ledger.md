@@ -2,7 +2,7 @@
 > **Source of Truth:** PostgreSQL (SCA Matrix - FSCA)
 > **Project:** Beit Avraham
 > **Cycle:** 11111111-2222-3333-4444-555555555555
-> **Last Synced:** 2026-10-29T16:50:07.416Z
+> **Last Synced:** 2026-10-29T18:40:53.795Z
 
 ## Sprint/Tarea: Frontend - Base implementada
 
@@ -148,4 +148,15 @@
 | Nodo | Tarea | Estado |
 |---|---|---|
 | N55 | Implementación de sidebar colapsable en desktop, control de acceso freemium (3 preguntas cortesía en Javrutá y clases comunitarias protegidas) y script consolidado para Supabase Cloud | ✅ Hecho |
+
+## Sprint/Tarea: Sprint 12: UX Responsive Mobile-First
+
+| Nodo | Tarea | Estado |
+|---|---|---|
+| N56 | Header móvil compacto: ocultar badge de catálogo, colapsar chip de usuario a avatar + menú, botón Meet como ícono, targets táctiles ≥44px | ✅ Hecho |
+| N57 | Drawer de navegación móvil: ocultar toggle de colapso desktop, cierre al navegar, bloqueo de scroll de fondo, safe-area iOS | ⏳ Pendiente |
+| N58 | Landing responsive: hero con tipografía fluida (clamp), CTAs apilados full-width, tarjetas de pilares y clases en 1 columna con espaciado táctil | ⏳ Pendiente |
+| N59 | Folio de estudio móvil: selector de clase sin desborde, tarjeta de video 16:9 sin recorte, estado de sincronización legible, pasajes y tabs táctiles | ⏳ Pendiente |
+| N60 | Javrutá chat móvil: input fijo con safe-area, chips de sugerencias deslizables, burbujas a ancho completo, teclado virtual sin tapar el input | ⏳ Pendiente |
+| N61 | QA responsive: auditoría automatizada (overflow, targets <44px) en 360/390/768px, build de producción y push a GitHub/Vercel | ⏳ Pendiente |
 
