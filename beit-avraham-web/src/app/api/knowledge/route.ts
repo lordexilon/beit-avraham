@@ -24,7 +24,7 @@ function text(value: unknown): value is string {
 
 export async function GET(request: Request) {
   const target = endpoint();
-  if (!target) return Response.json({ error: "Matrix sin configurar." }, { status: 503 });
+  if (!target) return Response.json({ items: [], fallback: true, notice: "Matrix sin configurar." });
 
   const { searchParams } = new URL(request.url);
   const search = searchParams.get("search")?.trim().toLowerCase();
@@ -49,7 +49,7 @@ export async function GET(request: Request) {
       });
     }
     const data = await response.json();
-    if (!response.ok) return Response.json({ error: "No se pudo leer el corpus.", detail: data }, { status: 502 });
+    if (!response.ok) return Response.json({ items: [], fallback: true, notice: "Corpus RAG aún no inicializado en base de datos." });
 
     let items = Array.isArray(data) ? data : [];
     if (search) {
@@ -73,7 +73,7 @@ export async function GET(request: Request) {
 
     return Response.json({ items: sanitized });
   } catch {
-    return Response.json({ error: "Matrix no respondió al consultar el corpus." }, { status: 504 });
+    return Response.json({ items: [], fallback: true, notice: "Matrix no respondió al consultar el corpus." });
   }
 }
 

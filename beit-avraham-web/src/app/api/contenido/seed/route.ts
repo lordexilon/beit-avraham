@@ -1,5 +1,7 @@
 import { SHIURIM_CATALOG } from "../../../../data/shiurim";
 import { HALAJIC_SOURCES_CATALOG } from "../../../../data/sources";
+import { PODCAST_SERIES } from "../../../../data/podcast";
+import { DEFAULT_LANDING_SETTINGS } from "../../../../components/LandingPage";
 import { authorizeContentWrite } from "../../../../lib/content/auth";
 import { CONTENT_PROJECT, contentHeaders } from "../../../../lib/content/store";
 import { validatePayload } from "../../../../lib/content/validate";
@@ -7,7 +9,7 @@ import { validatePayload } from "../../../../lib/content/validate";
 /**
  * Carga inicial (y recarga idempotente) del contenido compilado a Matrix.
  *
- * Existe para poder probar el ABM sin cargar a mano las 4 clases y las 8 fuentes.
+ * Incluye Shiurim, Fuentes, Episodios de Podcast y Configuración de Landing.
  * Es idempotente por (project_name, kind, slug): correrlo dos veces no duplica.
  */
 
@@ -27,7 +29,9 @@ export async function POST(request: Request) {
 
   const records = [
     ...SHIURIM_CATALOG.map(payload => ({ kind: "shiur" as const, payload })),
-    ...HALAJIC_SOURCES_CATALOG.map(payload => ({ kind: "fuente" as const, payload }))
+    ...HALAJIC_SOURCES_CATALOG.map(payload => ({ kind: "fuente" as const, payload })),
+    ...(PODCAST_SERIES[0]?.episodes ?? []).map(payload => ({ kind: "podcast" as const, payload })),
+    { kind: "landing" as const, payload: { id: "settings", ...DEFAULT_LANDING_SETTINGS } }
   ];
 
   const invalidos = records
@@ -36,7 +40,7 @@ export async function POST(request: Request) {
 
   if (invalidos.length > 0) {
     return Response.json(
-      { error: "Hay contenido compilado que no pasa la validación.", detalle: invalidos.map(i => `${i.record.kind}/${i.record.payload.id}: ${i.problem}`) },
+      { error: "Hay contenido compilado que no pasa la validación.", detalle: invalidos.map(i => `${i.record.kind}/${(i.record.payload as { id?: string }).id}: ${i.problem}`) },
       { status: 422 }
     );
   }
@@ -44,7 +48,7 @@ export async function POST(request: Request) {
   const body = records.map(({ kind, payload }) => ({
     project_name: CONTENT_PROJECT,
     kind,
-    slug: payload.id,
+    slug: (payload as { id: string }).id,
     payload
   }));
 
@@ -64,7 +68,12 @@ export async function POST(request: Request) {
       });
     }
     const data = await response.json();
-    if (!response.ok) return Response.json({ error: "No se pudo sembrar.", detail: data }, { status: 502 });
+    if (!response.ok) {
+      return Response.json({
+        error: "No se pudo sembrar en Supabase. Si aún no creaste la tabla, ejecuta supabase_cloud_schema.sql en el SQL Editor de Supabase.",
+        detail: data
+      }, { status: 502 });
+    }
     return Response.json({ seeded: Array.isArray(data) ? data.length : 0, esperados: body.length });
   } catch {
     return Response.json({ error: "Matrix no respondió; no se sembró nada." }, { status: 504 });

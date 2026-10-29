@@ -1,6 +1,10 @@
 import { authorizeContentWrite } from "../../../lib/content/auth";
-import { CONTENT_PROJECT, contentHeaders } from "../../../lib/content/store";
+import { CONTENT_PROJECT, contentHeaders, type ContentItem } from "../../../lib/content/store";
 import { validatePayload } from "../../../lib/content/validate";
+import { SHIURIM_CATALOG } from "../../../data/shiurim";
+import { HALAJIC_SOURCES_CATALOG } from "../../../data/sources";
+import { PODCAST_SERIES } from "../../../data/podcast";
+import { DEFAULT_LANDING_SETTINGS } from "../../../components/LandingPage";
 
 /**
  * ABM del contenido editorial (shiurim y fuentes).
@@ -9,9 +13,48 @@ import { validatePayload } from "../../../lib/content/validate";
  * es una barrera para que el endpoint no quede abierto. Antes de publicar hay
  * que reemplazarlo por sesión de usuario y permisos por rol.
  *
- * La lectura pública de contenido NO pasa por acá: la hace el server component
- * de la home con el store, que además cae al catálogo compilado si Matrix falla.
+ * Si Matrix no está configurado, la tabla aún no existe o devuelve error/vacío,
+ * se retorna de inmediato el catálogo compilado en src/data/*.ts para que la
+ * interfaz administrativa nunca quede rota ni en 0.
  */
+
+function getFallbackContentItems(): ContentItem[] {
+  const now = new Date().toISOString();
+  return [
+    ...SHIURIM_CATALOG.map((s, idx) => ({
+      id: s.id,
+      kind: "shiur" as const,
+      slug: s.id,
+      payload: s,
+      created_at: new Date(Date.now() - (idx + 1) * 86400000).toISOString(),
+      updated_at: now
+    })),
+    ...HALAJIC_SOURCES_CATALOG.map((f, idx) => ({
+      id: f.id,
+      kind: "fuente" as const,
+      slug: f.id,
+      payload: f,
+      created_at: new Date(Date.now() - (idx + 1) * 86400000).toISOString(),
+      updated_at: now
+    })),
+    ...(PODCAST_SERIES[0]?.episodes ?? []).map((p, idx) => ({
+      id: p.id,
+      kind: "podcast" as const,
+      slug: p.id,
+      payload: p,
+      created_at: new Date(Date.now() - (idx + 1) * 86400000).toISOString(),
+      updated_at: now
+    })),
+    {
+      id: "settings",
+      kind: "landing" as const,
+      slug: "settings",
+      payload: DEFAULT_LANDING_SETTINGS,
+      created_at: now,
+      updated_at: now
+    }
+  ];
+}
 
 function endpoint(): { url: string; key: string } | null {
   const url = process.env.SCA_SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -30,7 +73,13 @@ function text(value: unknown): value is string {
 
 export async function GET() {
   const target = endpoint();
-  if (!target) return Response.json({ error: "Matrix sin configurar." }, { status: 503 });
+  if (!target) {
+    return Response.json({
+      items: getFallbackContentItems(),
+      fallback: true,
+      notice: "Matrix sin configurar; usando catálogo compilado base."
+    });
+  }
 
   const query = new URLSearchParams({
     select: "id,kind,slug,payload,created_at,updated_at",
@@ -52,10 +101,28 @@ export async function GET() {
       });
     }
     const data = await response.json();
-    if (!response.ok) return Response.json({ error: "No se pudo leer el contenido.", detail: data }, { status: 502 });
+    if (!response.ok) {
+      return Response.json({
+        items: getFallbackContentItems(),
+        fallback: true,
+        notice: "Tabla de contenido no encontrada en Supabase; usando catálogo compilado base."
+      });
+    }
+    if (Array.isArray(data) && data.length === 0) {
+      return Response.json({
+        items: getFallbackContentItems(),
+        fallback: true,
+        unseeded: true,
+        notice: "Base de datos vacía; mostrando catálogo compilado base listo para sembrar."
+      });
+    }
     return Response.json({ items: data });
   } catch {
-    return Response.json({ error: "Matrix no respondió." }, { status: 504 });
+    return Response.json({
+      items: getFallbackContentItems(),
+      fallback: true,
+      notice: "Matrix no respondió a tiempo; usando catálogo compilado base."
+    });
   }
 }
 

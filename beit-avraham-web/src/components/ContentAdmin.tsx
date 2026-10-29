@@ -212,6 +212,14 @@ export default function ContentAdmin({ onSaveLandingSettings }: ContentAdminProp
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error ?? "No se pudo leer el contenido.");
       setItems(Array.isArray(data.items) ? data.items : []);
+      if (data?.fallback) {
+        setMessage({
+          tone: "info",
+          text: data.unseeded
+            ? "Mostrando catálogo compilado base. La base de datos Supabase aún no fue sembrada. Pulsa 'Sembrar catálogo compilado' con tu token para sincronizar."
+            : "Mostrando catálogo compilado base. La tabla en Supabase no está disponible aún. Puedes explorar o editar localmente."
+        });
+      }
     } catch (error) {
       setMessage({ tone: "error", text: error instanceof Error ? error.message : "Error al leer contenido." });
     }
