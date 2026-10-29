@@ -17,12 +17,6 @@ export default function LoginModal({ isOpen, onClose, onLogin, availableUsers }:
 
   if (!isOpen) return null;
 
-  function handleDirectLogin(u: UserProfile) {
-    setError(null);
-    onLogin(u);
-    onClose();
-  }
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -31,13 +25,9 @@ export default function LoginModal({ isOpen, onClose, onLogin, availableUsers }:
       u => u.email.toLowerCase() === email.trim().toLowerCase()
     );
 
-    if (!found) {
-      setError("No se encontró ningún estudiante o docente con este correo.");
-      return;
-    }
-
-    if (found.status === "inactivo") {
-      setError("Esta cuenta se encuentra inactiva. Contacta al Rabinato.");
+    // Mensaje genérico: no revela si el correo existe ni el estado de la cuenta.
+    if (!found || found.status === "inactivo") {
+      setError("No pudimos iniciar sesión con esos datos. Verifica tu correo o contacta al Rabinato.");
       return;
     }
 
@@ -109,7 +99,8 @@ export default function LoginModal({ isOpen, onClose, onLogin, availableUsers }:
             <input
               type="email"
               required
-              placeholder="ej: david.cohen@estudio.org"
+              placeholder="tu@correo.com"
+              autoComplete="email"
               value={email}
               onChange={e => setEmail(e.target.value)}
               style={{
@@ -161,41 +152,9 @@ export default function LoginModal({ isOpen, onClose, onLogin, availableUsers }:
           </button>
         </form>
 
-        <div style={{ marginTop: "24px", paddingTop: "18px", borderTop: "1px solid var(--line)" }}>
-          <p style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "1px", color: "var(--gold)", fontWeight: 600, margin: "0 0 10px", textAlign: "center" }}>
-            Acceso Rápido de Demostración
-          </p>
-          <div style={{ display: "grid", gap: "6px" }}>
-            {availableUsers.map(u => {
-              const roleTag = u.role === "admin" ? "🛡️ Admin" : u.role === "docente" ? "📜 Docente" : "📖 Alumno";
-              return (
-                <button
-                  key={u.id}
-                  type="button"
-                  onClick={() => handleDirectLogin(u)}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "8px 10px",
-                    borderRadius: "6px",
-                    border: "1px solid var(--line)",
-                    background: "#fbf8f0",
-                    fontSize: "12px",
-                    cursor: "pointer",
-                    textAlign: "left"
-                  }}
-                >
-                  <div>
-                    <strong>{u.name}</strong>
-                    <div style={{ fontSize: "10px", color: "var(--muted)" }}>{u.email}</div>
-                  </div>
-                  <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--ink)" }}>{roleTag}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        <p style={{ marginTop: "18px", fontSize: "12px", color: "var(--muted)", textAlign: "center" }}>
+          ¿Aún no tienes cuenta? Solicita tu acceso al Rabinato de Beit Avraham.
+        </p>
 
         <div style={{ textAlign: "center", marginTop: "16px" }}>
           <button
