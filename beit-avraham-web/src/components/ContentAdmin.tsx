@@ -131,7 +131,11 @@ function emptyRagDoc(): EditableKnowledgeDoc {
   };
 }
 
-export default function ContentAdmin() {
+interface ContentAdminProps {
+  onSaveLandingSettings?: (newSettings: LandingSettings) => void;
+}
+
+export default function ContentAdmin({ onSaveLandingSettings }: ContentAdminProps = {}) {
   const [token, setToken] = useState("");
   const [items, setItems] = useState<ContentItem[]>([]);
   const [kind, setKind] = useState<Kind>("shiur");
@@ -167,6 +171,7 @@ export default function ContentAdmin() {
   function saveLandingSettings() {
     if (typeof window !== "undefined") {
       localStorage.setItem("beit_avraham_landing_settings", JSON.stringify(landingSettings));
+      onSaveLandingSettings?.(landingSettings);
       setMessage({ tone: "ok", text: "Configuración de la Landing Page guardada exitosamente." });
       setTimeout(() => setMessage(null), 3500);
     }

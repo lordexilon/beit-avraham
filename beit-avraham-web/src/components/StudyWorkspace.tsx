@@ -500,7 +500,7 @@ export default function StudyWorkspace({
             aria-label="Clase en vivo por Google Meet"
           >
             <span className="meet-btn-icon">📹</span>
-            <span className="meet-btn-text">Clase en Vivo</span>
+            <span className="meet-btn-text">Clase en Vivo (Meet)</span>
           </a>
 
           {currentUser ? (
@@ -688,10 +688,20 @@ export default function StudyWorkspace({
       <main id="main" className={`main-content ${sidebarCollapsed ? "is-collapsed" : ""}`}>
         {section === "landing" && (
           <LandingPage
+            settings={landingSettings}
+            shiurim={SHIURIM_CATALOG}
+            currentUser={currentUser}
             onStartStudy={(shiurId) => {
               if (shiurId) {
                 const found = SHIURIM_CATALOG.find(s => s.id === shiurId);
-                if (found) setCurrentShiur(found);
+                if (found) {
+                  selectShiur(found);
+                  return;
+                }
+              }
+              if (SHIURIM_CATALOG.length > 0) {
+                selectShiur(SHIURIM_CATALOG[0]);
+                return;
               }
               navigate("study");
             }}
@@ -832,7 +842,7 @@ export default function StudyWorkspace({
 
         {section === "admin" && (
           <section className="admin-view" aria-labelledby="admin-heading">
-            <ContentAdmin />
+            <ContentAdmin onSaveLandingSettings={(newSettings) => setLandingSettings(newSettings)} />
           </section>
         )}
 

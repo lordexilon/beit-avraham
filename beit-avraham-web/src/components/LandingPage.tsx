@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { SHIURIM_CATALOG, type Shiur } from "../data/shiurim";
+import type { UserProfile } from "../lib/content/store";
 
 export interface LandingSettings {
   heroEyebrow: string;
@@ -32,6 +34,9 @@ export const DEFAULT_LANDING_SETTINGS: LandingSettings = {
 };
 
 interface LandingPageProps {
+  settings?: LandingSettings;
+  shiurim?: Shiur[];
+  currentUser?: UserProfile | null;
   onStartStudy: (shiurId?: string) => void;
   onOpenLibrary: () => void;
   onOpenPodcast: () => void;
@@ -41,6 +46,9 @@ interface LandingPageProps {
 }
 
 export default function LandingPage({
+  settings: propSettings,
+  shiurim,
+  currentUser,
   onStartStudy,
   onOpenLibrary,
   onOpenPodcast,
@@ -48,7 +56,7 @@ export default function LandingPage({
   onOpenSources,
   onLoginClick
 }: LandingPageProps) {
-  const [settings, setSettings] = useState<LandingSettings>(DEFAULT_LANDING_SETTINGS);
+  const [localSettings, setLocalSettings] = useState<LandingSettings>(DEFAULT_LANDING_SETTINGS);
   const [copiedMeet, setCopiedMeet] = useState(false);
 
   // Cargar configuración personalizada si existe en localStorage o API
@@ -57,12 +65,16 @@ export default function LandingPage({
     const stored = localStorage.getItem("beit_avraham_landing_settings");
     if (stored) {
       try {
-        setSettings({ ...DEFAULT_LANDING_SETTINGS, ...JSON.parse(stored) });
+        setLocalSettings({ ...DEFAULT_LANDING_SETTINGS, ...JSON.parse(stored) });
       } catch {
         // Fallback
       }
     }
   }, []);
+
+  const settings = propSettings || localSettings;
+  const activeShiurim = (shiurim && shiurim.length > 0) ? shiurim : SHIURIM_CATALOG;
+  const featuredShiurim = activeShiurim.slice(0, 3);
 
   function handleCopyMeetLink() {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -169,7 +181,7 @@ export default function LandingPage({
           }}>
             <button
               type="button"
-              onClick={() => onStartStudy()}
+              onClick={() => onStartStudy(featuredShiurim[0]?.id)}
               className="primary-button"
               style={{
                 padding: "0.85rem 1.8rem",
@@ -683,68 +695,68 @@ export default function LandingPage({
 
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
           gap: "1.2rem"
         }}>
-          {/* Tarjeta 1 */}
-          <div style={{ background: "#fff", borderRadius: "10px", padding: "1.25rem", border: "1px solid #e2e8f0" }}>
-            <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#996515", background: "rgba(197, 160, 89, 0.12)", padding: "0.15rem 0.5rem", borderRadius: "4px" }}>
-              HALAJÁ & SHABAT
-            </span>
-            <h4 style={{ margin: "0.75rem 0 0.4rem", fontSize: "1rem", color: "#1a2639" }}>
-              Leyes fundamentales de Shabat y Melajot
-            </h4>
-            <p style={{ fontSize: "0.82rem", color: "#64748b", margin: "0 0 1rem", lineHeight: 1.5 }}>
-              Las 39 labores creativas, su origen en el Mishkán y la vivencia espiritual del descanso sabático.
-            </p>
-            <button
-              type="button"
-              onClick={() => onStartStudy("shabat-01")}
-              style={{ background: "none", border: "none", color: "#996515", fontSize: "0.82rem", fontWeight: 600, cursor: "pointer", padding: 0 }}
+          {featuredShiurim.map(shiur => (
+            <div
+              key={shiur.id}
+              style={{
+                background: "#fff",
+                borderRadius: "12px",
+                padding: "1.35rem",
+                border: "1px solid #e2e8f0",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.03)"
+              }}
             >
-              Estudiar esta clase con el Moré →
-            </button>
-          </div>
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "6px", marginBottom: "0.6rem" }}>
+                  <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#996515", background: "rgba(197, 160, 89, 0.12)", padding: "0.2rem 0.55rem", borderRadius: "4px" }}>
+                    {shiur.topic}
+                  </span>
+                  <span style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                    ⏱ {shiur.duration}
+                  </span>
+                </div>
+                <h4 style={{ margin: "0.4rem 0 0.5rem", fontSize: "1.05rem", color: "#1a2639", lineHeight: 1.4 }}>
+                  {shiur.title}
+                </h4>
+                <p style={{ fontSize: "0.82rem", color: "#64748b", margin: "0 0 1.2rem", lineHeight: 1.55 }}>
+                  {shiur.description}
+                </p>
+              </div>
 
-          {/* Tarjeta 2 */}
-          <div style={{ background: "#fff", borderRadius: "10px", padding: "1.25rem", border: "1px solid #e2e8f0" }}>
-            <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#996515", background: "rgba(197, 160, 89, 0.12)", padding: "0.15rem 0.5rem", borderRadius: "4px" }}>
-              ÉTICA & SABIDURÍA
-            </span>
-            <h4 style={{ margin: "0.75rem 0 0.4rem", fontSize: "1rem", color: "#1a2639" }}>
-              Pirké Avot: Transmisión de la Sabiduría
-            </h4>
-            <p style={{ fontSize: "0.82rem", color: "#64748b", margin: "0 0 1rem", lineHeight: 1.5 }}>
-              Moshé recibió la Torá en el Sinaí: la cadena ininterrumpida de valores éticos para la vida diaria.
-            </p>
-            <button
-              type="button"
-              onClick={() => onStartStudy("pirkei-avot-01")}
-              style={{ background: "none", border: "none", color: "#996515", fontSize: "0.82rem", fontWeight: 600, cursor: "pointer", padding: 0 }}
-            >
-              Estudiar esta clase con el Moré →
-            </button>
-          </div>
-
-          {/* Tarjeta 3 */}
-          <div style={{ background: "#fff", borderRadius: "10px", padding: "1.25rem", border: "1px solid #e2e8f0" }}>
-            <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#996515", background: "rgba(197, 160, 89, 0.12)", padding: "0.15rem 0.5rem", borderRadius: "4px" }}>
-              CÁBALA & MÍSTICA
-            </span>
-            <h4 style={{ margin: "0.75rem 0 0.4rem", fontSize: "1rem", color: "#1a2639" }}>
-              Las 10 Sefirot y el Árbol de la Vida
-            </h4>
-            <p style={{ fontSize: "0.82rem", color: "#64748b", margin: "0 0 1rem", lineHeight: 1.5 }}>
-              Las emanaciones divinas del Ein Sof, el Séfer Yetzirá y la estructura cósmica del universo.
-            </p>
-            <button
-              type="button"
-              onClick={() => onStartStudy("cabala-01")}
-              style={{ background: "none", border: "none", color: "#996515", fontSize: "0.82rem", fontWeight: 600, cursor: "pointer", padding: 0 }}
-            >
-              Estudiar esta clase con el Moré →
-            </button>
-          </div>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid #f1f5f9", paddingTop: "0.75rem" }}>
+                <button
+                  type="button"
+                  onClick={() => onStartStudy(shiur.id)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "#996515",
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    padding: 0
+                  }}
+                >
+                  Estudiar esta clase con el Moré →
+                </button>
+                {shiur.id === "pirkei-avot-01" ? (
+                  <span style={{ fontSize: "9px", background: "rgba(46, 125, 50, 0.12)", color: "#2e7d32", padding: "2px 6px", borderRadius: "4px", fontWeight: 700 }}>
+                    ✦ CLASE ABIERTA
+                  </span>
+                ) : !currentUser ? (
+                  <span style={{ fontSize: "9px", background: "rgba(133, 88, 18, 0.12)", color: "#855812", padding: "2px 6px", borderRadius: "4px", fontWeight: 600 }}>
+                    🔒 COMUNIDAD
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -779,7 +791,7 @@ export default function LandingPage({
         <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
           <button
             type="button"
-            onClick={() => onStartStudy()}
+            onClick={() => onStartStudy(featuredShiurim[0]?.id)}
             style={{
               padding: "0.75rem 1.6rem",
               fontSize: "0.95rem",
@@ -816,7 +828,7 @@ export default function LandingPage({
             <span>Unirse a Google Meet</span>
           </a>
 
-          {onLoginClick && (
+          {onLoginClick && !currentUser && (
             <button
               type="button"
               onClick={onLoginClick}
