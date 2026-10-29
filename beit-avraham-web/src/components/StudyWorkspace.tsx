@@ -64,7 +64,27 @@ export default function StudyWorkspace({
   const [initialEpisodeId, setInitialEpisodeId] = useState<string | null>(null);
   const [landingSettings, setLandingSettings] = useState<LandingSettings>(DEFAULT_LANDING_SETTINGS);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [alefatoFullscreen, setAlefatoFullscreen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Escuchar tecla Escape para salir del modo pantalla completa de Alefato
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape" && alefatoFullscreen) {
+        setAlefatoFullscreen(false);
+      }
+    }
+    if (alefatoFullscreen) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [alefatoFullscreen]);
 
   // Enlaces directos: landing, folio, feed podcast (#ep-<id>), alefato, etc.
   useEffect(() => {
@@ -579,24 +599,82 @@ export default function StudyWorkspace({
         )}
 
         {section === "alefato" && (
-          <section className="alefato-section" aria-labelledby="alefato-heading">
-            <div className="lesson-heading">
-              <div>
-                <p className="eyebrow">HEBREO · RECURSO DE BEIT AVRAHAM</p>
-                <h1 id="alefato-heading">Alefato interactivo</h1>
-                <p className="subtitle">Explora las letras, las vocales y practica su escritura.</p>
+          <section className={`alefato-section ${alefatoFullscreen ? "is-fullscreen" : ""}`} aria-labelledby="alefato-heading">
+            <div className="alefato-header-bar">
+              <div className="alefato-header-meta">
+                <span className="alefato-symbol-badge" aria-hidden="true">א</span>
+                <div>
+                  <div className="alefato-eyebrow-row">
+                    <span className="eyebrow">HEBREO · RECURSO INTERACTIVO</span>
+                    <span className="alefato-pill">22 Letras · Vocales · Práctica</span>
+                  </div>
+                  <h1 id="alefato-heading" className="alefato-title">Alefato interactivo</h1>
+                </div>
               </div>
-              <a className="primary-button" href="https://www.alefato.auto.hostybee.com/" target="_blank" rel="noopener noreferrer">
-                Abrir en otra pestaña ↗
-              </a>
+              <div className="alefato-header-actions">
+                <button
+                  type="button"
+                  className="alefato-btn-fullscreen"
+                  onClick={() => setAlefatoFullscreen(!alefatoFullscreen)}
+                  aria-label={alefatoFullscreen ? "Salir de pantalla completa" : "Modo inmersivo pantalla completa"}
+                  title={alefatoFullscreen ? "Salir de pantalla completa (Esc)" : "Expandir para estudiar con mayor comodidad"}
+                >
+                  <span aria-hidden="true">⛶</span> Modo Inmersivo (Pantalla Completa)
+                </button>
+                <a
+                  className="alefato-btn-external"
+                  href="https://www.alefato.auto.hostybee.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Abrir en pestaña nueva del navegador"
+                >
+                  <span aria-hidden="true">↗</span> Pestaña nueva
+                </a>
+              </div>
             </div>
-            <iframe
-              className="alefato-frame"
-              src="https://www.alefato.auto.hostybee.com/"
-              title="Alefato Hebreo Interactivo de Beit Avraham"
-              referrerPolicy="no-referrer"
-            />
-            <p className="panel-footnote">El recurso se carga desde tu sitio de Alefato. El progreso aún no está conectado a esta plataforma.</p>
+
+            <div className="alefato-frame-container">
+              {alefatoFullscreen && (
+                <div className="alefato-fullscreen-bar">
+                  <div className="alefato-fullscreen-info">
+                    <span className="alefato-symbol-badge small" aria-hidden="true">א</span>
+                    <strong>Alefato Hebreo Interactivo · Beit Avraham</strong>
+                  </div>
+                  <div className="alefato-fullscreen-actions">
+                    <a
+                      className="alefato-btn-external small"
+                      href="https://www.alefato.auto.hostybee.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      ↗ Pestaña nueva
+                    </a>
+                    <button
+                      type="button"
+                      className="alefato-btn-fullscreen primary small"
+                      onClick={() => setAlefatoFullscreen(false)}
+                      title="Salir del modo pantalla completa (Esc)"
+                    >
+                      ✕ Salir (Esc)
+                    </button>
+                  </div>
+                </div>
+              )}
+              <iframe
+                ref={iframeRef}
+                className="alefato-frame"
+                src="https://www.alefato.auto.hostybee.com/"
+                title="Alefato Hebreo Interactivo de Beit Avraham"
+                referrerPolicy="no-referrer"
+                allow="fullscreen; autoplay; clipboard-write; microphone"
+                loading="eager"
+              />
+            </div>
+            {!alefatoFullscreen && (
+              <p className="panel-footnote">
+                ✦ Tip: Puedes activar el <strong>Modo Inmersivo</strong> para interactuar con las flashcards y la caligrafía sin distracciones.
+              </p>
+            )}
           </section>
         )}
 
@@ -1011,10 +1089,12 @@ export default function StudyWorkspace({
           </section>
         )}
 
-        <footer className="page-footer">
-          <span>BEIT AVRAHAM</span>
-          <span>Una casa para escuchar, preguntar y aprender.</span>
-        </footer>
+        {section !== "alefato" && (
+          <footer className="page-footer">
+            <span>BEIT AVRAHAM</span>
+            <span>Una casa para escuchar, preguntar y aprender.</span>
+          </footer>
+        )}
       </main>
 
       <LoginModal
