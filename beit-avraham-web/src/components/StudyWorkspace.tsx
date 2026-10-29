@@ -41,6 +41,7 @@ export default function StudyWorkspace({
 }: StudyWorkspaceProps) {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [section, setSection] = useState<Section>("landing");
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentShiur, setCurrentShiur] = useState<Shiur>(SHIURIM_CATALOG[0]);
@@ -363,137 +364,128 @@ export default function StudyWorkspace({
           Beit Midrash <span>/</span> {sections.find(item => item.id === section)?.label}
         </span>
         <span className="demo-badge">Catálogo Activo: {currentShiur.title}</span>
-        <div style={{ marginLeft: "auto", display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+        <div className="topbar-actions">
           {/* Enlace directo a Google Meet del Moré */}
           <a
             href={landingSettings.meetUrl || "https://meet.google.com/new"}
             target="_blank"
             rel="noopener noreferrer"
-            className="admin-btn"
-            style={{
-              fontSize: "11px",
-              padding: "5px 12px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              border: "1px solid #1a73e8",
-              background: "#e8f0fe",
-              color: "#174ea6",
-              fontWeight: 600,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              textDecoration: "none"
-            }}
+            className="meet-header-btn"
             title={`Unirse a la clase en vivo del Moré (${landingSettings.meetSchedule})`}
+            aria-label="Clase en vivo por Google Meet"
           >
-            <span style={{ fontSize: "12px" }}>📹</span>
-            <span>Clase en Vivo (Meet)</span>
+            <span className="meet-btn-icon">📹</span>
+            <span className="meet-btn-text">Clase en Vivo</span>
           </a>
 
           {currentUser ? (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "#fbf8f0",
-                border: "1px solid var(--gold)",
-                padding: "4px 10px",
-                borderRadius: "20px"
-              }}
-            >
-              <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--ink)" }}>
-                👤 {currentUser.name}
-              </span>
-              <span
-                style={{
-                  fontSize: "9px",
-                  background: currentUser.role === "admin" ? "var(--gold)" : currentUser.role === "docente" ? "#2e7d32" : "#555",
-                  color: "#fff",
-                  padding: "1px 6px",
-                  borderRadius: "10px",
-                  textTransform: "uppercase",
-                  fontWeight: 600
-                }}
-              >
-                {currentUser.role}
-              </span>
+            <div className="user-chip-container">
               <button
                 type="button"
-                onClick={handleLogout}
-                style={{
-                  background: "transparent",
-                  border: 0,
-                  fontSize: "10px",
-                  color: "#a33b25",
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                  padding: 0
-                }}
+                className="user-avatar-btn"
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                aria-label={`Perfil de ${currentUser.name}`}
+                aria-expanded={userMenuOpen}
               >
-                Salir
+                <span className="user-avatar-circle">
+                  {currentUser.name.charAt(0).toUpperCase()}
+                </span>
+                <span className="user-avatar-name">{currentUser.name}</span>
+                <span className={`user-avatar-badge role-${currentUser.role}`}>
+                  {currentUser.role}
+                </span>
               </button>
+
+              {userMenuOpen && (
+                <>
+                  <div
+                    className="user-menu-backdrop"
+                    onClick={() => setUserMenuOpen(false)}
+                    aria-hidden="true"
+                  />
+                  <div className="user-dropdown-card" role="menu">
+                    <div className="user-dropdown-info">
+                      <strong>{currentUser.name}</strong>
+                      <small>{currentUser.email}</small>
+                      <span className={`user-dropdown-role-tag role-${currentUser.role}`}>
+                        {currentUser.role.toUpperCase()}
+                      </span>
+                    </div>
+
+                    {(currentUser.role === "admin" || currentUser.role === "docente") && (
+                      <button
+                        type="button"
+                        className="user-dropdown-item"
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          navigate("admin");
+                        }}
+                      >
+                        <span>⚙️</span>
+                        <span>Gestión de Contenidos</span>
+                      </button>
+                    )}
+
+                    {currentUser.role === "admin" && (
+                      <button
+                        type="button"
+                        className="user-dropdown-item"
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          navigate("users");
+                        }}
+                      >
+                        <span>👥</span>
+                        <span>Gestión de Usuarios</span>
+                      </button>
+                    )}
+
+                    <button
+                      type="button"
+                      className="user-dropdown-logout-btn"
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        handleLogout();
+                      }}
+                    >
+                      <span>🚪</span>
+                      <span>Cerrar Sesión</span>
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
             <button
-              className="admin-btn"
-              style={{
-                fontSize: "11px",
-                padding: "6px 14px",
-                borderRadius: "6px",
-                cursor: "pointer",
-                border: "1px solid var(--gold)",
-                background: "#fbf8f0",
-                color: "var(--ink)",
-                fontWeight: 600,
-                display: "flex",
-                alignItems: "center",
-                gap: "6px"
-              }}
+              type="button"
+              className="login-header-btn"
               onClick={() => setLoginModalOpen(true)}
+              aria-label="Iniciar Sesión"
             >
               <span>🔑</span>
               <span>Ingresar</span>
             </button>
           )}
 
-          {/* Acceso a Gestión de Contenidos: solo visible para Docente y Admin */}
+          {/* Acceso a Gestión de Contenidos en desktop */}
           {currentUser && (currentUser.role === "admin" || currentUser.role === "docente") && (
             <button
-              className="admin-btn"
-              style={{
-                fontSize: "11px",
-                padding: "5px 11px",
-                borderRadius: "5px",
-                cursor: "pointer",
-                border: "1px solid var(--line)",
-                background: section === "admin" ? "#f6f1e7" : "#fffefa",
-                color: "var(--ink)",
-                fontWeight: section === "admin" ? 600 : 400
-              }}
+              className="topbar-admin-btn"
               onClick={() => navigate("admin")}
+              title="Gestión de Contenidos"
             >
-              ⚙ Gestión de Contenidos
+              ⚙️ Contenidos
             </button>
           )}
 
-          {/* Acceso a Gestión de Usuarios: solo visible para Administrador */}
+          {/* Acceso a Gestión de Usuarios en desktop */}
           {currentUser && currentUser.role === "admin" && (
             <button
-              className="admin-btn"
-              style={{
-                fontSize: "11px",
-                padding: "5px 11px",
-                borderRadius: "5px",
-                cursor: "pointer",
-                border: "1px solid var(--line)",
-                background: section === "users" ? "#f6f1e7" : "#fffefa",
-                color: "var(--ink)",
-                fontWeight: section === "users" ? 600 : 400
-              }}
+              className="topbar-admin-btn"
               onClick={() => navigate("users")}
+              title="Gestión de Usuarios"
             >
-              👥 Gestión de Usuarios
+              👥 Usuarios
             </button>
           )}
         </div>

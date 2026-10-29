@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 12: UX Responsive Mobile-First",
+  "node_id": "N56",
+  "task_key": "N56-header-movil-compacto-y-targets-tactiles",
+  "task_desc": "Header móvil compacto: ocultar badge de catálogo, colapsar chip de usuario a avatar + menú, botón Meet como ícono, targets táctiles ≥44px",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}
