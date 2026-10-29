@@ -82,14 +82,17 @@ function endpoint(): { url: string; key: string } | null {
   return { url: url.replace(/\/$/, ""), key };
 }
 
-export function contentHeaders(key: string): Record<string, string> {
-  return {
+export function contentHeaders(key: string, schema?: string): Record<string, string> {
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
     apikey: key,
-    Authorization: `Bearer ${key}`,
-    "Accept-Profile": "fsca",
-    "Content-Profile": "fsca"
+    Authorization: `Bearer ${key}`
   };
+  if (schema) {
+    headers["Accept-Profile"] = schema;
+    headers["Content-Profile"] = schema;
+  }
+  return headers;
 }
 
 /** Filas crudas, sin validar. Devuelve null si Matrix no está disponible. */
@@ -105,11 +108,19 @@ export async function listContentItems(kind?: ContentKind): Promise<ContentItem[
   if (kind) query.set("kind", `eq.${kind}`);
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/content_items?${query.toString()}`, {
-      headers: contentHeaders(target.key),
+    let response = await fetch(`${target.url}/rest/v1/content_items?${query.toString()}`, {
+      headers: contentHeaders(target.key, "fsca"),
       cache: "no-store",
       signal: AbortSignal.timeout(4000)
     });
+    // Fallback transparente al esquema public si fsca no está expuesto en PostgREST
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/content_items?${query.toString()}`, {
+        headers: contentHeaders(target.key),
+        cache: "no-store",
+        signal: AbortSignal.timeout(4000)
+      });
+    }
     if (!response.ok) return null;
     const data = await response.json();
     return Array.isArray(data) ? (data as ContentItem[]) : null;

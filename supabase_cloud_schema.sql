@@ -264,3 +264,116 @@ ON CONFLICT (project_name, kind, slug) DO UPDATE
 SET payload = EXCLUDED.payload, updated_at = now();
 
 SELECT count(*) as total_usuarios_sembrados FROM fsca.content_items WHERE kind = 'usuario';
+
+-- -----------------------------------------------------------------------------
+-- 11. Vistas y Funciones puente en esquema 'public' (Compatibilidad Zero-Config)
+-- -----------------------------------------------------------------------------
+-- Permite que Supabase Cloud funcione de inmediato sin requerir configuración manual
+-- de 'Exposed schemas' en el dashboard, manteniendo la compatibilidad total.
+CREATE OR REPLACE VIEW public.content_items AS SELECT * FROM fsca.content_items;
+CREATE OR REPLACE VIEW public.knowledge_base AS SELECT * FROM fsca.knowledge_base;
+CREATE OR REPLACE VIEW public.ai_usage AS SELECT * FROM fsca.ai_usage;
+CREATE OR REPLACE VIEW public.swarm_ledger AS SELECT * FROM fsca.swarm_ledger;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.content_items TO anon, authenticated, service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.knowledge_base TO anon, authenticated, service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.ai_usage TO anon, authenticated, service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.swarm_ledger TO anon, authenticated, service_role;
+
+CREATE OR REPLACE FUNCTION public.match_knowledge(
+  query_embedding vector(768),
+  match_threshold float DEFAULT 0.05,
+  match_count int DEFAULT 5,
+  p_project_name text DEFAULT 'beit-avraham'
+)
+RETURNS TABLE (
+  id bigint,
+  source_file text,
+  content text,
+  similarity float
+)
+LANGUAGE sql STABLE
+AS $$
+  SELECT * FROM fsca.match_knowledge(query_embedding, match_threshold, match_count, p_project_name);
+$$;
+
+CREATE OR REPLACE FUNCTION public.match_knowledge_hybrid(
+  query_text text,
+  query_embedding vector(768),
+  match_count int DEFAULT 5,
+  rrf_k int DEFAULT 60,
+  threshold float DEFAULT 0.005,
+  p_project_name text DEFAULT 'beit-avraham'
+)
+RETURNS TABLE (
+  id bigint,
+  source_file text,
+  content text,
+  dense_rank bigint,
+  sparse_rank bigint,
+  rrf_score float,
+  similarity float
+)
+LANGUAGE sql STABLE
+AS $$
+  SELECT * FROM fsca.match_knowledge_hybrid(query_text, query_embedding, match_count, rrf_k, threshold, p_project_name);
+$$;
+
+GRANT EXECUTE ON FUNCTION public.match_knowledge TO anon, authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.match_knowledge_hybrid TO anon, authenticated, service_role;
+
+-- -----------------------------------------------------------------------------
+-- 12. Función de Registro de Telemetría IA (record_ai_usage)
+-- -----------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION fsca.record_ai_usage(
+  p_project_name text DEFAULT 'beit-avraham',
+  p_shiur_id text DEFAULT 'global',
+  p_model_id text DEFAULT 'xai-grok',
+  p_prompt_tokens int DEFAULT 0,
+  p_completion_tokens int DEFAULT 0,
+  p_input_rate numeric DEFAULT 0,
+  p_output_rate numeric DEFAULT 0,
+  p_cost_usd numeric DEFAULT 0,
+  p_metadata jsonb DEFAULT '{}'::jsonb
+)
+RETURNS bigint
+LANGUAGE plpgsql
+AS $$
+DECLARE
+  v_id bigint;
+BEGIN
+  INSERT INTO fsca.ai_usage (
+    project_name, session_id, feature, model,
+    prompt_tokens, completion_tokens, total_tokens, cost_usd, meta
+  )
+  VALUES (
+    p_project_name, p_shiur_id, 'javruta-ai', p_model_id,
+    p_prompt_tokens, p_completion_tokens, p_prompt_tokens + p_completion_tokens,
+    p_cost_usd, p_metadata
+  )
+  RETURNING id INTO v_id;
+  RETURN v_id;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION public.record_ai_usage(
+  p_project_name text DEFAULT 'beit-avraham',
+  p_shiur_id text DEFAULT 'global',
+  p_model_id text DEFAULT 'xai-grok',
+  p_prompt_tokens int DEFAULT 0,
+  p_completion_tokens int DEFAULT 0,
+  p_input_rate numeric DEFAULT 0,
+  p_output_rate numeric DEFAULT 0,
+  p_cost_usd numeric DEFAULT 0,
+  p_metadata jsonb DEFAULT '{}'::jsonb
+)
+RETURNS bigint
+LANGUAGE sql
+AS $$
+  SELECT fsca.record_ai_usage(p_project_name, p_shiur_id, p_model_id, p_prompt_tokens, p_completion_tokens, p_input_rate, p_output_rate, p_cost_usd, p_metadata);
+$$;
+
+GRANT EXECUTE ON FUNCTION fsca.record_ai_usage TO anon, authenticated, service_role;
+GRANT EXECUTE ON FUNCTION public.record_ai_usage TO anon, authenticated, service_role;
+
+

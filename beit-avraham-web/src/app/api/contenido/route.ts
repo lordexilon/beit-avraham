@@ -39,11 +39,18 @@ export async function GET() {
   });
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/content_items?${query.toString()}`, {
-      headers: contentHeaders(target.key),
+    let response = await fetch(`${target.url}/rest/v1/content_items?${query.toString()}`, {
+      headers: contentHeaders(target.key, "fsca"),
       cache: "no-store",
       signal: AbortSignal.timeout(5000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/content_items?${query.toString()}`, {
+        headers: contentHeaders(target.key),
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000)
+      });
+    }
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo leer el contenido.", detail: data }, { status: 502 });
     return Response.json({ items: data });
@@ -70,12 +77,20 @@ export async function POST(request: Request) {
   const record = { project_name: CONTENT_PROJECT, kind, slug, payload };
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/content_items?on_conflict=project_name,kind,slug`, {
+    let response = await fetch(`${target.url}/rest/v1/content_items?on_conflict=project_name,kind,slug`, {
       method: "POST",
-      headers: { ...contentHeaders(target.key), Prefer: "resolution=merge-duplicates,return=representation" },
+      headers: { ...contentHeaders(target.key, "fsca"), Prefer: "resolution=merge-duplicates,return=representation" },
       body: JSON.stringify(record),
       signal: AbortSignal.timeout(5000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/content_items?on_conflict=project_name,kind,slug`, {
+        method: "POST",
+        headers: { ...contentHeaders(target.key), Prefer: "resolution=merge-duplicates,return=representation" },
+        body: JSON.stringify(record),
+        signal: AbortSignal.timeout(5000)
+      });
+    }
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo guardar.", detail: data }, { status: 502 });
     return Response.json({ item: Array.isArray(data) ? data[0] : data }, { status: 201 });
@@ -99,12 +114,20 @@ export async function PUT(request: Request) {
   if (problem) return Response.json({ error: problem }, { status: 400 });
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/content_items?id=eq.${encodeURIComponent(id)}`, {
+    let response = await fetch(`${target.url}/rest/v1/content_items?id=eq.${encodeURIComponent(id)}`, {
       method: "PATCH",
-      headers: { ...contentHeaders(target.key), Prefer: "return=representation" },
+      headers: { ...contentHeaders(target.key, "fsca"), Prefer: "return=representation" },
       body: JSON.stringify({ payload, slug: (payload as { id: string }).id }),
       signal: AbortSignal.timeout(5000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/content_items?id=eq.${encodeURIComponent(id)}`, {
+        method: "PATCH",
+        headers: { ...contentHeaders(target.key), Prefer: "return=representation" },
+        body: JSON.stringify({ payload, slug: (payload as { id: string }).id }),
+        signal: AbortSignal.timeout(5000)
+      });
+    }
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo actualizar.", detail: data }, { status: 502 });
     if (Array.isArray(data) && data.length === 0) {
@@ -127,11 +150,18 @@ export async function DELETE(request: Request) {
   if (!text(id)) return Response.json({ error: "Falta el parámetro id." }, { status: 400 });
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/content_items?id=eq.${encodeURIComponent(id)}`, {
+    let response = await fetch(`${target.url}/rest/v1/content_items?id=eq.${encodeURIComponent(id)}`, {
       method: "DELETE",
-      headers: { ...contentHeaders(target.key), Prefer: "return=representation" },
+      headers: { ...contentHeaders(target.key, "fsca"), Prefer: "return=representation" },
       signal: AbortSignal.timeout(5000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/content_items?id=eq.${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { ...contentHeaders(target.key), Prefer: "return=representation" },
+        signal: AbortSignal.timeout(5000)
+      });
+    }
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo borrar.", detail: data }, { status: 502 });
     if (Array.isArray(data) && data.length === 0) {

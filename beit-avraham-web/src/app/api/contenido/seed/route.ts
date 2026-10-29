@@ -49,12 +49,20 @@ export async function POST(request: Request) {
   }));
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/content_items?on_conflict=project_name,kind,slug`, {
+    let response = await fetch(`${target.url}/rest/v1/content_items?on_conflict=project_name,kind,slug`, {
       method: "POST",
-      headers: { ...contentHeaders(target.key), Prefer: "resolution=merge-duplicates,return=representation" },
+      headers: { ...contentHeaders(target.key, "fsca"), Prefer: "resolution=merge-duplicates,return=representation" },
       body: JSON.stringify(body),
       signal: AbortSignal.timeout(10000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/content_items?on_conflict=project_name,kind,slug`, {
+        method: "POST",
+        headers: { ...contentHeaders(target.key), Prefer: "resolution=merge-duplicates,return=representation" },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(10000)
+      });
+    }
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo sembrar.", detail: data }, { status: 502 });
     return Response.json({ seeded: Array.isArray(data) ? data.length : 0, esperados: body.length });

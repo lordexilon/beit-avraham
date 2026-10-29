@@ -126,7 +126,19 @@ export async function trackAIUsage(
 
   if (supabaseUrl && supabaseKey) {
     try {
-      await fetch(`${supabaseUrl}/rest/v1/rpc/record_ai_usage`, {
+      const payload = JSON.stringify({
+        p_project_name: record.projectName,
+        p_shiur_id: record.shiurId,
+        p_model_id: record.modelId,
+        p_prompt_tokens: record.promptTokens,
+        p_completion_tokens: record.completionTokens,
+        p_input_rate: record.inputRatePerM,
+        p_output_rate: record.outputRatePerM,
+        p_cost_usd: record.costUSD,
+        p_metadata: record.metadata
+      });
+
+      let res = await fetch(`${supabaseUrl}/rest/v1/rpc/record_ai_usage`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -135,19 +147,22 @@ export async function trackAIUsage(
           "Accept-Profile": "fsca",
           "Content-Profile": "fsca"
         },
-        body: JSON.stringify({
-          p_project_name: record.projectName,
-          p_shiur_id: record.shiurId,
-          p_model_id: record.modelId,
-          p_prompt_tokens: record.promptTokens,
-          p_completion_tokens: record.completionTokens,
-          p_input_rate: record.inputRatePerM,
-          p_output_rate: record.outputRatePerM,
-          p_cost_usd: record.costUSD,
-          p_metadata: record.metadata
-        }),
+        body: payload,
         signal: AbortSignal.timeout(3000)
       });
+
+      if (res.status === 406 || res.status === 404) {
+        await fetch(`${supabaseUrl}/rest/v1/rpc/record_ai_usage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`
+          },
+          body: payload,
+          signal: AbortSignal.timeout(3000)
+        });
+      }
     } catch {
       // Registro no bloqueante
     }

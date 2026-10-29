@@ -145,7 +145,7 @@ export async function matchHalajicSourcesHybrid(
     const queryEmbedding = generateEmbedding(query);
 
     try {
-      const res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge_hybrid`, {
+      let res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge_hybrid`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -164,6 +164,26 @@ export async function matchHalajicSourcesHybrid(
         }),
         cache: "no-store"
       });
+
+      if (res.status === 406 || res.status === 404) {
+        res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge_hybrid`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`
+          },
+          body: JSON.stringify({
+            query_text: query,
+            query_embedding: queryEmbedding,
+            match_count: matchCount,
+            rrf_k: rrfK,
+            threshold: threshold,
+            p_project_name: "Beit Avraham"
+          }),
+          cache: "no-store"
+        });
+      }
 
       if (res.ok) {
         const data = await res.json();
@@ -207,7 +227,7 @@ export async function matchHalajicSources(
 
   const queryEmbedding = generateEmbedding(query);
   try {
-    const res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge`, {
+    let res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -224,6 +244,24 @@ export async function matchHalajicSources(
       }),
       cache: "no-store"
     });
+
+    if (res.status === 406 || res.status === 404) {
+      res = await fetch(`${supabaseUrl}/rest/v1/rpc/match_knowledge`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`
+        },
+        body: JSON.stringify({
+          query_embedding: queryEmbedding,
+          match_threshold: threshold,
+          match_count: matchCount,
+          p_project_name: "Beit Avraham"
+        }),
+        cache: "no-store"
+      });
+    }
 
     if (res.ok) {
       const data = await res.json();
