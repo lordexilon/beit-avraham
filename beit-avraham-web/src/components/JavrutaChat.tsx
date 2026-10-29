@@ -167,11 +167,12 @@ export default function JavrutaChat({
     }
   }, []);
 
-  // Cargar historial de chat persistente por shiur
+  // Cargar historial de chat persistente según usuario y clase
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const storageKey = `beit_avraham_chat_history_${shiur.id}`;
-    const stored = localStorage.getItem(storageKey);
+    const currentScope = currentUser ? `usr_${currentUser.id}` : "guest";
+    const currentKey = `beit_avraham_chat_${currentScope}_${shiur.id}`;
+    const stored = localStorage.getItem(currentKey);
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
@@ -184,12 +185,16 @@ export default function JavrutaChat({
       }
     }
 
-    // Mensaje de bienvenida inicial de la Javrutá
+    // Mensaje de bienvenida contextual según si es alumno o invitado
+    const welcomeGreeting = currentUser
+      ? `¡Shalom, **${currentUser.name}**! Soy tu Javrutá de Beit Avraham.`
+      : `¡Shalom! Soy tu **Javrutá de Beit Avraham** (Modo Invitado: tienes 3 preguntas de cortesía).`;
+
     setMessages([
       {
-        id: "welcome-1",
+        id: `welcome-${currentScope}-${Date.now()}`,
         sender: "javruta",
-        text: `¡Shalom! Soy tu **Javrutá de Beit Avraham** conectada con **xAI Grok** y el corpus tradicional.
+        text: `${welcomeGreeting}
 
 Estamos estudiando la clase: **«${shiur.title}»** con el ${shiur.teacher}.
 En este instante estamos sobre el pasaje: *«${currentPassage.title}»*.
@@ -199,14 +204,15 @@ Hazme cualquier pregunta, consulta el significado de los términos en hebreo o u
         model: "xAI Grok"
       }
     ]);
-  }, [shiur.id]);
+  }, [shiur.id, currentUser?.id]);
 
-  // Persistir en localStorage
+  // Persistir en localStorage bajo la clave del usuario actual
   useEffect(() => {
     if (typeof window === "undefined" || messages.length === 0) return;
-    const storageKey = `beit_avraham_chat_history_${shiur.id}`;
-    localStorage.setItem(storageKey, JSON.stringify(messages));
-  }, [messages, shiur.id]);
+    const currentScope = currentUser ? `usr_${currentUser.id}` : "guest";
+    const currentKey = `beit_avraham_chat_${currentScope}_${shiur.id}`;
+    localStorage.setItem(currentKey, JSON.stringify(messages));
+  }, [messages, shiur.id, currentUser?.id]);
 
   // Auto-scroll al recibir o enviar mensajes
   useEffect(() => {
@@ -215,13 +221,17 @@ Hazme cualquier pregunta, consulta el significado de los términos en hebreo o u
 
   function handleClearChat() {
     if (!confirm("¿Deseas reiniciar la conversación con tu Javrutá para esta clase?")) return;
-    const storageKey = `beit_avraham_chat_history_${shiur.id}`;
-    localStorage.removeItem(storageKey);
+    const currentScope = currentUser ? `usr_${currentUser.id}` : "guest";
+    const currentKey = `beit_avraham_chat_${currentScope}_${shiur.id}`;
+    localStorage.removeItem(currentKey);
+    const greeting = currentUser
+      ? `¡Shalom, **${currentUser.name}**!`
+      : "¡Shalom!";
     setMessages([
       {
-        id: `welcome-${Date.now()}`,
+        id: `welcome-${currentScope}-${Date.now()}`,
         sender: "javruta",
-        text: `¡Shalom! He reiniciado nuestro espacio de estudio. ¿Qué pasaje o duda de **«${shiur.title}»** deseas que analicemos juntos?`,
+        text: `${greeting} He reiniciado nuestro espacio de estudio para esta clase. ¿Qué pasaje o duda de **«${shiur.title}»** deseas que analicemos juntos?`,
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
         model: "xAI Grok"
       }
