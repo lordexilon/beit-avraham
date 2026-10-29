@@ -76,8 +76,8 @@ CREATE INDEX IF NOT EXISTS knowledge_base_content_fts_idx
 -- -----------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fsca.match_knowledge(
   query_embedding vector(768),
-  match_threshold float DEFAULT 0.65,
-  match_count int DEFAULT 4,
+  match_threshold float DEFAULT 0.05,
+  match_count int DEFAULT 5,
   p_project_name text DEFAULT 'beit-avraham'
 )
 RETURNS TABLE (
@@ -96,7 +96,7 @@ BEGIN
     kb.source_file,
     kb.content,
     kb.metadata,
-    1 - (kb.embedding <=> query_embedding) AS similarity
+    (1 - (kb.embedding <=> query_embedding))::float AS similarity
   FROM fsca.knowledge_base kb
   WHERE kb.project_name = p_project_name
     AND (1 - (kb.embedding <=> query_embedding)) >= match_threshold
@@ -109,10 +109,11 @@ $$;
 -- 6. RPC de Búsqueda Híbrida (Vectorial + Full-Text con Reciprocal Rank Fusion)
 -- -----------------------------------------------------------------------------
 CREATE OR REPLACE FUNCTION fsca.match_knowledge_hybrid(
-  query_embedding vector(768),
   query_text text,
-  match_count int DEFAULT 4,
+  query_embedding vector(768),
+  match_count int DEFAULT 5,
   rrf_k int DEFAULT 60,
+  threshold float DEFAULT 0.005,
   p_project_name text DEFAULT 'beit-avraham'
 )
 RETURNS TABLE (
@@ -122,7 +123,8 @@ RETURNS TABLE (
   metadata jsonb,
   rrf_score float,
   vector_rank bigint,
-  fts_rank bigint
+  fts_rank bigint,
+  similarity float
 )
 LANGUAGE plpgsql
 AS $$
@@ -131,10 +133,12 @@ BEGIN
   WITH vector_search AS (
     SELECT
       kb.id,
-      ROW_NUMBER() OVER (ORDER BY kb.embedding <=> query_embedding ASC) AS v_rank
+      ROW_NUMBER() OVER (ORDER BY kb.embedding <=> query_embedding ASC) AS v_rank,
+      (1 - (kb.embedding <=> query_embedding))::float AS sim
     FROM fsca.knowledge_base kb
     WHERE kb.project_name = p_project_name
       AND kb.embedding IS NOT NULL
+      AND (1 - (kb.embedding <=> query_embedding)) >= threshold
     LIMIT match_count * 3
   ),
   fts_search AS (
@@ -151,7 +155,8 @@ BEGIN
       COALESCE(v.id, f.id) AS id,
       (COALESCE(1.0 / (rrf_k + v.v_rank), 0.0) + COALESCE(1.0 / (rrf_k + f.f_rank), 0.0))::float AS score,
       v.v_rank,
-      f.f_rank
+      f.f_rank,
+      COALESCE(v.sim, 0.0)::float AS sim
     FROM vector_search v
     FULL OUTER JOIN fts_search f ON v.id = f.id
   )
@@ -162,7 +167,8 @@ BEGIN
     kb.metadata,
     fu.score AS rrf_score,
     fu.v_rank AS vector_rank,
-    fu.f_rank AS fts_rank
+    fu.f_rank AS fts_rank,
+    fu.sim AS similarity
   FROM fused fu
   JOIN fsca.knowledge_base kb ON kb.id = fu.id
   ORDER BY fu.score DESC
@@ -290,6 +296,7 @@ RETURNS TABLE (
   id bigint,
   source_file text,
   content text,
+  metadata jsonb,
   similarity float
 )
 LANGUAGE sql STABLE
@@ -309,9 +316,10 @@ RETURNS TABLE (
   id bigint,
   source_file text,
   content text,
-  dense_rank bigint,
-  sparse_rank bigint,
+  metadata jsonb,
   rrf_score float,
+  vector_rank bigint,
+  fts_rank bigint,
   similarity float
 )
 LANGUAGE sql STABLE
