@@ -1,0 +1,10 @@
+{
+  "project_name": "Beit Avraham",
+  "sprint_name": "Sprint 11: Experiencia Freemium, Sidebar Plegable y Supabase Cloud",
+  "node_id": "N55",
+  "task_key": "N55-sidebar-plegable-freemium-y-supabase-cloud",
+  "task_desc": "Implementación de sidebar colapsable en desktop, control de acceso freemium (3 preguntas cortesía en Javrutá y clases comunitarias protegidas) y script consolidado para Supabase Cloud",
+  "evaluation": {
+    "status": "pending_evidence"
+  }
+}

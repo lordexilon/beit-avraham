@@ -62,6 +62,7 @@ export default function StudyWorkspace({
   // Episodio al que apunta un enlace entrante (#ep-<shiurId>), usado por el feed RSS.
   const [initialEpisodeId, setInitialEpisodeId] = useState<string | null>(null);
   const [landingSettings, setLandingSettings] = useState<LandingSettings>(DEFAULT_LANDING_SETTINGS);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // Enlaces directos: landing, folio, feed podcast (#ep-<id>), alefato, etc.
@@ -95,8 +96,18 @@ export default function StudyWorkspace({
           setLandingSettings({ ...DEFAULT_LANDING_SETTINGS, ...JSON.parse(storedLanding) });
         } catch {}
       }
+      const isCol = localStorage.getItem("beit_avraham_sidebar_collapsed") === "true";
+      setSidebarCollapsed(isCol);
     }
   }, []);
+
+  function toggleSidebar() {
+    const next = !sidebarCollapsed;
+    setSidebarCollapsed(next);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("beit_avraham_sidebar_collapsed", String(next));
+    }
+  }
 
   function handleLogin(u: UserProfile) {
     setCurrentUser(u);
@@ -488,9 +499,20 @@ export default function StudyWorkspace({
         </div>
       </header>
 
-      <aside id="navigation" className={`navigation ${menuOpen ? "is-open" : ""}`}>
+      <aside id="navigation" className={`navigation ${menuOpen ? "is-open" : ""} ${sidebarCollapsed ? "is-collapsed" : ""}`}>
         <div>
-          <p className="eyebrow">TU BEIT MIDRASH</p>
+          <div className="eyebrow">
+            <span className="eyebrow-text">TU BEIT MIDRASH</span>
+            <button
+              type="button"
+              className="sidebar-collapse-btn"
+              onClick={toggleSidebar}
+              title={sidebarCollapsed ? "Desplegar menú lateral" : "Plegar menú lateral"}
+              aria-label={sidebarCollapsed ? "Desplegar menú lateral" : "Plegar menú lateral"}
+            >
+              {sidebarCollapsed ? "▶" : "◀"}
+            </button>
+          </div>
           <nav aria-label="Navegación principal">
             {visibleSections.map(item => (
               <button
@@ -498,9 +520,10 @@ export default function StudyWorkspace({
                 className={section === item.id ? "nav-item active" : "nav-item"}
                 aria-current={section === item.id ? "page" : undefined}
                 onClick={() => navigate(item.id)}
+                title={item.label}
               >
                 <span aria-hidden="true">{item.symbol}</span>
-                {item.label}
+                <span className="nav-item-label">{item.label}</span>
               </button>
             ))}
 
@@ -508,6 +531,7 @@ export default function StudyWorkspace({
               href={landingSettings.meetUrl || "https://meet.google.com/new"}
               target="_blank"
               rel="noopener noreferrer"
+              className="meet-nav-link"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -544,7 +568,7 @@ export default function StudyWorkspace({
       </aside>
       {menuOpen && <button className="menu-backdrop" aria-label="Cerrar navegación" onClick={() => setMenuOpen(false)} />}
 
-      <main id="main" className="main-content">
+      <main id="main" className={`main-content ${sidebarCollapsed ? "is-collapsed" : ""}`}>
         {section === "landing" && (
           <LandingPage
             onStartStudy={(shiurId) => {
@@ -596,7 +620,18 @@ export default function StudyWorkspace({
                   <div>
                     <div className="shiur-card-header">
                       <span className="eyebrow">{shiur.topic}</span>
-                      <span className="shiur-duration">⏱ {shiur.duration}</span>
+                      <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                        {shiur.id === "pirkei-avot-01" ? (
+                          <span style={{ fontSize: "9px", background: "rgba(46, 125, 50, 0.12)", color: "#2e7d32", padding: "2px 6px", borderRadius: "4px", fontWeight: 700 }}>
+                            ✦ CLASE ABIERTA
+                          </span>
+                        ) : !currentUser ? (
+                          <span style={{ fontSize: "9px", background: "rgba(133, 88, 18, 0.12)", color: "#855812", padding: "2px 6px", borderRadius: "4px", fontWeight: 600 }}>
+                            🔒 COMUNIDAD
+                          </span>
+                        ) : null}
+                        <span className="shiur-duration">⏱ {shiur.duration}</span>
+                      </div>
                     </div>
                     <h3>{shiur.title}</h3>
                     <p>{shiur.description}</p>
@@ -792,61 +827,138 @@ export default function StudyWorkspace({
                   <>
                     <p className="panel-hint">Haz clic en un fragmento para sincronizar el video y consultar a tu Javrutá.</p>
                     <div className={`passages ${fontLarge ? "large-text" : ""}`}>
-                      {currentShiur.passages.map((passage, index) => (
-                        <button
-                          key={passage.time}
-                          className={`passage ${selectedPassage === index ? "current" : ""}`}
-                          aria-pressed={selectedPassage === index}
-                          onClick={() => seekToPassage(index)}
-                        >
-                          <span className="passage-meta">
-                            <time>{passage.time}</time>
-                            <span>{selectedPassage === index ? "Reproduciendo / Seleccionado" : passage.title}</span>
-                            <span className="play-tag" aria-hidden="true">▷ Ir</span>
-                          </span>
-                          <span className="passage-text">{passage.text}</span>
-                          {passage.tags && (
-                            <span className="term-chips">
-                              {passage.tags.map(t => <span key={t}>{t}</span>)}
+                      {currentShiur.passages.map((passage, index) => {
+                        // Si no está logeado y es una clase comunitaria protegida, solo mostramos el primer pasaje como vista previa
+                        const isLocked = !currentUser && currentShiur.id !== "pirkei-avot-01" && index > 0;
+                        if (isLocked) return null;
+
+                        return (
+                          <button
+                            key={passage.time}
+                            className={`passage ${selectedPassage === index ? "current" : ""}`}
+                            aria-pressed={selectedPassage === index}
+                            onClick={() => seekToPassage(index)}
+                          >
+                            <span className="passage-meta">
+                              <time>{passage.time}</time>
+                              <span>{selectedPassage === index ? "Reproduciendo / Seleccionado" : passage.title}</span>
+                              <span className="play-tag" aria-hidden="true">▷ Ir</span>
                             </span>
-                          )}
-                        </button>
-                      ))}
+                            <span className="passage-text">{passage.text}</span>
+                            {passage.tags && (
+                              <span className="term-chips">
+                                {passage.tags.map(t => <span key={t}>{t}</span>)}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
                     </div>
+
+                    {/* Muro Pedagógico para clases que no son la muestra abierta */}
+                    {!currentUser && currentShiur.id !== "pirkei-avot-01" && (
+                      <div style={{
+                        margin: "1rem 12px",
+                        padding: "1.2rem",
+                        background: "linear-gradient(180deg, #fbf8f0 0%, #f6ecd9 100%)",
+                        border: "1px solid rgba(197, 160, 89, 0.4)",
+                        borderRadius: "10px",
+                        textAlign: "center"
+                      }}>
+                        <span style={{ fontSize: "1.6rem", color: "#996515", display: "block", marginBottom: "0.35rem" }}>🔒</span>
+                        <h4 style={{ margin: "0 0 0.35rem", fontSize: "0.95rem", color: "#1a2639" }}>
+                          Contenido Exclusivo para Alumnos y Comunidad
+                        </h4>
+                        <p style={{ margin: "0 0 0.75rem", fontSize: "0.8rem", color: "#64748b", lineHeight: 1.5 }}>
+                          Para acceder a todos los pasajes sincronizados, notas personales y Javrutá ilimitada de este shiur, ingresa con tu cuenta o únete a Beit Avraham.
+                        </p>
+                        <div style={{ display: "flex", gap: "8px", justifyContent: "center", flexWrap: "wrap" }}>
+                          <button
+                            type="button"
+                            onClick={() => setLoginModalOpen(true)}
+                            className="primary-button"
+                            style={{ padding: "0.45rem 1.1rem", fontSize: "0.82rem", margin: 0 }}
+                          >
+                            🔑 Ingresar como Alumno
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const sample = SHIURIM_CATALOG.find(s => s.id === "pirkei-avot-01");
+                              if (sample) setCurrentShiur(sample);
+                            }}
+                            className="admin-btn"
+                            style={{ padding: "0.45rem 0.9rem", fontSize: "0.82rem" }}
+                          >
+                            Ver Clase Abierta (Pirké Avot) →
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
                     <p className="panel-footnote">Sincronización temporal bidireccional activa</p>
                   </>
                 ) : (
                   <div className="notes-area">
-                    <div className="notes-header-bar">
-                      <label htmlFor="notes">Tus ideas y apuntes sobre este shiur</label>
-                      <div className="notes-actions">
-                        <span className="save-status">✓ {saveStatus}</span>
+                    {!currentUser ? (
+                      <div style={{
+                        padding: "2rem 1.5rem",
+                        textAlign: "center",
+                        background: "#fbf8f0",
+                        borderRadius: "8px",
+                        border: "1px solid rgba(197, 160, 89, 0.3)",
+                        margin: "auto 1rem"
+                      }}>
+                        <span style={{ fontSize: "1.8rem", color: "#996515", display: "block", marginBottom: "0.5rem" }}>📝</span>
+                        <h4 style={{ margin: "0 0 0.4rem", color: "#1a2639" }}>Notas de Estudio Personales</h4>
+                        <p style={{ margin: "0 0 1rem", fontSize: "0.82rem", color: "#64748b" }}>
+                          Ingresa como alumno para guardar tus notas, reflexiones personales y sincronizarlas con cada shiur.
+                        </p>
                         <button
                           type="button"
-                          className="notes-btn"
-                          onClick={exportNotes}
-                          disabled={!notes.trim()}
-                          title="Descargar apuntes en formato Markdown"
+                          onClick={() => setLoginModalOpen(true)}
+                          className="primary-button"
+                          style={{ padding: "0.45rem 1.1rem", fontSize: "0.82rem", margin: "0 auto" }}
                         >
-                          ⬇ Exportar (.md)
+                          🔑 Ingresar para Guardar Notas
                         </button>
                       </div>
-                    </div>
-                    <textarea
-                      id="notes"
-                      value={notes}
-                      onChange={event => handleNotesChange(event.target.value)}
-                      placeholder="Escribe aquí tus reflexiones, preguntas o citas de esta clase... Se guardan automáticamente."
-                    />
-                    <p>Tus apuntes se conservan en tu dispositivo para cada clase del catálogo.</p>
+                    ) : (
+                      <>
+                        <div className="notes-header-bar">
+                          <label htmlFor="notes">Tus ideas y apuntes sobre este shiur</label>
+                          <div className="notes-actions">
+                            <span className="save-status">✓ {saveStatus}</span>
+                            <button
+                              type="button"
+                              className="notes-btn"
+                              onClick={exportNotes}
+                              disabled={!notes.trim()}
+                              title="Descargar apuntes en formato Markdown"
+                            >
+                              ⬇ Exportar (.md)
+                            </button>
+                          </div>
+                        </div>
+                        <textarea
+                          id="notes"
+                          value={notes}
+                          onChange={event => handleNotesChange(event.target.value)}
+                          placeholder="Escribe aquí tus reflexiones, preguntas o citas de esta clase... Se guardan automáticamente."
+                        />
+                        <p>Tus apuntes se conservan en tu dispositivo para cada clase del catálogo.</p>
+                      </>
+                    )}
                   </div>
                 )}
               </section>
 
-              {/* Panel de Chat Moderno Conversacional de Javrutá (N51) */}
+              {/* Panel de Chat Moderno Conversacional de Javrutá (N51/N55) */}
               <JavrutaChat
                 shiur={currentShiur}
                 selectedPassage={selectedPassage}
+                currentUser={currentUser}
+                onOpenLogin={() => setLoginModalOpen(true)}
                 onNavigateToSources={() => navigate("sources")}
                 onJumpToTime={(seconds) => jumpToSeconds(seconds)}
               />

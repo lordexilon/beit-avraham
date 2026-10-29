@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { Shiur } from "../data/shiurim";
+import type { UserProfile } from "../lib/content/store";
 
 export interface ChatMessage {
   id: string;
@@ -18,8 +19,10 @@ export interface ChatMessage {
 interface JavrutaChatProps {
   shiur: Shiur;
   selectedPassage: number;
+  currentUser?: UserProfile | null;
   onNavigateToSources?: () => void;
   onJumpToTime?: (seconds: number) => void;
+  onOpenLogin?: () => void;
 }
 
 /**
@@ -141,16 +144,28 @@ function InlineMarkdown({ content }: { content: string }) {
 export default function JavrutaChat({
   shiur,
   selectedPassage,
+  currentUser,
   onNavigateToSources,
-  onJumpToTime
+  onJumpToTime,
+  onOpenLogin
 }: JavrutaChatProps) {
   const currentPassage = shiur.passages[selectedPassage] || shiur.passages[0];
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [guestQueryCount, setGuestQueryCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Cargar contador de preguntas de cortesía para invitados
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const storedCount = localStorage.getItem("beit_avraham_guest_queries_count");
+    if (storedCount) {
+      setGuestQueryCount(parseInt(storedCount, 10) || 0);
+    }
+  }, []);
 
   // Cargar historial de chat persistente por shiur
   useEffect(() => {
@@ -216,6 +231,7 @@ Hazme cualquier pregunta, consulta el significado de los términos en hebreo o u
   async function sendMessage(textToSend?: string) {
     const text = (textToSend || inputValue).trim();
     if (!text || isLoading) return;
+    if (!currentUser && guestQueryCount >= 3) return;
 
     const userMsg: ChatMessage = {
       id: `usr-${Date.now()}`,
@@ -263,6 +279,15 @@ Hazme cualquier pregunta, consulta el significado de los términos en hebreo o u
           model: data.source?.includes("xAI") ? "xAI Grok" : "Javrutá"
         };
         setMessages(prev => [...prev, javrutaMsg]);
+
+        // Registrar uso de pregunta de cortesía para invitados
+        if (!currentUser) {
+          const nextCount = guestQueryCount + 1;
+          setGuestQueryCount(nextCount);
+          if (typeof window !== "undefined") {
+            localStorage.setItem("beit_avraham_guest_queries_count", String(nextCount));
+          }
+        }
       } else {
         const errData = await res.json().catch(() => ({}));
         setMessages(prev => [
@@ -599,69 +624,122 @@ Hazme cualquier pregunta, consulta el significado de los términos en hebreo o u
         </button>
       </div>
 
-      {/* 5. Área de Entrada Fija Inferior */}
-      <div style={{
-        padding: "0.65rem 1rem 0.85rem",
-        background: "#fff",
-        borderTop: "1px solid rgba(197, 160, 89, 0.25)"
-      }}>
+      {/* 5. Área de Entrada Fija Inferior o Paywall Pedagógico */}
+      {!currentUser && guestQueryCount >= 3 ? (
         <div style={{
-          display: "flex",
-          gap: "0.5rem",
-          alignItems: "flex-end"
+          padding: "1rem 1.2rem",
+          background: "linear-gradient(180deg, #fbf8f0 0%, #f6ecd9 100%)",
+          borderTop: "1px solid rgba(197, 160, 89, 0.4)",
+          textAlign: "center"
         }}>
-          <textarea
-            ref={textareaRef}
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
-            onKeyDown={e => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-              }
-            }}
-            placeholder="Escribe tu duda a tu Javrutá... (Enter para enviar)"
-            rows={2}
-            disabled={isLoading}
-            style={{
-              flex: 1,
-              resize: "none",
-              borderRadius: "8px",
-              border: "1px solid #cbd5e1",
-              padding: "0.55rem 0.75rem",
-              fontSize: "0.85rem",
-              fontFamily: "inherit",
-              lineHeight: 1.4,
-              outline: "none",
-              background: "#fff"
-            }}
-          />
-
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "6px", marginBottom: "6px" }}>
+            <span style={{ fontSize: "16px" }}>🔒</span>
+            <strong style={{ fontSize: "0.88rem", color: "#1a2639" }}>Preguntas de cortesía completadas (3 de 3)</strong>
+          </div>
+          <p style={{ margin: "0 0 0.85rem", fontSize: "0.8rem", color: "#64748b", lineHeight: 1.5 }}>
+            Para continuar dialogando con tu Javrutá sin límites, guardar tus notas y acceder a las fuentes tradicionales, ingresa como alumno o únete a la comunidad de Beit Avraham.
+          </p>
           <button
             type="button"
-            onClick={() => sendMessage()}
-            disabled={!inputValue.trim() || isLoading}
+            onClick={() => onOpenLogin?.()}
             className="primary-button"
             style={{
-              height: "46px",
-              padding: "0 1.25rem",
+              padding: "0.55rem 1.3rem",
               fontSize: "0.85rem",
-              borderRadius: "8px",
-              whiteSpace: "nowrap",
+              borderRadius: "6px",
               display: "inline-flex",
               alignItems: "center",
-              justifyContent: "center",
-              gap: "0.3rem"
+              gap: "6px",
+              margin: "0 auto"
             }}
-            title="Enviar consulta a tu Javrutá"
           >
-            {isLoading ? "..." : "Enviar →"}
+            <span>🔑</span>
+            <span>Ingresar como Alumno / Docente</span>
           </button>
         </div>
-        <p style={{ margin: "4px 0 0", fontSize: "0.68rem", color: "#94a3b8", textAlign: "center" }}>
-          Presiona Enter para enviar · Respuestas formativas de Javrutá con xAI Grok y fuentes de estudio
-        </p>
-      </div>
+      ) : (
+        <div style={{
+          padding: "0.65rem 1rem 0.85rem",
+          background: "#fff",
+          borderTop: "1px solid rgba(197, 160, 89, 0.25)"
+        }}>
+          <div style={{
+            display: "flex",
+            gap: "0.5rem",
+            alignItems: "flex-end"
+          }}>
+            <textarea
+              ref={textareaRef}
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  sendMessage();
+                }
+              }}
+              placeholder="Escribe tu duda a tu Javrutá... (Enter para enviar)"
+              rows={2}
+              disabled={isLoading}
+              style={{
+                flex: 1,
+                resize: "none",
+                borderRadius: "8px",
+                border: "1px solid #cbd5e1",
+                padding: "0.55rem 0.75rem",
+                fontSize: "0.85rem",
+                fontFamily: "inherit",
+                lineHeight: 1.4,
+                outline: "none",
+                background: "#fff"
+              }}
+            />
+
+            <button
+              type="button"
+              onClick={() => sendMessage()}
+              disabled={!inputValue.trim() || isLoading}
+              className="primary-button"
+              style={{
+                height: "46px",
+                padding: "0 1.25rem",
+                fontSize: "0.85rem",
+                borderRadius: "8px",
+                whiteSpace: "nowrap",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.3rem"
+              }}
+              title="Enviar consulta a tu Javrutá"
+            >
+              {isLoading ? "..." : "Enviar →"}
+            </button>
+          </div>
+
+          <div style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "6px",
+            fontSize: "0.7rem",
+            color: "#94a3b8"
+          }}>
+            <span>Enter para enviar</span>
+            {!currentUser && (
+              <span style={{
+                background: "rgba(197, 160, 89, 0.15)",
+                color: "#855812",
+                padding: "1px 7px",
+                borderRadius: "4px",
+                fontWeight: 600
+              }}>
+                Preguntas de cortesía: {guestQueryCount} de 3
+              </span>
+            )}
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

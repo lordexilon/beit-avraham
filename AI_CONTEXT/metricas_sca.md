@@ -2,7 +2,7 @@
 > **Source of Truth:** PostgreSQL (SCA Matrix - FSCA)
 > **Project:** Beit Avraham
 > **Cycle:** 11111111-2222-3333-4444-555555555555
-> **Last Synced:** 2026-10-29T16:06:13.574Z
+> **Last Synced:** 2026-10-29T16:50:04.007Z
 
 > N/D = dato desconocido. Cero representa un valor registrado. Estimated Time Saved es una estimación declarada. El histórico legado no se valida al sincronizar.
 

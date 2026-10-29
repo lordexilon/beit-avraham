@@ -2,7 +2,7 @@
 > **Source of Truth:** PostgreSQL (SCA Matrix - FSCA)
 > **Project:** Beit Avraham
 > **Cycle:** 11111111-2222-3333-4444-555555555555
-> **Last Synced:** 2026-10-29T16:06:14.635Z
+> **Last Synced:** 2026-10-29T16:50:07.416Z
 
 ## Sprint/Tarea: Frontend - Base implementada
 
@@ -142,4 +142,10 @@
 |---|---|---|
 | N53 | Creación de Landing Page institucional configurable (Bienvenida, Qué hacemos, Pilares, Testimonios y Acceso directo) y optimización para repositorio Git y despliegue en Vercel | ✅ Hecho |
 | N54 | Rediseño de la Landing Page con enfoque 100% pedagógico en la enseñanza del Moreh (sin tecnicismos) e integración de videollamada Google Meet para clases en vivo | ✅ Hecho |
+
+## Sprint/Tarea: Sprint 11: Experiencia Freemium, Sidebar Plegable y Supabase Cloud
+
+| Nodo | Tarea | Estado |
+|---|---|---|
+| N55 | Implementación de sidebar colapsable en desktop, control de acceso freemium (3 preguntas cortesía en Javrutá y clases comunitarias protegidas) y script consolidado para Supabase Cloud | ✅ Hecho |
 
