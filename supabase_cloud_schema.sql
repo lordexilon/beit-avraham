@@ -17,13 +17,23 @@ CREATE SCHEMA IF NOT EXISTS fsca;
 CREATE TABLE IF NOT EXISTS fsca.content_items (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   project_name text NOT NULL DEFAULT 'beit-avraham',
-  kind text NOT NULL CHECK (kind IN ('shiur', 'fuente', 'podcast', 'usuario')),
+  kind text NOT NULL CHECK (kind IN ('shiur', 'fuente', 'podcast', 'usuario', 'landing')),
   slug text NOT NULL,
   payload jsonb NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now(),
   CONSTRAINT content_items_unique_slug UNIQUE (project_name, kind, slug)
 );
+
+-- Asegurar que el constraint de kind admita 'landing' si la tabla ya existía
+DO $$
+BEGIN
+  ALTER TABLE fsca.content_items DROP CONSTRAINT IF EXISTS content_items_kind_check;
+  ALTER TABLE fsca.content_items ADD CONSTRAINT content_items_kind_check
+    CHECK (kind IN ('shiur', 'fuente', 'podcast', 'usuario', 'landing'));
+EXCEPTION
+  WHEN OTHERS THEN NULL;
+END $$;
 
 CREATE INDEX IF NOT EXISTS content_items_project_kind_idx
   ON fsca.content_items (project_name, kind, slug);
