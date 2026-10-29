@@ -1,7 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs",
-  "installCommand": "npm --prefix beit-avraham-web install",
-  "buildCommand": "npm --prefix beit-avraham-web run build",
-  "outputDirectory": "beit-avraham-web/.next"
+  "framework": "nextjs"
 }

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "Beit Avraham - Plataforma Interactiva de Estudio de Torá y Javrutá IA",
+  "workspaces": [
+    "beit-avraham-web"
+  ],
   "scripts": {
     "dev": "npm --prefix beit-avraham-web run dev",
     "build": "npm --prefix beit-avraham-web run build",
