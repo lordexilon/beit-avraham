@@ -239,7 +239,8 @@ export default function LandingPage({
             justifyContent: "center",
             gap: "1.2rem",
             fontSize: "0.85rem",
-            color: "#64748b"
+            color: "#64748b",
+            marginBottom: "2rem"
           }}>
             <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
               <strong style={{ color: "#855812" }}>✓</strong> Clases Guiadas con el Moré
@@ -256,6 +257,62 @@ export default function LandingPage({
             <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
               <strong style={{ color: "#1a73e8" }}>✓</strong> Videollamadas en Vivo por Google Meet
             </span>
+          </div>
+
+          {/* Imagen Artística del Estudio de Torá en Beit Avraham */}
+          <div style={{
+            margin: "0 auto",
+            maxWidth: "840px",
+            borderRadius: "16px",
+            overflow: "hidden",
+            boxShadow: "0 12px 32px rgba(26, 38, 57, 0.12)",
+            border: "1px solid rgba(197, 160, 89, 0.35)",
+            position: "relative"
+          }}>
+            <Image
+              src="/torah-study.jpg"
+              alt="Estudio Sagrado de Torá en el Beit Midrash de Beit Avraham"
+              width={840}
+              height={440}
+              style={{
+                width: "100%",
+                height: "auto",
+                maxHeight: "360px",
+                objectFit: "cover",
+                display: "block"
+              }}
+              priority
+            />
+            <div style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              background: "linear-gradient(180deg, transparent 0%, rgba(26, 38, 57, 0.88) 100%)",
+              padding: "1.2rem 1.4rem 0.75rem",
+              color: "#ffffff",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "0.5rem"
+            }}>
+              <span style={{ fontSize: "0.85rem", fontStyle: "italic", opacity: 0.95 }}>
+                «Abre mis ojos para que contemple las maravillas de Tu Torá» (Salmos 119:18)
+              </span>
+              <span style={{
+                fontSize: "0.72rem",
+                fontWeight: 600,
+                letterSpacing: "1px",
+                background: "rgba(197, 160, 89, 0.35)",
+                color: "#f6ecd9",
+                padding: "2px 8px",
+                borderRadius: "4px",
+                border: "1px solid rgba(197, 160, 89, 0.5)"
+              }}>
+                בֵּית מִדְרָשׁ
+              </span>
+            </div>
           </div>
         </div>
       </section>

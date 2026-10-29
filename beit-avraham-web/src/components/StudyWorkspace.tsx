@@ -106,7 +106,28 @@ export default function StudyWorkspace({
   function handleLogout() {
     setCurrentUser(null);
     localStorage.removeItem("beit_avraham_active_user");
+    if (section === "admin" || section === "users" || section === "history" || section === "progress") {
+      setSection("landing");
+    }
   }
+
+  // Filtrado de opciones del menú lateral según estado de login y rol
+  const visibleSections = sections.filter(item => {
+    if (!currentUser) {
+      // Visitante o usuario no logeado: solo las opciones básicas de estudio
+      return ["landing", "study", "library", "listen", "alefato", "sources"].includes(item.id);
+    }
+    if (currentUser.role === "estudiante") {
+      // Estudiante: opciones básicas + mis conversaciones + mi progreso
+      return ["landing", "study", "library", "listen", "alefato", "sources", "history", "progress"].includes(item.id);
+    }
+    if (currentUser.role === "docente") {
+      // Docente: opciones de estudiante + gestión de contenidos
+      return ["landing", "study", "library", "listen", "alefato", "sources", "history", "progress", "admin"].includes(item.id);
+    }
+    // Administrador: tiene acceso a todo el Beit Midrash
+    return true;
+  });
 
   async function askJavruta() {
     if (!question.trim() || javrutaLoading) return;
@@ -425,38 +446,45 @@ export default function StudyWorkspace({
             </button>
           )}
 
-          <button
-            className="admin-btn"
-            style={{
-              fontSize: "11px",
-              padding: "5px 11px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              border: "1px solid var(--line)",
-              background: section === "admin" ? "#f6f1e7" : "#fffefa",
-              color: "var(--ink)",
-              fontWeight: section === "admin" ? 600 : 400
-            }}
-            onClick={() => navigate("admin")}
-          >
-            ⚙ Gestión de Contenidos
-          </button>
-          <button
-            className="admin-btn"
-            style={{
-              fontSize: "11px",
-              padding: "5px 11px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              border: "1px solid var(--line)",
-              background: section === "users" ? "#f6f1e7" : "#fffefa",
-              color: "var(--ink)",
-              fontWeight: section === "users" ? 600 : 400
-            }}
-            onClick={() => navigate("users")}
-          >
-            👥 Gestión de Usuarios
-          </button>
+          {/* Acceso a Gestión de Contenidos: solo visible para Docente y Admin */}
+          {currentUser && (currentUser.role === "admin" || currentUser.role === "docente") && (
+            <button
+              className="admin-btn"
+              style={{
+                fontSize: "11px",
+                padding: "5px 11px",
+                borderRadius: "5px",
+                cursor: "pointer",
+                border: "1px solid var(--line)",
+                background: section === "admin" ? "#f6f1e7" : "#fffefa",
+                color: "var(--ink)",
+                fontWeight: section === "admin" ? 600 : 400
+              }}
+              onClick={() => navigate("admin")}
+            >
+              ⚙ Gestión de Contenidos
+            </button>
+          )}
+
+          {/* Acceso a Gestión de Usuarios: solo visible para Administrador */}
+          {currentUser && currentUser.role === "admin" && (
+            <button
+              className="admin-btn"
+              style={{
+                fontSize: "11px",
+                padding: "5px 11px",
+                borderRadius: "5px",
+                cursor: "pointer",
+                border: "1px solid var(--line)",
+                background: section === "users" ? "#f6f1e7" : "#fffefa",
+                color: "var(--ink)",
+                fontWeight: section === "users" ? 600 : 400
+              }}
+              onClick={() => navigate("users")}
+            >
+              👥 Gestión de Usuarios
+            </button>
+          )}
         </div>
       </header>
 
@@ -464,7 +492,7 @@ export default function StudyWorkspace({
         <div>
           <p className="eyebrow">TU BEIT MIDRASH</p>
           <nav aria-label="Navegación principal">
-            {sections.map(item => (
+            {visibleSections.map(item => (
               <button
                 key={item.id}
                 className={section === item.id ? "nav-item active" : "nav-item"}
