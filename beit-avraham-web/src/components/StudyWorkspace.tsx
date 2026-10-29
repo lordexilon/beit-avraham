@@ -490,7 +490,9 @@ export default function StudyWorkspace({
         <span className="breadcrumb">
           Beit Midrash <span>/</span> {sections.find(item => item.id === section)?.label}
         </span>
-        <span className="demo-badge">Catálogo Activo: {currentShiur.title}</span>
+        {currentUser && section === "study" && (
+          <span className="demo-badge">Clase: {currentShiur.title}</span>
+        )}
         <div className="topbar-actions">
           {/* Enlace directo a Google Meet del Moré */}
           <a
@@ -844,13 +846,71 @@ export default function StudyWorkspace({
 
         {section === "admin" && (
           <section className="admin-view" aria-labelledby="admin-heading">
-            <ContentAdmin onSaveLandingSettings={(newSettings) => setLandingSettings(newSettings)} />
+            {currentUser && (currentUser.role === "admin" || currentUser.role === "docente") ? (
+              <ContentAdmin onSaveLandingSettings={(newSettings) => setLandingSettings(newSettings)} />
+            ) : (
+              <div style={{
+                maxWidth: "480px",
+                margin: "60px auto",
+                padding: "36px 24px",
+                background: "#fbf8f0",
+                borderRadius: "12px",
+                border: "1px solid rgba(197, 160, 89, 0.4)",
+                textAlign: "center",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.05)"
+              }}>
+                <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "12px" }}>🔒</span>
+                <h2 style={{ fontSize: "1.3rem", margin: "0 0 8px", color: "var(--ink)", fontFamily: "var(--serif)" }}>
+                  Acceso Restringido
+                </h2>
+                <p style={{ fontSize: "0.85rem", color: "var(--muted)", margin: "0 0 20px", lineHeight: 1.6 }}>
+                  El panel de gestión editorial y contenidos está reservado para docentes y administradores de Beit Avraham.
+                </p>
+                <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
+                  <button type="button" className="primary-button" onClick={() => setLoginModalOpen(true)}>
+                    🔑 Iniciar Sesión
+                  </button>
+                  <button type="button" className="admin-btn" onClick={() => navigate("landing")}>
+                    ← Volver al Inicio
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
         )}
 
         {section === "users" && (
           <section className="users-view" aria-labelledby="users-heading">
-            <UserAdmin />
+            {currentUser && currentUser.role === "admin" ? (
+              <UserAdmin />
+            ) : (
+              <div style={{
+                maxWidth: "480px",
+                margin: "60px auto",
+                padding: "36px 24px",
+                background: "#fbf8f0",
+                borderRadius: "12px",
+                border: "1px solid rgba(197, 160, 89, 0.4)",
+                textAlign: "center",
+                boxShadow: "0 10px 25px rgba(0,0,0,0.05)"
+              }}>
+                <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "12px" }}>🔒</span>
+                <h2 style={{ fontSize: "1.3rem", margin: "0 0 8px", color: "var(--ink)", fontFamily: "var(--serif)" }}>
+                  Acceso Restringido
+                </h2>
+                <p style={{ fontSize: "0.85rem", color: "var(--muted)", margin: "0 0 20px", lineHeight: 1.6 }}>
+                  La administración de usuarios requiere privilegios de administrador institucional.
+                </p>
+                <div style={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
+                  <button type="button" className="primary-button" onClick={() => setLoginModalOpen(true)}>
+                    🔑 Iniciar Sesión
+                  </button>
+                  <button type="button" className="admin-btn" onClick={() => navigate("landing")}>
+                    ← Volver al Inicio
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
         )}
 
@@ -1193,16 +1253,46 @@ export default function StudyWorkspace({
 
         {(section === "history" || section === "progress") && (
           <section className="section-placeholder">
-            <p className="eyebrow">TU BEIT MIDRASH</p>
-            <h1>{sections.find(item => item.id === section)?.label}</h1>
-            <p>
-              {section === "history"
-                ? "Tus conversaciones anteriores con la Javrutá quedarán registradas aquí."
-                : "Tu recorrido de aprendizaje aparecerá aquí cuando comiences a estudiar clases reales."}
-            </p>
-            <button className="primary-button" onClick={() => navigate("study")}>
-              Volver al folio de estudio →
-            </button>
+            {currentUser ? (
+              <>
+                <p className="eyebrow">TU BEIT MIDRASH</p>
+                <h1>{sections.find(item => item.id === section)?.label}</h1>
+                <p>
+                  {section === "history"
+                    ? "Tus conversaciones anteriores con la Javrutá quedarán registradas aquí."
+                    : "Tu recorrido de aprendizaje aparecerá aquí cuando comiences a estudiar clases reales."}
+                </p>
+                <button className="primary-button" onClick={() => navigate("study")}>
+                  Volver al folio de estudio →
+                </button>
+              </>
+            ) : (
+              <div style={{
+                maxWidth: "480px",
+                margin: "40px auto",
+                padding: "36px 24px",
+                background: "#fbf8f0",
+                borderRadius: "12px",
+                border: "1px solid rgba(197, 160, 89, 0.4)",
+                textAlign: "center"
+              }}>
+                <span style={{ fontSize: "2.5rem", display: "block", marginBottom: "12px" }}>🔒</span>
+                <h2 style={{ fontSize: "1.3rem", margin: "0 0 8px", color: "var(--ink)", fontFamily: "var(--serif)" }}>
+                  Inicia Sesión para ver tu Progreso
+                </h2>
+                <p style={{ fontSize: "0.85rem", color: "var(--muted)", margin: "0 0 20px", lineHeight: 1.6 }}>
+                  Ingresa con tu cuenta de alumno para acceder a tu historial personalizado y conversaciones con la Javrutá.
+                </p>
+                <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+                  <button type="button" className="primary-button" onClick={() => setLoginModalOpen(true)}>
+                    🔑 Iniciar Sesión
+                  </button>
+                  <button type="button" className="admin-btn" onClick={() => navigate("landing")}>
+                    ← Volver al Inicio
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
         )}
 

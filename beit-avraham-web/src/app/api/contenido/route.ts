@@ -71,11 +71,14 @@ function text(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const auth = authorize(request);
   const target = endpoint();
   if (!target) {
+    const rawItems = getFallbackContentItems();
+    const items = auth.ok ? rawItems : rawItems.filter(i => i.kind !== "usuario");
     return Response.json({
-      items: getFallbackContentItems(),
+      items,
       fallback: true,
       notice: "Matrix sin configurar; usando catálogo compilado base."
     });
@@ -102,24 +105,33 @@ export async function GET() {
     }
     const data = await response.json();
     if (!response.ok) {
+      const rawItems = getFallbackContentItems();
+      const items = auth.ok ? rawItems : rawItems.filter(i => i.kind !== "usuario");
       return Response.json({
-        items: getFallbackContentItems(),
+        items,
         fallback: true,
         notice: "Tabla de contenido no encontrada en Supabase; usando catálogo compilado base."
       });
     }
     if (Array.isArray(data) && data.length === 0) {
+      const rawItems = getFallbackContentItems();
+      const items = auth.ok ? rawItems : rawItems.filter(i => i.kind !== "usuario");
       return Response.json({
-        items: getFallbackContentItems(),
+        items,
         fallback: true,
         unseeded: true,
         notice: "Base de datos vacía; mostrando catálogo compilado base listo para sembrar."
       });
     }
-    return Response.json({ items: data });
+    const safeData = auth.ok
+      ? data
+      : (Array.isArray(data) ? data.filter((i: { kind?: string }) => i.kind !== "usuario") : data);
+    return Response.json({ items: safeData });
   } catch {
+    const rawItems = getFallbackContentItems();
+    const items = auth.ok ? rawItems : rawItems.filter(i => i.kind !== "usuario");
     return Response.json({
-      items: getFallbackContentItems(),
+      items,
       fallback: true,
       notice: "Matrix no respondió a tiempo; usando catálogo compilado base."
     });

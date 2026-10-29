@@ -166,7 +166,7 @@ export const SHIURIM_CATALOG: Shiur[] = [
     title: "Pirké Avot: Mishna 1 y la Transmisión de la Sabiduría",
     topic: "TORÁ & ÉTICA",
     subtitle: "La cadena viva de la tradición: de Moshé en el Sinaí hasta los hombres de la Gran Asamblea.",
-    teacher: "Rab. Daniel Rojkin · TuTorah",
+    teacher: "Moré Julio Valdez",
     duration: "35 min",
     videoUrl: "https://www.youtube-nocookie.com/embed/kvszzNO3qCE?enablejsapi=1",
     sourceType: "embed",
