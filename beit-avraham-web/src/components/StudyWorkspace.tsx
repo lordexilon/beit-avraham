@@ -67,11 +67,19 @@ export default function StudyWorkspace({
   const [alefatoFullscreen, setAlefatoFullscreen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
+  function toggleAlefatoFullscreen(active?: boolean) {
+    const next = typeof active === "boolean" ? active : !alefatoFullscreen;
+    setAlefatoFullscreen(next);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("beit_avraham_alefato_fullscreen", String(next));
+    }
+  }
+
   // Escuchar tecla Escape para salir del modo pantalla completa de Alefato
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape" && alefatoFullscreen) {
-        setAlefatoFullscreen(false);
+        toggleAlefatoFullscreen(false);
       }
     }
     if (alefatoFullscreen) {
@@ -86,41 +94,112 @@ export default function StudyWorkspace({
     };
   }, [alefatoFullscreen]);
 
-  // Enlaces directos: landing, folio, feed podcast (#ep-<id>), alefato, etc.
+  // Persistencia y restauración de estado: sección, shiur, pasaje, notas y configuración al refrescar la página
   useEffect(() => {
-    const hash = window.location.hash.replace(/^#/, "");
-    if (!hash) return;
-    if (hash === "inicio" || hash === "landing" || hash === "bienvenida") setSection("landing");
-    if (hash === "folio" || hash === "estudio" || hash === "study") setSection("study");
-    if (hash === "alefato") setSection("alefato");
-    if (hash === "biblioteca" || hash === "library") setSection("library");
-    if (hash === "escuchar") setSection("listen");
-    if (hash === "contenido" || hash === "admin") setSection("admin");
-    if (hash === "usuarios" || hash === "users") setSection("users");
-    if (hash.startsWith("ep-")) {
-      setInitialEpisodeId(hash.slice(3));
-      setSection("listen");
-    }
-  }, []);
+    if (typeof window === "undefined") return;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("beit_avraham_active_user");
-      if (stored) {
-        try {
-          setCurrentUser(JSON.parse(stored));
-        } catch {}
-      }
-      const storedLanding = localStorage.getItem("beit_avraham_landing_settings");
-      if (storedLanding) {
-        try {
-          setLandingSettings({ ...DEFAULT_LANDING_SETTINGS, ...JSON.parse(storedLanding) });
-        } catch {}
-      }
-      const isCol = localStorage.getItem("beit_avraham_sidebar_collapsed") === "true";
-      setSidebarCollapsed(isCol);
+    // 1. Restaurar usuario activo
+    const storedUser = localStorage.getItem("beit_avraham_active_user");
+    if (storedUser) {
+      try {
+        setCurrentUser(JSON.parse(storedUser));
+      } catch {}
     }
-  }, []);
+
+    // 2. Restaurar configuraciones de landing y barra lateral
+    const storedLanding = localStorage.getItem("beit_avraham_landing_settings");
+    if (storedLanding) {
+      try {
+        setLandingSettings({ ...DEFAULT_LANDING_SETTINGS, ...JSON.parse(storedLanding) });
+      } catch {}
+    }
+    const isCol = localStorage.getItem("beit_avraham_sidebar_collapsed") === "true";
+    setSidebarCollapsed(isCol);
+
+    // 3. Restaurar pestaña del folio de estudio (transcripción o notas)
+    const storedTab = localStorage.getItem("beit_avraham_study_tab");
+    if (storedTab === "transcript" || storedTab === "notes") {
+      setTab(storedTab);
+    }
+
+    // 4. Restaurar shiur activo y pasaje en el que quedó el estudiante
+    const storedShiurId = localStorage.getItem("beit_avraham_active_shiur_id");
+    if (storedShiurId) {
+      const found = SHIURIM_CATALOG.find(item => item.id === storedShiurId);
+      if (found) {
+        setCurrentShiur(found);
+        const storedPassage = localStorage.getItem(`beit_avraham_active_passage_${found.id}`);
+        if (storedPassage !== null) {
+          const pIdx = parseInt(storedPassage, 10);
+          if (!isNaN(pIdx) && pIdx >= 0 && pIdx < found.passages.length) {
+            setSelectedPassage(pIdx);
+            setCurrentTime(found.passages[pIdx].seconds);
+          }
+        }
+      }
+    }
+
+    // 5. Determinar la sección a restaurar según hash de URL o memoria en localStorage
+    const hash = window.location.hash.replace(/^#/, "");
+    let targetSection: Section | null = null;
+
+    if (hash) {
+      if (hash === "inicio" || hash === "landing" || hash === "bienvenida") targetSection = "landing";
+      else if (hash === "folio" || hash === "estudio" || hash === "study") targetSection = "study";
+      else if (hash === "alefato") targetSection = "alefato";
+      else if (hash === "biblioteca" || hash === "library") targetSection = "library";
+      else if (hash === "escuchar" || hash === "listen") targetSection = "listen";
+      else if (hash === "fuentes" || hash === "sources") targetSection = "sources";
+      else if (hash === "contenido" || hash === "admin") targetSection = "admin";
+      else if (hash === "usuarios" || hash === "users") targetSection = "users";
+      else if (hash === "historial" || hash === "history") targetSection = "history";
+      else if (hash === "progreso" || hash === "progress") targetSection = "progress";
+      else if (hash.startsWith("ep-")) {
+        setInitialEpisodeId(hash.slice(3));
+        targetSection = "listen";
+      }
+    }
+
+    if (!targetSection) {
+      const storedSection = localStorage.getItem("beit_avraham_active_section") as Section | null;
+      if (storedSection && sections.some(item => item.id === storedSection)) {
+        targetSection = storedSection;
+      }
+    }
+
+    if (targetSection) {
+      setSection(targetSection);
+      const targetHash = targetSection === "landing" ? "" : `#${targetSection}`;
+      if (window.location.hash !== targetHash && targetHash) {
+        window.history.replaceState(null, "", targetHash);
+      }
+    }
+
+    // 6. Restaurar modo pantalla completa de alefato si el estudiante lo dejó activo
+    if (targetSection === "alefato") {
+      const storedAlefatoFs = localStorage.getItem("beit_avraham_alefato_fullscreen") === "true";
+      if (storedAlefatoFs) {
+        setAlefatoFullscreen(true);
+      }
+    }
+
+    // 7. Sincronizar navegación por botones del navegador (atrás / adelante)
+    function handleHashChange() {
+      const curHash = window.location.hash.replace(/^#/, "");
+      if (!curHash) {
+        setSection("landing");
+        localStorage.setItem("beit_avraham_active_section", "landing");
+        return;
+      }
+      const item = sections.find(s => s.id === curHash);
+      if (item) {
+        setSection(item.id);
+        localStorage.setItem("beit_avraham_active_section", item.id);
+      }
+    }
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [SHIURIM_CATALOG]);
 
   function toggleSidebar() {
     const next = !sidebarCollapsed;
@@ -301,17 +380,35 @@ export default function StudyWorkspace({
     setMenuOpen(false);
     // Al entrar por la navegación se ve la lista, no el episodio del último enlace.
     if (id === "listen") setInitialEpisodeId(null);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("beit_avraham_active_section", id);
+      const targetHash = id === "landing" ? "" : `#${id}`;
+      if (window.location.hash !== targetHash) {
+        window.history.replaceState(null, "", targetHash || window.location.pathname);
+      }
+    }
   }
 
-  function selectShiur(shiur: Shiur) {
+  function handleTabChange(nextTab: "transcript" | "notes") {
+    setTab(nextTab);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("beit_avraham_study_tab", nextTab);
+    }
+  }
+
+  function selectShiur(shiur: Shiur, passageIndex = 0) {
     setCurrentShiur(shiur);
-    setSelectedPassage(0);
-    setCurrentTime(0);
+    setSelectedPassage(passageIndex);
+    setCurrentTime(shiur.passages[passageIndex]?.seconds || 0);
     setPlayerActive(false);
     setJavrutaAnswer(null);
     setJavrutaSources([]);
     setQuestion("");
-    setSection("study");
+    navigate("study");
+    if (typeof window !== "undefined") {
+      localStorage.setItem("beit_avraham_active_shiur_id", shiur.id);
+      localStorage.setItem(`beit_avraham_active_passage_${shiur.id}`, String(passageIndex));
+    }
   }
 
   // Desde «Escuchar» se puede volver al folio con la clase ya cargada.
@@ -322,6 +419,9 @@ export default function StudyWorkspace({
 
   function seekToPassage(index: number) {
     setSelectedPassage(index);
+    if (typeof window !== "undefined" && currentShiur) {
+      localStorage.setItem(`beit_avraham_active_passage_${currentShiur.id}`, String(index));
+    }
     const p = currentShiur.passages[index];
     if (p) {
       setCurrentTime(p.seconds);
@@ -339,7 +439,12 @@ export default function StudyWorkspace({
     setCurrentTime(sec);
     setPlayerActive(true);
     const foundIdx = currentShiur.passages.findIndex(p => p.seconds <= sec);
-    if (foundIdx >= 0) setSelectedPassage(foundIdx);
+    if (foundIdx >= 0) {
+      setSelectedPassage(foundIdx);
+      if (typeof window !== "undefined" && currentShiur) {
+        localStorage.setItem(`beit_avraham_active_passage_${currentShiur.id}`, String(foundIdx));
+      }
+    }
     if (iframeRef.current && iframeRef.current.contentWindow) {
       iframeRef.current.contentWindow.postMessage(
         JSON.stringify({ event: "command", func: "seekTo", args: [sec, true] }),
@@ -615,7 +720,7 @@ export default function StudyWorkspace({
                 <button
                   type="button"
                   className="alefato-btn-fullscreen"
-                  onClick={() => setAlefatoFullscreen(!alefatoFullscreen)}
+                  onClick={() => toggleAlefatoFullscreen()}
                   aria-label={alefatoFullscreen ? "Salir de pantalla completa" : "Modo inmersivo pantalla completa"}
                   title={alefatoFullscreen ? "Salir de pantalla completa (Esc)" : "Expandir para estudiar con mayor comodidad"}
                 >
@@ -652,7 +757,7 @@ export default function StudyWorkspace({
                     <button
                       type="button"
                       className="alefato-btn-fullscreen primary small"
-                      onClick={() => setAlefatoFullscreen(false)}
+                      onClick={() => toggleAlefatoFullscreen(false)}
                       title="Salir del modo pantalla completa (Esc)"
                     >
                       ✕ Salir (Esc)
@@ -880,14 +985,14 @@ export default function StudyWorkspace({
                   <button
                     className={tab === "transcript" ? "selected" : ""}
                     aria-pressed={tab === "transcript"}
-                    onClick={() => setTab("transcript")}
+                    onClick={() => handleTabChange("transcript")}
                   >
                     Transcripción ({currentShiur.passages.length})
                   </button>
                   <button
                     className={tab === "notes" ? "selected" : ""}
                     aria-pressed={tab === "notes"}
-                    onClick={() => setTab("notes")}
+                    onClick={() => handleTabChange("notes")}
                   >
                     Mis notas
                   </button>
