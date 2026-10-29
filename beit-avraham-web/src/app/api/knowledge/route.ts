@@ -36,11 +36,18 @@ export async function GET(request: Request) {
   });
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/knowledge_base?${query.toString()}`, {
-      headers: contentHeaders(target.key),
+    let response = await fetch(`${target.url}/rest/v1/knowledge_base?${query.toString()}`, {
+      headers: contentHeaders(target.key, "fsca"),
       cache: "no-store",
       signal: AbortSignal.timeout(5000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/knowledge_base?${query.toString()}`, {
+        headers: contentHeaders(target.key),
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000)
+      });
+    }
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo leer el corpus.", detail: data }, { status: 502 });
 
@@ -97,15 +104,26 @@ export async function POST(request: Request) {
   };
 
   try {
-    const response = await fetch(`${target.url}/rest/v1/knowledge_base`, {
+    let response = await fetch(`${target.url}/rest/v1/knowledge_base`, {
       method: "POST",
       headers: {
-        ...contentHeaders(target.key),
+        ...contentHeaders(target.key, "fsca"),
         Prefer: "return=representation"
       },
       body: JSON.stringify(record),
       signal: AbortSignal.timeout(6000)
     });
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(`${target.url}/rest/v1/knowledge_base`, {
+        method: "POST",
+        headers: {
+          ...contentHeaders(target.key),
+          Prefer: "return=representation"
+        },
+        body: JSON.stringify(record),
+        signal: AbortSignal.timeout(6000)
+      });
+    }
 
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo insertar en knowledge_base.", detail: data }, { status: 502 });
@@ -145,12 +163,12 @@ export async function PUT(request: Request) {
   const embedding = generateEmbedding(content.trim());
 
   try {
-    const response = await fetch(
+    let response = await fetch(
       `${target.url}/rest/v1/knowledge_base?id=eq.${encodeURIComponent(String(id))}&project_name=eq.${encodeURIComponent(CONTENT_PROJECT)}`,
       {
         method: "PATCH",
         headers: {
-          ...contentHeaders(target.key),
+          ...contentHeaders(target.key, "fsca"),
           Prefer: "return=representation"
         },
         body: JSON.stringify({
@@ -161,6 +179,24 @@ export async function PUT(request: Request) {
         signal: AbortSignal.timeout(6000)
       }
     );
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(
+        `${target.url}/rest/v1/knowledge_base?id=eq.${encodeURIComponent(String(id))}&project_name=eq.${encodeURIComponent(CONTENT_PROJECT)}`,
+        {
+          method: "PATCH",
+          headers: {
+            ...contentHeaders(target.key),
+            Prefer: "return=representation"
+          },
+          body: JSON.stringify({
+            source_file: source_file.trim(),
+            content: content.trim(),
+            embedding
+          }),
+          signal: AbortSignal.timeout(6000)
+        }
+      );
+    }
 
     const data = await response.json();
     if (!response.ok) return Response.json({ error: "No se pudo actualizar.", detail: data }, { status: 502 });
@@ -198,14 +234,24 @@ export async function DELETE(request: Request) {
   if (!id) return Response.json({ error: "Falta el id a eliminar." }, { status: 400 });
 
   try {
-    const response = await fetch(
+    let response = await fetch(
       `${target.url}/rest/v1/knowledge_base?id=eq.${encodeURIComponent(id)}&project_name=eq.${encodeURIComponent(CONTENT_PROJECT)}`,
       {
         method: "DELETE",
-        headers: contentHeaders(target.key),
+        headers: contentHeaders(target.key, "fsca"),
         signal: AbortSignal.timeout(5000)
       }
     );
+    if (response.status === 406 || response.status === 404) {
+      response = await fetch(
+        `${target.url}/rest/v1/knowledge_base?id=eq.${encodeURIComponent(id)}&project_name=eq.${encodeURIComponent(CONTENT_PROJECT)}`,
+        {
+          method: "DELETE",
+          headers: contentHeaders(target.key),
+          signal: AbortSignal.timeout(5000)
+        }
+      );
+    }
 
     if (!response.ok) {
       const data = await response.json().catch(() => ({}));

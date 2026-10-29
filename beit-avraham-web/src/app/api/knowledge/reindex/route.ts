@@ -23,11 +23,18 @@ export async function POST(request: Request) {
       project_name: `eq.${CONTENT_PROJECT}`
     });
 
-    const res = await fetch(`${target.url}/rest/v1/knowledge_base?${query.toString()}`, {
-      headers: contentHeaders(target.key),
+    let res = await fetch(`${target.url}/rest/v1/knowledge_base?${query.toString()}`, {
+      headers: contentHeaders(target.key, "fsca"),
       cache: "no-store",
       signal: AbortSignal.timeout(5000)
     });
+    if (res.status === 406 || res.status === 404) {
+      res = await fetch(`${target.url}/rest/v1/knowledge_base?${query.toString()}`, {
+        headers: contentHeaders(target.key),
+        cache: "no-store",
+        signal: AbortSignal.timeout(5000)
+      });
+    }
 
     const docs = await res.json();
     if (!res.ok) return Response.json({ error: "No se pudo leer knowledge_base.", detail: docs }, { status: 502 });
