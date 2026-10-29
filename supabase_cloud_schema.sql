@@ -250,10 +250,10 @@ VALUES
     "status": "activo",
     "sederActive": "pirkei-avot-01"
   }'::jsonb),
-  ('beit-avraham', 'usuario', 'docente-daniel', '{
-    "id": "docente-daniel",
-    "name": "Rab. Daniel Rojkin",
-    "email": "daniel.rojkin@beitavraham.org",
+  ('beit-avraham', 'usuario', 'docente-julio', '{
+    "id": "docente-julio",
+    "name": "Moré Julio Valdez",
+    "email": "julio.valdez@beitavraham.org",
     "role": "docente",
     "status": "activo",
     "sederActive": "shabat-01"
@@ -265,11 +265,25 @@ VALUES
     "role": "estudiante",
     "status": "activo",
     "sederActive": "pirkei-avot-01"
+  }'::jsonb),
+  ('beit-avraham', 'landing', 'settings', '{
+    "id": "settings",
+    "heroEyebrow": "CASA DE ESTUDIO · BEIT MIDRASH",
+    "heroTitle": "Aprende Torá con el Moré Julio Valdez",
+    "heroSubtitle": "Una casa abierta al estudio judío profundo, reflexivo y accesible. Clases guiadas en video, textos tradicionales comentados y encuentros comunitarios para enriquecer tu camino espiritual.",
+    "heroHebrew": "בֵּית אַבְרָהָם · בֵּית מִדְרָשׁ",
+    "aboutTitle": "¿Cómo estudiamos en Beit Avraham?",
+    "aboutSubtitle": "Nuestra propuesta pedagógica une la reverencia por las enseñanzas del maestro con la participación viva del estudiante y la profundidad de nuestras fuentes sagradas.",
+    "communityNotice": "Estudia a tu propio ritmo con las clases del Moré, profundiza con tu Javrutá y participa de los encuentros en vivo por Google Meet.",
+    "meetUrl": "https://meet.google.com/new",
+    "meetTitle": "Sala de Estudio Virtual y Encuentros con el Moré",
+    "meetSchedule": "Lunes y Jueves 19:30 hs (En Vivo)",
+    "meetDescription": "Encuentros semanales por videollamada para estudiar juntos, hacer preguntas en directo y compartir reflexiones comunitarias."
   }'::jsonb)
 ON CONFLICT (project_name, kind, slug) DO UPDATE
 SET payload = EXCLUDED.payload, updated_at = now();
 
-SELECT count(*) as total_usuarios_sembrados FROM fsca.content_items WHERE kind = 'usuario';
+SELECT count(*) as total_items_sembrados FROM fsca.content_items WHERE kind IN ('usuario', 'landing');
 
 -- -----------------------------------------------------------------------------
 -- 11. Vistas y Funciones puente en esquema 'public' (Compatibilidad Zero-Config)

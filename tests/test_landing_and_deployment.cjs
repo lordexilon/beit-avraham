@@ -16,7 +16,7 @@ async function testLandingAndDeployment() {
   assert(fs.existsSync(landingPath), 'LandingPage.tsx debe existir');
   const landingCode = fs.readFileSync(landingPath, 'utf8');
   assert(landingCode.includes('בֵּית אַבְרָהָם'), 'Debe contener la identidad en hebreo Beit Avraham');
-  assert(landingCode.includes('Moré Daniel Rojkin') || landingCode.includes('Moré'), 'Debe centrarse en el Moré');
+  assert(landingCode.includes('Moré Julio Valdez') || landingCode.includes('Moré'), 'Debe centrarse en el Moré');
   assert(landingCode.includes('Clases del Moré Sincronizadas'), 'Debe detallar el pilar de clases del Moré');
   assert(landingCode.includes('Tu Javrutá de Estudio'), 'Debe incluir la Javrutá orientada al estudio');
   assert(landingCode.includes('Google Meet'), 'Debe integrar enlace y sección de Google Meet');

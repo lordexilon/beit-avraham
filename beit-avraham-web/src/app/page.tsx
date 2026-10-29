@@ -1,6 +1,6 @@
 import StudyWorkspace from "../components/StudyWorkspace";
 import ClientOnly from "../components/ClientOnly";
-import { listFuentes, listShiurim, listUsers } from "../lib/content/store";
+import { getLandingSettings, listFuentes, listShiurim, listUsers } from "../lib/content/store";
 
 // El contenido viene de Matrix en cada request: editarlo en el ABM se ve al
 // recargar, sin recompilar. Si Matrix no responde, el store devuelve el
@@ -8,7 +8,12 @@ import { listFuentes, listShiurim, listUsers } from "../lib/content/store";
 // Usamos ClientOnly para aislar la hidratación contra extensiones del navegador
 // (como Bitdefender o gestores de contraseñas que inyectan bis_skin_checked).
 export default async function Page() {
-  const [shiurim, fuentes, users] = await Promise.all([listShiurim(), listFuentes(), listUsers()]);
+  const [shiurim, fuentes, users, landingSettings] = await Promise.all([
+    listShiurim(),
+    listFuentes(),
+    listUsers(),
+    getLandingSettings()
+  ]);
   return (
     <ClientOnly
       fallback={
@@ -34,7 +39,12 @@ export default async function Page() {
         </div>
       }
     >
-      <StudyWorkspace shiurim={shiurim} fuentes={fuentes} users={users} />
+      <StudyWorkspace
+        shiurim={shiurim}
+        fuentes={fuentes}
+        users={users}
+        initialLandingSettings={landingSettings}
+      />
     </ClientOnly>
   );
 }

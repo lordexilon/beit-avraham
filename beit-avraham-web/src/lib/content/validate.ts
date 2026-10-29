@@ -85,5 +85,11 @@ export function validatePayload(kind: string, payload: unknown): string | null {
     return null;
   }
 
-  return "kind debe ser shiur, fuente, podcast o usuario.";
+  if (kind === "landing") {
+    const l = payload as Record<string, unknown>;
+    if (!text(l.heroTitle)) return "Falta heroTitle en landing.";
+    return null;
+  }
+
+  return "kind debe ser shiur, fuente, podcast, usuario o landing.";
 }

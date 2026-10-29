@@ -21,7 +21,7 @@ export interface LandingSettings {
 
 export const DEFAULT_LANDING_SETTINGS: LandingSettings = {
   heroEyebrow: "CASA DE ESTUDIO · BEIT MIDRASH",
-  heroTitle: "Aprende Torá con el Moré Daniel Rojkin",
+  heroTitle: "Aprende Torá con el Moré Julio Valdez",
   heroSubtitle: "Una casa abierta al estudio judío profundo, reflexivo y accesible. Clases guiadas en video, textos tradicionales comentados y encuentros comunitarios para enriquecer tu camino espiritual.",
   heroHebrew: "בֵּית אַבְרָהָם · בֵּית מִדְרָשׁ",
   aboutTitle: "¿Cómo estudiamos en Beit Avraham?",

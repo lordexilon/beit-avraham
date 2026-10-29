@@ -168,11 +168,34 @@ export default function ContentAdmin({ onSaveLandingSettings }: ContentAdminProp
     }
   }, []);
 
-  function saveLandingSettings() {
+  async function saveLandingSettings() {
     if (typeof window !== "undefined") {
       localStorage.setItem("beit_avraham_landing_settings", JSON.stringify(landingSettings));
-      onSaveLandingSettings?.(landingSettings);
-      setMessage({ tone: "ok", text: "Configuración de la Landing Page guardada exitosamente." });
+    }
+    onSaveLandingSettings?.(landingSettings);
+
+    try {
+      setBusy(true);
+      const res = await fetch("/api/contenido", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          kind: "landing",
+          payload: { id: "settings", ...landingSettings }
+        })
+      });
+      if (res.ok) {
+        setMessage({ tone: "ok", text: "Configuración guardada en la base de datos y portada actualizada." });
+      } else {
+        setMessage({ tone: "ok", text: "Configuración guardada localmente para la portada." });
+      }
+    } catch {
+      setMessage({ tone: "ok", text: "Configuración guardada localmente para la portada." });
+    } finally {
+      setBusy(false);
       setTimeout(() => setMessage(null), 3500);
     }
   }

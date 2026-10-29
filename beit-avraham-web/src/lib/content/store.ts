@@ -1,6 +1,7 @@
 import { SHIURIM_CATALOG, type Shiur } from "../../data/shiurim";
 import { HALAJIC_SOURCES_CATALOG, type HalajicSourceItem } from "../../data/sources";
 import { PODCAST_SERIES, type PodcastEpisode } from "../../data/podcast";
+import { DEFAULT_LANDING_SETTINGS, type LandingSettings } from "../../components/LandingPage";
 
 /**
  * Lectura del contenido editorial desde Matrix (tabla fsca.content_items).
@@ -12,7 +13,7 @@ import { PODCAST_SERIES, type PodcastEpisode } from "../../data/podcast";
  * Sólo se importa desde el servidor (page.tsx y route handlers).
  */
 
-export type ContentKind = "shiur" | "fuente" | "podcast" | "usuario";
+export type ContentKind = "shiur" | "fuente" | "podcast" | "usuario" | "landing";
 
 export interface UserProfile {
   id: string;
@@ -179,6 +180,15 @@ export async function listUsers(): Promise<UserProfile[]> {
   const items = await listContentItems("usuario");
   const users = (items ?? []).map(item => item.payload).filter(isUserProfile);
   return users.length > 0 ? users : CANONICAL_USERS;
+}
+
+/** Configuración de la Landing Page desde Matrix. Cae a DEFAULT_LANDING_SETTINGS si Matrix no responde. */
+export async function getLandingSettings(): Promise<LandingSettings> {
+  const items = await listContentItems("landing");
+  if (items && items.length > 0 && items[0]?.payload) {
+    return { ...DEFAULT_LANDING_SETTINGS, ...(items[0].payload as LandingSettings) };
+  }
+  return DEFAULT_LANDING_SETTINGS;
 }
 
 export const CONTENT_PROJECT = PROJECT;

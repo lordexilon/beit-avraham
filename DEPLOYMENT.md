@@ -75,7 +75,7 @@ Si aún no has vinculado tu repositorio remoto en GitHub:
 
 Una vez desplegada, la aplicación cuenta con las siguientes secciones accesibles desde el menú superior y lateral:
 
-- **Inicio / Bienvenida (`/` o `#landing`)**: Landing institucional centrada en el aprendizaje de Torá con el Moré Daniel Rojkin, los 4 pilares pedagógicos, videollamadas en vivo de Google Meet y catálogo de clases.
+- **Inicio / Bienvenida (`/` o `#landing`)**: Landing institucional centrada en el aprendizaje de Torá con el Moré Julio Valdez, los 4 pilares pedagógicos, videollamadas en vivo de Google Meet y catálogo de clases.
 - **Clases en Vivo por Google Meet**: Enlace directo en la barra superior, en el menú lateral y en la landing page para unirse a las salas virtuales de estudio con el Moré. Se puede personalizar la URL y los horarios desde el panel administrativo.
 - **Folio de Estudio (`#estudio`)**: Reproductor de video de la clase activa sincronizado segundo a segundo con el texto transcripto y notas del maestro.
 - **Tu Javrutá (`#estudio` - panel derecho)**: Diálogo socrático continuo potenciado por xAI Grok y corpus halájico tradicional.

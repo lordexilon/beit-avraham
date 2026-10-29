@@ -30,6 +30,7 @@ interface StudyWorkspaceProps {
   shiurim: Shiur[];
   fuentes: HalajicSourceItem[];
   users?: UserProfile[];
+  initialLandingSettings?: LandingSettings;
 }
 
 // El catálogo llega como prop (desde Matrix) y se aliasa al nombre que ya usaba
@@ -37,7 +38,8 @@ interface StudyWorkspaceProps {
 export default function StudyWorkspace({
   shiurim: SHIURIM_CATALOG,
   fuentes: HALAJIC_SOURCES_CATALOG,
-  users = []
+  users = [],
+  initialLandingSettings
 }: StudyWorkspaceProps) {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -62,7 +64,7 @@ export default function StudyWorkspace({
   const [voiceAudioRef, setVoiceAudioRef] = useState<HTMLAudioElement | null>(null);
   // Episodio al que apunta un enlace entrante (#ep-<shiurId>), usado por el feed RSS.
   const [initialEpisodeId, setInitialEpisodeId] = useState<string | null>(null);
-  const [landingSettings, setLandingSettings] = useState<LandingSettings>(DEFAULT_LANDING_SETTINGS);
+  const [landingSettings, setLandingSettings] = useState<LandingSettings>(initialLandingSettings || DEFAULT_LANDING_SETTINGS);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [alefatoFullscreen, setAlefatoFullscreen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
